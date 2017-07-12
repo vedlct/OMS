@@ -15,13 +15,5 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/AdminHome', function () {
-    return view('admin.Home');
-});
-
-Route::get('/UserHome', function () {
-    return view('user.Home');
-});
-
-
 Route::post('/logincheck','LoginController@validate_user');
+Route::get('/Home','LoginController@home');

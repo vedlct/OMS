@@ -38,19 +38,23 @@ class LoginController extends Controller
                         [
                             'order' => $value->short_name,
                             'status'=>$value->user_type,
-                            'user-id'=>$value->user_id
+                            'user-id'=>$value->user_id,
+                            'user-type'=>$value->user_type
 
 
                         ]
                     );
-                 if ($value->user_type == 'Admin')
-                 {
-                     return redirect('/AdminHome');
-                 }
-                if ($value->user_type == 'User')
-                {
+
+//                 if ($value->user_type == 'Admin')
+//                 {
+//                     return redirect('/AdminHome');
+//                 }
+//                if ($value->user_type == 'User')
+//                {
+//                    return redirect('/Home');
+//                }
+
                     return redirect('/Home');
-                }
 
                 }
             }
@@ -64,6 +68,17 @@ class LoginController extends Controller
 				</script>";
         }
 
+    }
+    public function home(){
+
+                if (session('user-type') == 'Admin')
+                 {
+                     return view('admin.Home');
+                 }
+                if (session('user-type') == 'User')
+                {
+                    return view('user.Home');
+                }
     }
 
 }
