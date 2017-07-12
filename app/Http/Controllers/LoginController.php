@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Login;
+
+use Session;
 
 class LoginController extends Controller
 {
@@ -15,6 +18,8 @@ class LoginController extends Controller
 
         $username=$request->name;
         $password= $request->pass;
+
+
 
         $check= (new Login)->validate($username,$password);
 
@@ -45,15 +50,7 @@ class LoginController extends Controller
                         ]
                     );
 
-//                 if ($value->user_type == 'Admin')
-//                 {
-//                     return redirect('/AdminHome');
-//                 }
-//                if ($value->user_type == 'User')
-//                {
-//                    return redirect('/Home');
-//                }
-
+                    $insert_log= (new Login)->log();
                     return redirect('/Home');
 
                 }
@@ -69,16 +66,25 @@ class LoginController extends Controller
         }
 
     }
-    public function home(){
+//    public function home(){
+//
+//                if (session('user-type') == 'Admin')
+//                 {
+//                     return view('admin.Home');
+//                 }
+//                if (session('user-type') == 'User')
+//                {
+//                    return view('user.Home');
+//                }
+//    }
 
-                if (session('user-type') == 'Admin')
-                 {
-                     return view('admin.Home');
-                 }
-                if (session('user-type') == 'User')
-                {
-                    return view('user.Home');
-                }
+    public function logout(){
+
+        $logout_log= (new Login)->logout();
+
+        session::flush();
+        return redirect('/');
+
     }
 
 }

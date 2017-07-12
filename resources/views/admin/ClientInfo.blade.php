@@ -33,7 +33,7 @@
 
 <section id="container" >
     <!--header start-->
-@extends('admin.sidemenu')
+@extends('Navigation.topmenu')
 <!--header end-->
     <!--sidebar start-->
     <aside>
@@ -48,7 +48,7 @@
                 $result1 = mysqli_query($con, $sql1);
 
                 ?>
-                    @extends('admin.menu')
+                    @extends('Navigation.menu')
 
             </ul>
             <!-- sidebar menu end-->
