@@ -75,7 +75,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
     </a>
 </li>
 <li>
-    <a  href="NewUserRequest.php">
+    <a  href="{{route('newuserrequest')}}">
         <i class="fa fa-user"></i>
         <span>New User Request</span>
     </a>
@@ -86,8 +86,8 @@ elseif(session('order')!=null && session('status')=="Admin"){
         <span>Work</span>
     </a>
     <ul class="sub">
-        <li><a  href="JobInfoOngoing.php">On Going</a></li>
-        <li><a  href="JobInfoClose.php">Done</a></li>
+        <li><a  href="{{route('ongoingjob')}}">On Going</a></li>
+        <li><a  href="{{route('finshedjob')}}">Done</a></li>
     </ul>
 </li>
 <!--<li>

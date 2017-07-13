@@ -12,20 +12,20 @@
     <title>MSMS - Tech Cloud Ltd.</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
-    <link href="{{'css/bootstrap-reset.css'}}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="{{'assets/font-awesome/css/font-awesome.css'}}" rel="stylesheet" />
-    <link href="{{'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'}}" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="{{'css/owl.carousel.css'}}" type="text/css">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="{{'css/style.css'}}" rel="stylesheet">
-    <link href="{{'css/style-responsive.css'}}" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-    <script src="{{'js/html5shiv.js'}}"></script>
-    <script src="{{'js/respond.min.js'}}"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div  class="panel-heading">
-                            All Jobs
+                            Registration Request
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -63,52 +63,51 @@
                                     <thead>
                                     <tr>
                                         <th width="4%" scope="col">Sl.</th>
-                                        <th width="10%" scope="col">Client Name</th>
-                                        <th width="17%" scope="col">Service Type</th>
-                                        <th width="60%" scope="col">Brief</th>
-                                        <th width="5%" scope="col">Status</th>
+                                        <th width="17%" scope="col">Company Name</th>
+                                        <th width="15%" scope="col">Key Person</th>
+                                        <th width="14%" scope="col">Email</th>
+                                        <th width="11%" scope="col">Number</th>
+                                        <th width="9%" scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $s=1; ?>
-                                    @foreach($newjobrequest as $value)
+                                    <?php
 
+                                    $totalAmount = 0;
+                                    $sl = 1;
+
+                                    ?>
+                                    @foreach($newuserrequest as $value)
                                     <tr>
-                                        <td>{{$s}}</td>
+                                        <td>{{$sl}}</td>
+                                        <td>{{$value->company_name}}</td>
+                                        <td>{{$value->contact_person}}</td>
+                                        <td>{{$value->email}}</td>
+                                        <td>{{$value->contact_no}}</td>
                                         <td>
-                                            {{$value->company_name}}
-                                        </td>
+                                            <select name="paymenttype" id="{{$value->user_id}}" onChange="changestatus(this.id)">
 
-                                        <td>{{$value->service}}</td>
-                                        <td>
-                                            {{'-'.$value->instruction1}}<br>
-                                            {{'-'.$value->instruction2}}<br>
-                                            {{'-'.$value->instruction3}}<br>
-                                            {{'-'.$value->instruction4}}<br>
-                                            {{'-'.$value->instruction5}}<br>
-                                        </td>
-                                        <td>
-                                            <select name="paymenttype" id="{{$value->job_id}}" onChange="changestatus(this.id)">
+                                                @if ($value->client_status == "Active")
 
-                                                {{--@if ({{$value->job_status}} == "Pending")--}}
-                                                @if($value->job_status=="Pending")
-
-                                                    <option selected value='Pending'>Pending</option>
-                                        		    <option value='On Going'>On Going</option>
+                                                    <option selected value='Active'>Active</option>
+                                        		  <option value='Deactive'>Deactive</option>
 
                                                 @else
 
-                                                    <option value='Pending'>Pending</option>
-                                        		    <option selected value='On Going'>On Going</option>
-                                                @endif
+                                                    <option value='Active'>Active</option>
+                                        		  <option selected value='Deactive'>Deactive</option>
 
+                                                @endif
                                             </select>
+
                                         </td>
                                     </tr>
-                                        <?php $s++ ?>
+
+                                    <?php
+                                    $sl++;
+
+                                    ?>
                                     @endforeach
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -148,11 +147,10 @@
     function changestatus(x)
     {
         var option = document.getElementById(x).value;
-        //alert(option);
 
         $.ajax({
             type:'get',
-            url:'{{'/changejobstatus/'}}'+option,
+            url:'{{'/changeuserstatus/'}}'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
@@ -163,10 +161,6 @@
             }
 
         });
-
-
-
-
     }
     //owl carousel
     $(document).ready(function() {

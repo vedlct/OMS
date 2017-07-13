@@ -30,7 +30,43 @@ class AdminController extends Controller
         $value=$request->value;
 
         $changestatus=(new Admin)->change_job_status($id,$value);
+        //echo $id;
 
 
     }
+
+    public function newuserrequest(){
+
+        $newuserrequest=(new Admin)->newuserrequest();
+
+        return view('admin.newuserrequest',compact('newuserrequest'));
+    }
+
+    public function changeuserstatus(Request $request){
+
+        $id=$request->id;
+        $value=$request->value;
+
+        $changestatus=(new Admin)->change_user_status($id,$value);
+
+
+
+    }
+
+    public function ongoingjob(){
+
+
+        $ongoingwork=(new Admin)->ongoingjob();
+
+        return view('admin.ongoingjobinfo',compact('ongoingwork'));
+    }
+
+    public function finshedjob(){
+
+
+        $finshedwork=(new Admin)->jobdone();
+
+        return view('admin.jobfinised',compact('finshedwork'));
+    }
+
 }

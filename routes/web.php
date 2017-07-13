@@ -31,6 +31,10 @@ Route::get('/profile', 'AdminController@profile')->name('adminprofile');
 
 Route::get('/NewJobRequest', 'AdminController@newjobrequest')->name('adminnewjobrequest');
 
-
 Route::get('/changejobstatus/{id}','AdminController@changejobstatus');
 
+Route::get('/NewUserRequest', 'AdminController@newuserrequest')->name('newuserrequest');
+Route::get('/changeuserstatus/{id}','AdminController@changeuserstatus');
+
+Route::get('/JobOnGoing', 'AdminController@ongoingjob')->name('ongoingjob');
+Route::get('/FinshedJob', 'AdminController@finshedjob')->name('finshedjob');

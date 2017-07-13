@@ -70,45 +70,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $s=1; ?>
-                                    @foreach($newjobrequest as $value)
+                                    <?php
 
+
+
+                                    $sl = 1;
+
+                                    ?>
+                                    @foreach($ongoingwork as $value)
                                     <tr>
-                                        <td>{{$s}}</td>
+                                        <td>{{$sl}}</td>
                                         <td>
                                             {{$value->company_name}}
                                         </td>
-
                                         <td>{{$value->service}}</td>
                                         <td>
-                                            {{'-'.$value->instruction1}}<br>
-                                            {{'-'.$value->instruction2}}<br>
-                                            {{'-'.$value->instruction3}}<br>
-                                            {{'-'.$value->instruction4}}<br>
-                                            {{'-'.$value->instruction5}}<br>
+                                            {{'-'}}{{$value->instruction1}}<br>
+                                            {{'-'}}{{$value->instruction2}}<br>
+                                            {{'-'}}{{$value->instruction3}}<br>
+                                            {{'-'}}{{$value->instruction4}}<br>
+                                            {{'-'}}{{$value->instruction5}}<br>
                                         </td>
                                         <td>
                                             <select name="paymenttype" id="{{$value->job_id}}" onChange="changestatus(this.id)">
 
-                                                {{--@if ({{$value->job_status}} == "Pending")--}}
-                                                @if($value->job_status=="Pending")
+                                                @if ($value->job_status == "On Going")
 
-                                                    <option selected value='Pending'>Pending</option>
-                                        		    <option value='On Going'>On Going</option>
+                                                    <option selected value='On Going'>On Going</option>
+												  <option value='Done'>Done</option>
 
                                                 @else
 
-                                                    <option value='Pending'>Pending</option>
-                                        		    <option selected value='On Going'>On Going</option>
-                                                @endif
+                                                    <option selected value='Done'>Done</option>
 
+                                                @endif
                                             </select>
                                         </td>
                                     </tr>
-                                        <?php $s++ ?>
+
+                                    <?php
+                                    $sl++;
+
+                                    ?>
                                     @endforeach
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -148,7 +152,6 @@
     function changestatus(x)
     {
         var option = document.getElementById(x).value;
-        //alert(option);
 
         $.ajax({
             type:'get',
@@ -163,10 +166,6 @@
             }
 
         });
-
-
-
-
     }
     //owl carousel
     $(document).ready(function() {
