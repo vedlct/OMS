@@ -35,7 +35,7 @@ elseif (session('order')!= null && session('status')== "User"){
     </a>
 </li>
 <li>
-    <a  href="NewJobRequest.php">
+    <a  href="{{route('newjobrequest')}}">
         <i class="fa fa-briefcase"></i>
         <span>New Job Request</span>
     </a>
@@ -69,7 +69,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
     </a>
 </li>
 <li>
-    <a  href="NewJobRequest.php">
+    <a  href="{{route('adminnewjobrequest')}}">
         <i class="fa fa-briefcase"></i>
         <span>New Job Request</span>
     </a>

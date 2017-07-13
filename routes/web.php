@@ -28,3 +28,9 @@ Route::get('/Logout','LoginController@logout');
 Route::get('/profile', 'AdminController@profile')->name('adminprofile');
 //Route::get('/profile', 'UserController@profile')->name('userprofile');
 
+
+Route::get('/NewJobRequest', 'AdminController@newjobrequest')->name('adminnewjobrequest');
+
+
+Route::get('/changejobstatus/{id}','AdminController@changejobstatus');
+
