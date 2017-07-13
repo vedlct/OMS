@@ -43,7 +43,8 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                              <form method="post" enctype="multipart/form-data" action="pages/php/newreg.php">
+                              <form method="post" enctype="multipart/form-data" action="{{'/insertreg'}}">
+                                  {{csrf_field()}}
                               <table class="table table-striped table-bordered table-hover" border="0">
                                   <tr>
                                     <th colspan="4" scope="row"><div align="center"><h4>Ragistration Form</h4></div></th>

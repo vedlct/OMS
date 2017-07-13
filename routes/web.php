@@ -15,5 +15,10 @@ Route::get('/', function () {
     return view('login');
 });
 
+
+Route::get('/Registration', function () {
+    return view('Registration');
+});
 Route::post('/logincheck','LoginController@validate_user');
 Route::get('/Home','LoginController@home');
+Route::post('/insertreg','Registration@insertdata');

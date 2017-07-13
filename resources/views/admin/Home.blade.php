@@ -145,7 +145,7 @@
     $(function() {
 
         var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
-        alert (pgurl);
+        //alert (pgurl);
 
         $(".nav li").each(function(){
 
