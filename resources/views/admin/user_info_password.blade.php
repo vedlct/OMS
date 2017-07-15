@@ -1,4 +1,6 @@
 
+<!--For Admin-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="img/TCL_logo.png">
 
-    <title>MSMS - Tech Cloud Ltd.</title>
+    <title>Order Management System</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
@@ -27,10 +29,36 @@
     <script src="{{'js/html5shiv.js'}}"></script>
     <script src="{{'js/respond.min.js'}}"></script>
     <![endif]-->
+
+
+    <style>
+
+        .passform
+        {
+            border: none;
+            /* cursor: context-menu; */
+            background-color: #f9f9f9;
+            width: 100%;
+        }
+
+        .passform:hover
+        {
+            border: none;
+            /* cursor: context-menu; */
+            background-color:#f9f9f9;
+        }
+
+
+        .p{
+            display: none;
+        }
+    </style>
+
+
+
 </head>
 
 <body>
-
 <section id="container" >
     <!--header start-->
 @include('Navigation.topmenu')
@@ -51,65 +79,37 @@
         <section class="wrapper">
             <!--state overview start-->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div  class="panel-heading">
-                            Registration Request
+                            User Info & Password Change
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th width="4%" scope="col">Sl.</th>
-                                        <th width="17%" scope="col">Company Name</th>
-                                        <th width="15%" scope="col">Key Person</th>
-                                        <th width="14%" scope="col">Email</th>
-                                        <th width="11%" scope="col">Number</th>
-                                        <th width="9%" scope="col">Status</th>
+                                        <th width="20%">Use Name</th>
+                                        <th width="10%">Password</th>
+                                        <th width="20%">Status</th>
+                                        <th width="20%">Details</th>
                                     </tr>
                                     </thead>
+
+                                    @foreach($getinfo as $value)
                                     <tbody>
-                                    <?php
-
-                                    $totalAmount = 0;
-                                    $sl = 1;
-
-                                    ?>
-                                    @foreach($newuserrequest as $value)
-                                    <tr>
-                                        <td>{{$sl}}</td>
-                                        <td>{{$value->company_name}}</td>
-                                        <td>{{$value->contact_person}}</td>
-                                        <td>{{$value->email}}</td>
-                                        <td>{{$value->contact_no}}</td>
-                                        <td>
-                                            <select name="paymenttype" id="{{$value->user_id}}" onChange="changestatus(this.id)">
-
-                                                @if ($value->client_status == "Active")
-
-                                                    <option selected value='Active'>Active</option>
-                                        		  <option value='Deactive'>Deactive</option>
-
-                                                @else
-
-                                                    <option value='Active'>Active</option>
-                                        		  <option selected value='Deactive'>Deactive</option>
-
-                                                @endif
-                                            </select>
-
-                                        </td>
+                                    <tr class="gradeA even">
+                                        <td>{{$value->username}}</td>
+                                        <td><input class="passform" aria-hidden="true" type="password" value="{{$value->password}}" readonly="readonly" /></td>
+                                        <td>{{$value->user_type}}</td>
+                                        <td><div align="center"><a id="editlead" href=""><i class="fa fa-edit fa-fw"></i></a></div></td>
                                     </tr>
 
-                                    <?php
-                                    $sl++;
-
-                                    ?>
-                                    @endforeach
                                     </tbody>
+                                        @endforeach
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,8 @@
     <!--footer end-->
 </section>
 
+</body>
+</html>
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="{{'js/jquery.js'}}"></script>
 <script src="{{'js/jquery-1.8.3.min.js'}}"></script>
@@ -140,48 +142,14 @@
 
 <!--script for this page-->
 
-
-<script>
-
-
-    function changestatus(x)
-    {
-        var option = document.getElementById(x).value;
-
-        $.ajax({
-            type:'get',
-            url:'{{'/changeuserstatus/'}}'+option,
-            data:{'id':x,'value':option},
-            cache: false,
-            success:function(data)
-            {
-                //$('#txtHint').html(data);
-                //alert(data);
-                location.reload();
-            }
-
-        });
-    }
-    //owl carousel
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
+<script type="text/javascript">
+    $(".passform").mousedown(function(){
+        $(this).prop('type', 'text');
     });
 
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
+    $(".passform").mouseup(function(){
+        $(this).prop('type', 'password');
     });
+
 
 </script>
-
-</body>
-</html>
-

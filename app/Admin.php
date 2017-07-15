@@ -44,6 +44,8 @@ class Admin extends Model
         DB::table('customer_info')
             ->where('user_id',$id)
             ->update(array('client_status'=>$value));
+
+        return true;
     }
 
     public function newuserrequest(){
@@ -79,4 +81,82 @@ class Admin extends Model
 
         return $finshedwork;
     }
+
+    public function clientinfoview(){
+
+        $id=session('user-id');
+
+        $client_view= DB::table('customer_info')->get();
+        return $client_view;
+
+    }
+
+    public function viewclient($id){
+        $client_view= DB::table('customer_info')
+            ->where('user_id',$id)
+            ->get();
+        return $client_view;
+
+    }
+
+    public function updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web){
+
+        DB::table('customer_info')
+            ->where('user_id',$id)
+            ->update(array(
+                'user_type'=>$type,
+                'company_name'=>$company_name,
+                'contact_person'=>$contact_person,
+                'contact_no'=>$contact_number,
+                'email'=>$email,
+                'address'=>$address,
+                'webaddress'=>$web,
+
+            ));
+        return true;
+    }
+    public function viewservice(){
+
+        $service= DB::table('service')
+            ->orderBy('service_name', 'ASC')
+            ->get();
+        return $service;
+    }
+
+    public function change_service_status($id,$value){
+
+        DB::table('service')
+            ->where('service_id',$id)
+            ->update(array('service_status'=>$value));
+        return true;
+    }
+
+    public function insert_service($name,$type,$status){
+
+        $data=array(
+
+            'service_name'=>$name,
+            'service_type'=>$type,
+            'service_status'=>$status
+        );
+
+        DB::table('service')->insert($data);
+
+        return true;
+
+    }
+
+    public function getinfo(){
+
+        $info= DB::table('customer_info')
+            ->where('client_status', 'Active')
+            ->orderBy('company_name', 'ASC')
+            ->get();
+        return $info;
+
+    }
+
+
+
+
 }

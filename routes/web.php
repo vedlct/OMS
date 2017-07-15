@@ -38,3 +38,18 @@ Route::get('/changeuserstatus/{id}','AdminController@changeuserstatus');
 
 Route::get('/JobOnGoing', 'AdminController@ongoingjob')->name('ongoingjob');
 Route::get('/FinshedJob', 'AdminController@finshedjob')->name('finshedjob');
+
+
+
+Route::get('/ClientInfo', 'AdminController@viewclient')->name('clintinfo');
+Route::get('/ClientInfo/{id}','AdminController@clientinfo');
+Route::post('/ClientInfo', 'AdminController@updateclientinfo')->name('updateinfo');
+
+
+Route::get('/Service', 'AdminController@serviceinfo');
+
+Route::post('/Service', 'AdminController@insertservice')->name('insertservice');
+
+Route::get('/changeservicestatus/{id}','AdminController@changeservicestatus');
+
+Route::get('/PasswordChange', 'AdminController@passchange')->name('passchange');

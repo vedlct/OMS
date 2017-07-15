@@ -97,7 +97,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
     </a>
 </li>-->
 <li>
-    <a  href="ViewClient.php">
+    <a  href="{{route('clintinfo')}}">
         <i class="fa fa-users"></i>
         <span>Clients Info</span>
     </a>
@@ -123,8 +123,8 @@ elseif(session('order')!=null && session('status')=="Admin"){
     <ul class="sub">
         <li><a  href="#">FAQ</a></li>
         <li><a  href="#">User Manual</a></li>
-        <li><a  href="Service.php">Service Information</a></li>
-        <li><a  href="PassChange.php">Password Change</a></li>
+        <li><a  href="{{'/Service'}}">Service Information</a></li>
+        <li><a  href="{{route('passchange')}}">Password Change</a></li>
     </ul>
 </li>
 <?php
