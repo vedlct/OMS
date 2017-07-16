@@ -78,10 +78,11 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th width="5%">SL.</th>
+                                        <th width="10%">SL.</th>
                                         <th width="40%">Name</th>
                                         <th width="20%">Type</th>
                                         <th width="20%">Status</th>
+                                        <th width="10%"> Delete Service</th>
                                     </tr>
                                     </thead>
 
@@ -114,6 +115,7 @@
                                                 @endif
                                             </select>
                                         </td>
+                                        <td><div align="center"><a href="#" data-panel-id="{{$value->service_id}}"onclick="deleteservice(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div></td>
                                     </tr>
                                     <?php
                                     $sl++;
@@ -168,6 +170,7 @@
                                         <option>Inactive</option>
                                     </select>
                                 </th>
+
                                 <th>
                                     <button type="submit" style="width:100%; color:#69F;">Save</button></th>
                                 </tbody>
@@ -225,6 +228,36 @@
             }
 
         });
+
+
+    }
+
+    function deleteservice(x)
+    {
+        btn = $(x).data('panel-id');
+
+        if (confirm('Are you sure you want to delete this service ?')) {
+            // Save it!
+
+            $.ajax({
+                type:'get',
+                url:'{{'/deleteservice/'}}'+btn,
+                data:{'id':btn},
+                cache: false,
+                success:function(data)
+                {
+                    //$('#txtHint').html(data);
+                    alert(data);
+                    window.location="/Service";
+                }
+
+            });
+
+        } else {
+            window.location="/Service";
+        }
+
+
 
 
     }

@@ -47,9 +47,11 @@ Route::post('/ClientInfo', 'AdminController@updateclientinfo')->name('updateinfo
 
 
 Route::get('/Service', 'AdminController@serviceinfo');
-
 Route::post('/Service', 'AdminController@insertservice')->name('insertservice');
-
 Route::get('/changeservicestatus/{id}','AdminController@changeservicestatus');
+Route::get('/deleteservice/{id}','AdminController@servicedelete');
+
 
 Route::get('/PasswordChange', 'AdminController@passchange')->name('passchange');
+Route::get('/changepassword/{id}','AdminController@changeuserpass');
+Route::post('/passchange/{id}','AdminController@changepass');

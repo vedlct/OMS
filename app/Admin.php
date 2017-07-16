@@ -155,6 +155,37 @@ class Admin extends Model
         return $info;
 
     }
+    public function getpass($id){
+
+        $profile_info= DB::table('customer_info')
+            ->where('user_id',$id)
+            ->limit(1)
+            ->get();
+        return $profile_info;
+
+    }
+
+    public function changepass($id,$pass){
+
+        $data=array(
+            'password'=>$pass
+        );
+
+        DB::table('customer_info')
+            ->where('user_id',$id)
+            ->update($data);
+        return true;
+    }
+
+    public function delete_service($id){
+
+        $service= DB::table('service')
+            ->where('service_id',$id)
+            ->delete();
+
+        return $service;
+
+    }
 
 
 

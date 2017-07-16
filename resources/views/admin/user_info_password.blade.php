@@ -24,6 +24,8 @@
     <link href="{{'css/style.css'}}" rel="stylesheet">
     <link href="{{'css/style-responsive.css'}}" rel="stylesheet" />
 
+    <link rel="stylesheet" href="{{ 'css/modal.css' }}" />
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
     <script src="{{'js/html5shiv.js'}}"></script>
@@ -103,7 +105,7 @@
                                         <td>{{$value->username}}</td>
                                         <td><input class="passform" aria-hidden="true" type="password" value="{{$value->password}}" readonly="readonly" /></td>
                                         <td>{{$value->user_type}}</td>
-                                        <td><div align="center"><a id="editlead" href=""><i class="fa fa-edit fa-fw"></i></a></div></td>
+                                        <td><div align="center"><a id="editlead" href="#" data-panel-id="{{$value->user_id}}" onClick="passchange(this)"><i class="fa fa-edit fa-fw"></i></a></div></td>
                                     </tr>
 
                                     </tbody>
@@ -115,6 +117,27 @@
                     </div>
                 </div>
             </div>
+
+            <!--modal-->
+            <div id="myModal1" class="modal">
+                <br/><br/><br/>
+
+                <!-- Modal content -->
+
+                <div class="modal-content" style="padding: 35px; width: 50%; margin: 0 auto">
+                    <span class="close">×</span>
+
+                    <h2>Edit Content</h2>
+
+
+
+                    <div id="txtHint"></div>
+
+
+
+                </div>
+            </div>
+            <!-- endmodal-->
 
             <!--state overview end-->
         </section>
@@ -151,5 +174,39 @@
         $(this).prop('type', 'password');
     });
 
+
+</script>
+
+<script type="text/javascript">
+
+    var modal1 = document.getElementById('myModal1');
+    var span = document.getElementsByClassName("close")[0];
+
+    function passchange(x)
+    {
+        modal1.style.display = "block";
+
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            type:'get',
+            url:'{{'/changepassword/'}}'+btn,
+            data:{'id':btn},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+                //alert(data);
+
+            }
+
+        });
+
+
+    }
+
+    span.onclick = function() {
+        modal1.style.display = "none";
+    }
 
 </script>

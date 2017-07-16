@@ -190,6 +190,60 @@ class AdminController extends Controller
         $getinfo=(new Admin)->getinfo();
         return view('admin.user_info_password',compact('getinfo'));
     }
+    public function changeuserpass($id){
+
+        $getpass=(new Admin)->getpass($id);
+        return view('admin.passwordchange',compact('getpass'));
+    }
+    public function changepass(Request $request){
+
+        $id=$request->id;
+        //$name=$request->aname;
+        $pass=$request->NP;
+        $conpass=$request->CNP;
+
+        if ($pass== $conpass){
+
+            $changepass=(new Admin)->changepass($id,$pass);
+
+            if (count($changepass !='')){
+
+
+                echo "<script type=\"text/javascript\" >
+				alert(\"Password Changed Successfully\");
+				window.location=\"/PasswordChange\";
+				</script>";
+            }
+            else{
+
+                echo "<script type=\"text/javascript\" >
+				alert(\"Something Went Wrong\");
+				window.location=\"/PasswordChange\";
+				</script>";
+            }
+
+        }
+        else {
+
+            echo "<script type=\"text/javascript\" >
+				alert(\"Password and Confirm Password doesn't match.please try again\");
+				window.location=\"/PasswordChange\";
+				</script>";
+        }
+
+    }
+    public function servicedelete($id){
+
+        $del_service=(new Admin)->delete_service($id);
+        if (count($del_service)!=''){
+
+            echo "Service deleted successfully";
+        }
+        else{
+            echo "Something Wrong.please try again";
+        }
+        //return view('admin.passwordchange',compact('getpass'));
+    }
 
 
 }
