@@ -158,7 +158,7 @@
             success:function(data)
             {
                 //$('#txtHint').html(data);
-                //alert(data);
+                alert(data);
                 location.reload();
             }
 

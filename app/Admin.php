@@ -34,9 +34,10 @@ class Admin extends Model
 
     public function change_job_status($id,$value){
 
-        DB::table('job_request')
+        $job_status=DB::table('job_request')
             ->where('job_id',$id)
             ->update(array('job_status'=>$value));
+        return $job_status;
     }
 
     public function change_user_status($id,$value){

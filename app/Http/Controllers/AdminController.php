@@ -30,7 +30,15 @@ class AdminController extends Controller
         $value=$request->value;
 
         $changestatus=(new Admin)->change_job_status($id,$value);
-        //echo $value;
+
+        if (count($changestatus)!='')
+        {
+            echo "Job ".$value." successfully.";
+        }
+        else
+        {
+            echo "There is an issue. Please Refresh the page and try again.";
+        }
 
 
     }
@@ -144,7 +152,7 @@ class AdminController extends Controller
 
         if (count($client_view)!='')
         {
-            echo "Account ".$value." successfully.";
+            echo "Service ".$value." successfully.";
         }
         else
         {
