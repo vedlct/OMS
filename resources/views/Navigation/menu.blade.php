@@ -35,7 +35,7 @@ elseif (session('order')!= null && session('status')== "User"){
     </a>
 </li>
 <li>
-    <a  href="{{route('newjobrequest')}}">
+    <a  href="{{route('usernewjobrequest')}}">
         <i class="fa fa-briefcase"></i>
         <span>New Job Request</span>
     </a>

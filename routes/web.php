@@ -20,6 +20,7 @@ Route::get('/Home', function () {
     return view('Home');
 });
 
+
 Route::post('/logincheck','LoginController@validate_user');
 //Route::get('/Home','LoginController@home');
 Route::get('/Logout','LoginController@logout');
@@ -30,6 +31,7 @@ Route::get('/profile', 'AdminController@profile')->name('adminprofile');
 
 
 Route::get('/NewJobRequest', 'AdminController@newjobrequest')->name('adminnewjobrequest');
+Route::get('/NewJobRequest', 'UserController@newjobrequest')->name('usernewjobrequest');
 
 Route::get('/changejobstatus/{id}','AdminController@changejobstatus');
 
