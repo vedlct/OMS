@@ -72,3 +72,6 @@ Route::get('/changepassword/{id}','AdminController@changeuserpass');
 Route::post('/passchange/{id}','AdminController@changepass');
 
 
+Route::get('/message', 'MessageController@showAdminsms');
+
+

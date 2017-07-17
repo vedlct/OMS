@@ -128,6 +128,14 @@ elseif(session('order')!=null && session('status')=="Admin"){
         <li><a  href="{{route('passchange')}}">Password Change</a></li>
     </ul>
 </li>
+
+<li class="sub-menu">
+    <a href="{{'/message'}}" >
+        <i class="fa fa-comment"></i>
+        <span>Message</span>
+    </a>
+
+</li>
 <?php
 }
 ?>
