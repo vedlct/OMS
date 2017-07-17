@@ -1,6 +1,4 @@
-{{--<link rel="stylesheet" href="{{ 'css/modal.css' }}" />--}}
-{{--<script type="text/javascript" src="{{ URL('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>--}}
-{{--<script type="text/javascript" src="{{ URL('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') }}"></script>--}}
+
 
                                 <form method="post" enctype="multipart/form-data" action="{{route('updateinfo')}}">
                                     @foreach($client_view as $value)
