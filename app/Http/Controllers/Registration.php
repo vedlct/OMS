@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\registrationm;
 
 class Registration extends Controller
@@ -21,7 +21,7 @@ class Registration extends Controller
         $web = $request->web;
         $save= (new registrationm)->insertdata($loginname,$pass,$clientname,$contact,$number,$email,$address,$web);
 
-        return redirect('/registration');
+       return redirect('/registration');
     }
 
 }

@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="Home.php" class="logo">Order <span>Management </span>System</a>
+    <a href="{{url('/Home')}}" class="logo">Order <span>Management </span>System</a>
 
 
     <!--logo end-->
@@ -23,9 +23,13 @@
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="Profile.php"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    @if(session('user-type')=='Admin')
+                    <li><a href="{{route('adminprofile') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    @elseif(session('user-type')=='User')
+                    <li><a href="{{route('userprofile')}}"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    @endif
                     <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="php/logout.php"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><a href="{{url('/Logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

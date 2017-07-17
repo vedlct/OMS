@@ -29,7 +29,7 @@ elseif (session('order')!= null && session('status')== "User"){
     ?>
 
 <li>
-    <a href="Home.php">
+    <a href="{{'/Home'}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>
@@ -63,7 +63,7 @@ elseif (session('order')!= null && session('status')== "User"){
 elseif(session('order')!=null && session('status')=="Admin"){
 ?>
 <li>
-    <a href="Home.php">
+    <a href="{{'/Home'}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>

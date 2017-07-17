@@ -25,6 +25,6 @@ class registrationm extends Model
             'client_status' => 'pending',
 
         );
-        DB::insert($data);
+        DB::table('customer_info')->insert($data);
     }
 }

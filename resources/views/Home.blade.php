@@ -37,7 +37,7 @@
     <!--header start-->
 
 
-    @include('admin.sidemenu')
+    @include('Navigation.topmenu')
 
 
 <!--header end-->
@@ -47,7 +47,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-                @include('admin.menu')
+                @include('Navigation.menu')
 
             </ul>
             <!-- sidebar menu end-->
@@ -127,25 +127,30 @@
 
 
 
+
+
+</body>
+</html>
+
 <!-- js placed at the end of the document so the pages load faster -->
-<!-- js placed at the end of the document so the pages load faster -->
-<script src="{{url('js/jquery.js')}}"></script>
-<script src="{{url('js/jquery-1.8.3.min.js')}}"></script>
-{{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
-<script src="{{url('js/bootstrap.js')}}"></script>
-<script class="include" type="text/javascript" src="{{url('js/jquery.dcjqaccordion.2.7.js')}}"></script>
-<script src="{{url('js/jquery.scrollTo.min.js')}}"></script>
+<script src="{{'js/jquery.js'}}"></script>
+<script src="{{'js/jquery-1.8.3.min.js'}}"></script>
+<script src="{{'js/bootstrap.min.js'}}"></script>
+<script class="include" type="text/javascript" src="{{'js/jquery.dcjqaccordion.2.7.js'}}"></script>
+<script src="{{'js/jquery.scrollTo.min.js'}}"></script>
 
 
 <!--common script for all pages-->
-{{--<script src="{{url('js/common-scripts.js')}}"></script>--}}
+<script src="{{'js/common-scripts.js'}}"></script>
+
+<!--script for this page-->
 
 <script>
 
     $(function() {
 
         var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
-        //alert (pgurl);
+
 
         $(".nav li").each(function(){
 
@@ -183,8 +188,4 @@
     });
 
 </script>
-
-</body>
-</html>
-
 
