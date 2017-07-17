@@ -8,15 +8,65 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
     }
 
-    public function newjobrequest(){
+    public function profile(){
+
+        $profile_info=(new User)->get();
+        return view('Profile',compact('profile_info'));
+    }
+
+    public function newjobrequest()
+    {
 
 
-        $newjobrequest=(new User)->get_active_service();
+        $newjobrequest = (new User)->get_active_service();
 
-        return view('user.newjobrequest',compact('newjobrequest'));
+        return view('user.newjobrequest', compact('newjobrequest'));
+    }
+
+    public function insertnewjob(Request $request)
+    {
+
+        $service_type = $request->servicetype;
+        $instruction = $request->details_instruction;
+
+        $insert_new_job = (new User)->insertjob($service_type, $instruction);
+
+        if (count($insert_new_job) != '') {
+
+            echo "<script type=\"text/javascript\">
+        alert(\"Job Request Send Successfully.\");
+               window.location=\"/Home\";
+                </script>";
+            //return redirect('/usernewjobrequest');
+        }
+        else{
+
+            echo "<script type=\"text/javascript\">
+        alert(\"There is an issue. Please Refresh the page and try again.\");
+                window.location=\"/Home\";
+                </script>";
+        }
+
+
+    }
+    public function ongoingjob(){
+
+
+        $ongoingwork=(new User)->ongoingjob();
+
+        return view('user.ongoingjobinfo',compact('ongoingwork'));
+    }
+
+    public function finshedjob(){
+
+
+        $finshedwork=(new User)->jobdone();
+
+        return view('user.jobfinised',compact('finshedwork'));
     }
 }

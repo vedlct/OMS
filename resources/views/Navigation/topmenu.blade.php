@@ -26,9 +26,9 @@
                     @if(session('user-type')=='Admin')
                     <li><a href="{{route('adminprofile') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                     @elseif(session('user-type')=='User')
-                    <li><a href=""><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    <li><a href="{{route('userprofile')}}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                     @endif
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                    {{--<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>--}}
                     <li><a href="{{url('/Logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>

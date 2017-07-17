@@ -28,6 +28,18 @@ class User extends Authenticatable
 //        'password', 'remember_token',
 //    ];
 
+    public function get(){
+
+        $id=session('user-id');
+
+        $profile_info= DB::table('customer_info')
+            ->where('user_id',$id)
+            ->limit(1)
+            ->get();
+        return $profile_info;
+
+    }
+
     public function get_active_service(){
 
         $service= DB::table('service')
@@ -35,5 +47,50 @@ class User extends Authenticatable
             ->orderBy('service_name', 'ASC')
             ->get();
         return $service;
+    }
+
+    public function insertjob($service_type,$instruction){
+
+        $id=session('user-id');
+
+        $data=array(
+
+            'service'=>$service_type,
+            'instruction'=>$instruction
+        );
+
+        DB::table('job_request')
+            ->where('client_id',$id)
+            ->insert($data);
+
+        return true;
+
+    }
+
+    public function ongoingjob(){
+
+        $id=session('user-id');
+        $ongoing=DB::table('job_request')
+
+//            ->join('customer_info', 'job_request.client_id', '=', 'customer_info.user_id')
+            ->where('client_id',$id)
+            ->where('job_status','On Going')
+            ->get();
+
+        return $ongoing;
+    }
+
+    public function jobdone(){
+
+        $id=session('user-id');
+
+        $finshedwork=DB::table('job_request')
+
+//            ->join('customer_info', 'job_request.client_id', '=', 'customer_info.user_id')
+            ->where('client_id',$id)
+            ->where('job_status','Done')
+            ->get();
+
+        return $finshedwork;
     }
 }

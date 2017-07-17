@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="img/TCL_logo.png">
+    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
 
-    <title>MSMS - Tech Cloud Ltd.</title>
+    <title>OMS - Order Management System.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -64,7 +64,8 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <form method="post" enctype="multipart/form-data" action="">
+                                <form method="post" enctype="multipart/form-data" action="{{route('insertjobuser')}}">
+                                    {{csrf_field()}}
                                     <table class="table table-striped table-bordered table-hover" border="0">
                                         <tr>
                                             <th colspan="4" scope="row"><div align="center"><h4>New Job Information</h4></div></th>
@@ -73,7 +74,7 @@
                                             <th width="13%" scope="row"><div align="right">Service Type <i style="color:red">*</i></div></th>
                                             <td width="100%">
                                                 <select class="form-control" name="servicetype" required >
-                                                    <option selected value="" disabled>Select User Type</option>
+                                                    <option selected value="" disabled>Select Service Type</option>
                                                     @foreach($newjobrequest as $value)
                                                     <option value="{{$value->service_name}}">{{$value->service_name}}</option>
                                                     @endforeach
@@ -84,10 +85,10 @@
 
 
                                         <tr>
-                                            <th scope="row"><div align="right">Brief 1 <i style="color:red">*</i></div></th>
+                                            <th scope="row"><div align="right">Brief Instruction<i style="color:red">*</i></div></th>
                                             <td>
-                                                {{--<textarea  id="" class="form-control "  name="content"></textarea>--}}
-                                                <textarea class= "form-control "  id="summernote" type="text" name="details" ></textarea>
+
+                                                <textarea class= "form-control summernote" type="text"  name="details_instruction" required></textarea>
                                             </td>
 
                                         </tr>
@@ -134,14 +135,14 @@
 
 
 <!--common script for all pages-->
-{{--<script src="{{'js/common-scripts.js'}}"></script>--}}
+<script src="{{'js/common-scripts.js'}}"></script>
 
 <!--script for this page-->
 
 <!-- jQuery -->
 <script>
     $(document).ready(function() {
-        $('#summernote').summernote();
+        $('.summernote').summernote();
 
 
     });

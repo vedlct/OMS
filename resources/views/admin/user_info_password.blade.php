@@ -9,9 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="img/TCL_logo.png">
+    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
 
-    <title>Order Management System</title>
+    <title>OMS - Order Management System.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">

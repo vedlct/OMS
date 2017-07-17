@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="img/TCL_logo.png">
+    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
 
-    <title>MSMS - Tech Cloud Ltd.</title>
+    <title>OMS - Order Management System.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
@@ -156,7 +156,7 @@
             success:function(data)
             {
                 //$('#txtHint').html(data);
-                //alert(data);
+                alert(data);
                 location.reload();
             }
 

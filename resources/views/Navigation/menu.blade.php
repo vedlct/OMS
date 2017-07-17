@@ -46,8 +46,8 @@ elseif (session('order')!= null && session('status')== "User"){
         <span>Work</span>
     </a>
     <ul class="sub">
-        <li><a  href="JobInfoOngoing.php">On Going</a></li>
-        <li><a  href="JobInfoClose.php">Done</a></li>
+        <li><a  href="{{route('ongoingjob_user')}}">On Going</a></li>
+        <li><a  href="{{route('finshedjob_user')}}">Done</a></li>
     </ul>
 </li>
 

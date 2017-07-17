@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="img/TCL_logo.png">
+    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
 
-    <title>MSMS - Tech Cloud Ltd.</title>
+    <title>OMS - Order Management System.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
@@ -81,11 +81,7 @@
 
                                         <td>{{$value->service}}</td>
                                         <td>
-                                            {{'-'.$value->instruction1}}<br>
-                                            {{'-'.$value->instruction2}}<br>
-                                            {{'-'.$value->instruction3}}<br>
-                                            {{'-'.$value->instruction4}}<br>
-                                            {{'-'.$value->instruction5}}<br>
+                                            <?php echo $value->instruction ?>
                                         </td>
                                         <td>
                                             <select name="paymenttype" id="{{$value->job_id}}" onChange="changestatus(this.id)">
