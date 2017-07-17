@@ -62,11 +62,58 @@ class UserController extends Controller
         return view('user.ongoingjobinfo',compact('ongoingwork'));
     }
 
+    public function pendingjob(){
+
+
+        $pendingwork=(new User)->pendingjob();
+
+        return view('user.pendingjobinfo',compact('pendingwork'));
+    }
+
     public function finshedjob(){
 
 
         $finshedwork=(new User)->jobdone();
 
         return view('user.jobfinised',compact('finshedwork'));
+    }
+
+    public function changependingjob($id){
+
+        $activeservice = (new User)->get_active_service();
+        $job_instruction=(new User)->jobinstruction($id);
+
+
+        return view('user.editjob',compact('activeservice','job_instruction'));
+    }
+
+    public function updatejob(Request $request){
+
+        $service=$request->servicetype;
+        $instruction=$request->details_instruction;
+        $id=$request->id;
+        //echo $instruction;
+
+        $updatejob = (new User)->updatejob($service,$instruction,$id);
+
+        if (count($updatejob) != '') {
+
+            echo "<script type=\"text/javascript\">
+        alert(\"Job Request  Edited Successfully.\");
+               window.location=\"/Home\";
+                </script>";
+            //return redirect('/usernewjobrequest');
+        }
+        else{
+
+            echo "<script type=\"text/javascript\">
+        alert(\"There is an issue. Please Refresh the page and try again.\");
+                window.location=\"/Home\";
+                </script>";
+        }
+
+
+
+        //return view('user.editjob',compact('activeservice','job_instruction'));
     }
 }

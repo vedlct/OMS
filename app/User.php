@@ -54,14 +54,12 @@ class User extends Authenticatable
         $id=session('user-id');
 
         $data=array(
-
+            'client_id'=>$id,
             'service'=>$service_type,
             'instruction'=>$instruction
         );
 
-        DB::table('job_request')
-            ->where('client_id',$id)
-            ->insert($data);
+        DB::table('job_request')->insert($data);
 
         return true;
 
@@ -80,6 +78,19 @@ class User extends Authenticatable
         return $ongoing;
     }
 
+    public function pendingjob(){
+
+        $id=session('user-id');
+        $pending=DB::table('job_request')
+
+//            ->join('customer_info', 'job_request.client_id', '=', 'customer_info.user_id')
+            ->where('client_id',$id)
+            ->where('job_status','Pending')
+            ->get();
+
+        return $pending;
+    }
+
     public function jobdone(){
 
         $id=session('user-id');
@@ -92,5 +103,34 @@ class User extends Authenticatable
             ->get();
 
         return $finshedwork;
+    }
+
+    public function jobinstruction($id){
+
+        //$id=session('user-id');
+
+        $job=DB::table('job_request')
+
+//            ->join('customer_info', 'job_request.client_id', '=', 'customer_info.user_id')
+            ->where('job_id',$id)
+            ->where('job_status','Pending')
+            ->limit(1)
+            ->get();
+
+        return $job;
+    }
+
+    public function updatejob($service,$instruction,$id){
+
+        $data=array(
+            'service'=>$service,
+            'instruction'=>$instruction
+
+        );
+
+        DB::table('job_request')
+            ->where('job_id',$id)
+            ->update($data);
+        return true;
     }
 }

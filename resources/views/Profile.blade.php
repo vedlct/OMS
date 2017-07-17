@@ -104,30 +104,6 @@
                                 </table>
                                 @endforeach
 
-                                <table width="100%" class="table table-striped table-bordered table-hover">
-                                    <tr>
-                                        <th colspan="5"><div align="center"><strong><h4>Available Brand Name</h4></strong></div></th>
-                                    </tr>
-                                    <tr>
-
-                                    </tr>
-                                </table>
-                                <table width="100%" class="table table-striped table-bordered table-hover">
-                                    <tr>
-                                        <th colspan="2"><div align="center"><strong><h4>Telco Rate</h4></strong></div></th>
-                                    </tr>
-                                    <!--<tr>
-                                      <td>GP</td>
-                                      <td>Banglalink</td>
-                                      <td>Robi</td>
-                                      <td>Airtel</td>
-                                      <td>Teletalk</td>
-                                      <td>Citycell</td>
-                                    </tr>-->
-                                    <tr>
-
-                                    </tr>
-                                </table>
                             </div>
                         </div>
                     </div>

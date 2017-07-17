@@ -12,21 +12,23 @@
     <title>OMS - Order Management System.</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
-    <link href="{{'css/bootstrap-reset.css'}}" rel="stylesheet">
-    <!--external css-->
-    <link href="{{'assets/font-awesome/css/font-awesome.css'}}" rel="stylesheet" />
-    <link href="{{'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'}}" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="{{'css/owl.carousel.css'}}" type="text/css">
+    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+{{--<link href="{{url('css/bootstrap-reset.css')}}" rel="stylesheet">--}}
+<!--external css-->
+    <link href="{{url('assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+    <link href="{{url('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{url('css/owl.carousel.css')}}" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="{{'css/style.css'}}" rel="stylesheet">
-    <link href="{{'css/style-responsive.css'}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ 'css/modal.css' }}" />
+    <link href="{{url('css/style.css')}}" rel="stylesheet">
+    <link href="{{url('css/style-responsive.css')}}" rel="stylesheet" />
+
+
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-    <script src="{{'js/html5shiv.js'}}"></script>
-    <script src="{{'js/respond.min.js'}}"></script>
+    <script src="{{url('js/html5shiv.js')}}"></script>
+    <script src="{{url('js/respond.min.js')}}"></script>
     <![endif]-->
 
 </head>
@@ -56,7 +58,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div  class="panel-heading">
-                            Client Information
+                            All Jobs
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -65,57 +67,35 @@
                                     <thead>
                                     <tr>
                                         <th width="4%" scope="col">Sl.</th>
-                                        <th width="19%" scope="col">Client</th>
-                                        <th width="6%" scope="col">Type</th>
-                                        <th width="11%" scope="col">Username</th>
-                                        <th width="11%" scope="col">Password</th>
-                                        <th width="15%" scope="col">Key Person</th>
-                                        <th width="14%" scope="col">Email</th>
-                                        <th width="11%" scope="col">Number</th>
-                                        <th width="9%" scope="col">Status</th>
-                                        <th width="6%" scope="col">Action</th>
+                                        <th width="17%" scope="col">Service Type</th>
+                                        <th width="50%" scope="col">Instruction</th>
+                                        <th width="10%" scope="col">Status</th>
+                                        <th width="10%" scope="col">Edit Instruction</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
 
 
-                                    $totalAmount = 0;
+
                                     $sl = 1;
 
                                     ?>
-                                    @foreach($client_view as $value)
-                                    <tr>
-                                        <td>{{$sl}}</td>
-                                        <td>{{$value->company_name}}</td>
-                                        <td>{{$value->user_type}}</td>
-                                        <td>{{$value->username}}</td>
-                                        <td>{{$value->password}}</td>
-                                        <td>{{$value->contact_person}}</td>
-                                        <td>{{$value->email}}</td>
-                                        <td>{{$value->contact_no}}</td>
-                                        <td>
-                                            <select name="paymenttype" id="{{$value->user_id}}" onChange="changestatus(this.id)">
 
-                                                @if ($value->client_status == "Active")
+                                    @foreach($pendingwork as $value)
+                                        <tr>
+                                            <td>{{$sl}}</td>
+                                            <td>{{$value->service}}</td>
+                                            <td>
+                                                <?php  echo $value->instruction; ?>
+                                            </td>
+                                            <td>{{$value->job_status}}</td>
+                                            <td><div align="center"><a id="editlead" href="#" data-panel-id="{{$value->job_id}}" onClick="editjobinstruction(this)"><i class="fa fa-edit fa-fw"></i></a></div></td>
+                                        </tr>
+                                        <?php
+                                        $sl++;
 
-                                                    <option selected value='Active'>Active</option>
-                                        		  <option value='Deactive'>Deactive</option>
-
-                                                @else
-                                                    <option value='Active'>Active</option>
-                                        		  <option selected value='Deactive'>Deactive</option>
-                                                @endif
-                                            </select>
-
-                                        </td>
-
-                                        <td><div align="center"><a href="#" data-panel-id="{{$value->user_id}}"onclick="edit(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div></td>
-                                    </tr>
-                                    <?php
-                                    $sl++;
-
-                                    ?>
+                                        ?>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -125,7 +105,7 @@
                 </div>
             </div>
 
-            <!--state overview end-->
+
             <!--modal-->
             <div id="myModal1" class="modal">
                 <br/><br/><br/>
@@ -136,12 +116,18 @@
                     <span class="close">×</span>
 
                     <h2>Edit Content</h2>
+
+
+
                     <div id="txtHint"></div>
+
 
                 </div>
             </div>
-            <!-- endmodal-->
 
+
+
+            <!--state overview end-->
         </section>
     </section>
     <!--main content end-->
@@ -155,74 +141,70 @@
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="{{'js/jquery.js'}}"></script>
 <script src="{{'js/jquery-1.8.3.min.js'}}"></script>
+
 <script src="{{'js/bootstrap.min.js'}}"></script>
 <script class="include" type="text/javascript" src="{{'js/jquery.dcjqaccordion.2.7.js'}}"></script>
 <script src="{{'js/jquery.scrollTo.min.js'}}"></script>
+
+
+
+
+
 
 
 <!--common script for all pages-->
 <script src="{{'js/common-scripts.js'}}"></script>
 
 <!--script for this page-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
-<script>
+
+<script type="text/javascript">
+
     var modal1 = document.getElementById('myModal1');
     var span = document.getElementsByClassName("close")[0];
 
-    function edit(x) {
+    function editjobinstruction(x)
+    {
+
 
         btn = $(x).data('panel-id');
 
-
-
         $.ajax({
             type:'get',
-            url:'{{'/ClientInfo/'}}'+btn,
+            url:'{{'/changejob_user/'}}'+btn,
             data:{'id':btn},
             cache: false,
             success:function(data)
             {
                 $('#txtHint').html(data);
+                //alert(data);
+
             }
 
         });
-
         modal1.style.display = "block";
 
+
     }
+
     span.onclick = function() {
         modal1.style.display = "none";
     }
-
-     window.onclick = function(event) {
-     if (event.target == modal1) {
-         modal1.style.display = "none";
-     }
-     }
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
 
 </script>
+
+
 
 <script>
 
 
-    function changestatus(x)
-    {
-        var option = document.getElementById(x).value;
-
-        $.ajax({
-            type:'get',
-            url:'{{'/changeuserstatus/'}}'+option,
-            data:{'id':x,'value':option},
-            cache: false,
-            success:function(data)
-            {
-                //$('#txtHint').html(data);
-                alert(data);
-                //location.reload();
-            }
-
-        });
-    }
 
     //owl carousel
     $(document).ready(function() {
@@ -244,6 +226,10 @@
 
 </script>
 
+
+
 </body>
 </html>
+
+
 

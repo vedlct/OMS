@@ -31,6 +31,7 @@ Route::get('/User_profile', 'UserController@profile')->name('userprofile');
 
 
 Route::get('/NewJobRequest', 'AdminController@newjobrequest')->name('adminnewjobrequest');
+Route::get('/deletejobreq/{id}','AdminController@jobreqdelete');
 Route::get('/NewJobRequest_user', 'UserController@newjobrequest')->name('usernewjobrequest');
 
 
@@ -49,6 +50,10 @@ Route::get('/FinshedJob', 'AdminController@finshedjob')->name('finshedjob');
 
 Route::get('/JobOnGoing_User', 'UserController@ongoingjob')->name('ongoingjob_user');
 Route::get('/FinshedJob_User', 'UserController@finshedjob')->name('finshedjob_user');
+Route::get('/PendingJob_User', 'UserController@pendingjob')->name('pendingjob_user');
+
+Route::get('/changejob_user/{id}', 'UserController@changependingjob');
+Route::post('/updatejob', 'UserController@updatejob');
 
 
 Route::get('/ClientInfo', 'AdminController@viewclient')->name('clintinfo');

@@ -46,8 +46,10 @@ elseif (session('order')!= null && session('status')== "User"){
         <span>Work</span>
     </a>
     <ul class="sub">
+        <li><a  href="{{route('pendingjob_user')}}">Pending</a></li>
         <li><a  href="{{route('ongoingjob_user')}}">On Going</a></li>
         <li><a  href="{{route('finshedjob_user')}}">Done</a></li>
+
     </ul>
 </li>
 
@@ -121,8 +123,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
         <span>Others</span>
     </a>
     <ul class="sub">
-        <li><a  href="#">FAQ</a></li>
-        <li><a  href="#">User Manual</a></li>
+
         <li><a  href="{{'/Service'}}">Service Information</a></li>
         <li><a  href="{{route('passchange')}}">Password Change</a></li>
     </ul>

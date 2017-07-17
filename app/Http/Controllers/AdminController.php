@@ -253,5 +253,20 @@ class AdminController extends Controller
         //return view('admin.passwordchange',compact('getpass'));
     }
 
+    public function jobreqdelete($id){
+
+        $del_job_req=(new Admin)->delete_job_req($id);
+        if (count($del_job_req)!=''){
+
+            echo " Pending Job Request deleted successfully";
+        }
+        else{
+            echo "Something Wrong.please try again";
+        }
+        //return view('admin.passwordchange',compact('getpass'));
+    }
+
+
+
 
 }

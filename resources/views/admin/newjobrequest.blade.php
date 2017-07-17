@@ -65,8 +65,9 @@
                                         <th width="4%" scope="col">Sl.</th>
                                         <th width="10%" scope="col">Client Name</th>
                                         <th width="17%" scope="col">Service Type</th>
-                                        <th width="60%" scope="col">Brief</th>
+                                        <th width="50%" scope="col">Instruction</th>
                                         <th width="5%" scope="col">Status</th>
+                                        <th width="15%"> Delete Job Request</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -100,6 +101,7 @@
 
                                             </select>
                                         </td>
+                                        <td><div align="center"><a href="#" data-panel-id="{{$value->job_id}}"onclick="deletejobrequest(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div></td>
                                     </tr>
                                         <?php $s++ ?>
                                     @endforeach
@@ -160,10 +162,37 @@
 
         });
 
+    }
+    function deletejobrequest(x)
+    {
+        btn = $(x).data('panel-id');
+
+        if (confirm('Are you sure you want to delete this Job request ?')) {
+            // Save it!
+
+            $.ajax({
+                type:'get',
+                url:'{{'/deletejobreq/'}}'+btn,
+                data:{'id':btn},
+                cache: false,
+                success:function(data)
+                {
+                    //$('#txtHint').html(data);
+                    alert(data);
+                    window.location="/NewJobRequest";
+                }
+
+            });
+
+        } else {
+            window.location="/NewJobRequest";
+        }
+
 
 
 
     }
+
     //owl carousel
     $(document).ready(function() {
         $("#owl-demo").owlCarousel({
