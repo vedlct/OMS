@@ -7,29 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
-
-    <title>OMS - Order Management System.</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
-    {{--<link href="{{url('css/bootstrap-reset.css')}}" rel="stylesheet">--}}
-    <!--external css-->
-    <link href="{{url('assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
-    <link href="{{url('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="{{url('css/owl.carousel.css')}}" type="text/css">
-    <!-- Custom styles for this template -->
-    <link href="{{url('css/style.css')}}" rel="stylesheet">
-    <link href="{{url('css/style-responsive.css')}}" rel="stylesheet" />
-
-    <!-- include summernote css/js-->
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="{{url('js/html5shiv.js')}}"></script>
-    <script src="{{url('js/respond.min.js')}}"></script>
-    <![endif]-->
+    @include('css.css');
 
 
 </head>
@@ -122,22 +100,7 @@
 
 
 
-<!-- js placed at the end of the document so the pages load faster -->
-<script src="{{'js/jquery.js'}}"></script>
-<script src="{{'js/jquery-1.8.3.min.js'}}"></script>
-
-<script src="{{'js/bootstrap.min.js'}}"></script>
-<script class="include" type="text/javascript" src="{{'js/jquery.dcjqaccordion.2.7.js'}}"></script>
-<script src="{{'js/jquery.scrollTo.min.js'}}"></script>
-
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-
-
-<!--common script for all pages-->
-<script src="{{'js/common-scripts.js'}}"></script>
-
-<!--script for this page-->
+@include('js.js');
 
 <!-- jQuery -->
 <script>

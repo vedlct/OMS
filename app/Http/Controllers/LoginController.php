@@ -44,7 +44,9 @@ class LoginController extends Controller
                             'order' => $value->short_name,
                             'status'=>$value->user_type,
                             'user-id'=>$value->user_id,
-                            'user-type'=>$value->user_type
+                            'user-type'=>$value->user_type,
+                            'username'=>$value->username
+
 
 
                         ]

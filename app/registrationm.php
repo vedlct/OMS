@@ -14,7 +14,7 @@ class registrationm extends Model
         $data =array(
             'username' => $loginname,
             'password' => $pass,
-            'user_type' => '',
+            'user_type' => 'User',
             'company_name' => $clientname,
             'short_name' => $number,
             'contact_person' => $contact,

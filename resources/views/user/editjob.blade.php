@@ -8,7 +8,7 @@
             <th colspan="4" scope="row"><div align="center"><h4>Edit Job Information</h4></div></th>
         </tr>
         <tr>
-            <th width="13%" scope="row"><div align="right">Service Type <i style="color:red">*</i></div></th>
+            <th width="13%" ><div align="right">Service Type <i style="color:red">*</i></div></th>
             <td width="100%">
                 <select class="form-control" name="servicetype" required >
                     <option selected value="" disabled>Select Service Type</option>
@@ -22,7 +22,7 @@
 
 
         <tr>
-            <th scope="row"><div align="right">Brief Instruction<i style="color:red">*</i></div></th>
+            <th ><div align="right">Brief Instruction<i style="color:red">*</i></div></th>
             <td>
                 @foreach($job_instruction as $value)
                 <textarea class= "form-control summernote" type="text"  name="details_instruction">{{$value->instruction}}</textarea>
@@ -32,7 +32,7 @@
         </tr>
         <input type="hidden" name="id" value="{{$value->job_id}}">
         <tr>
-            <th colspan="4" scope="row">
+            <th colspan="4" >
                 <div align="center">
                     <input type="reset" value="CLEAR">
                     <input type="submit" name="save" value="SAVE">
@@ -40,7 +40,10 @@
             </th>
         </tr>
     </table>
+
+
 </form>
+
 
 <script>
     $(document).ready(function() {

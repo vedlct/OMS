@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2017 at 12:29 PM
+-- Generation Time: Jul 17, 2017 at 08:40 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -151,7 +151,35 @@ INSERT INTO `log_info` (`id`, `company_name`, `login_details`, `logout_details`,
 (50, 'TCL', '2017-07-17 15:40:28', '2017-07-17 16:05:47', '127.0.0.1', '0'),
 (51, 'TCL', '2017-07-17 16:05:54', '2017-07-17 16:09:43', '127.0.0.1', '0'),
 (52, 'TCL', '2017-07-17 16:09:53', '2017-07-17 16:10:51', '127.0.0.1', '0'),
-(53, 'TCL', '2017-07-17 16:10:58', NULL, '127.0.0.1', '1');
+(53, 'TCL', '2017-07-17 16:10:58', NULL, '127.0.0.1', '1'),
+(54, 'TCL', '2017-07-17 22:20:03', NULL, '127.0.0.1', '1'),
+(55, 'TCL', '2017-07-17 23:28:40', NULL, '127.0.0.1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(10) NOT NULL,
+  `sender` varchar(100) NOT NULL,
+  `receiver` varchar(100) NOT NULL,
+  `sms` text NOT NULL,
+  `job` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `sender`, `receiver`, `sms`, `job`, `status`) VALUES
+(1, 'test1', 'admin', 'this is test1', '', 'unseen'),
+(2, 'Tecno ERP', 'admin', 'this is tecno ERP', '', 'unseen'),
+(3, 'Admin', 'test1', 'asdadasd asd', '', 'unseen'),
+(4, 'Admin', 'test1', 'asdadasd asd', '', 'unseen'),
+(5, 'test1', 'admin', 'asdad', '', 'unseen');
 
 -- --------------------------------------------------------
 
@@ -197,6 +225,12 @@ ALTER TABLE `log_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
@@ -220,7 +254,12 @@ ALTER TABLE `job_request`
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `service`
 --
