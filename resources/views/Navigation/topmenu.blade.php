@@ -21,14 +21,19 @@
                     <span class="username">Welcome {{session('order')}}</span>
                     <b class="caret"></b>
                 </a>
+
                 <ul class="dropdown-menu extended logout">
-                    <div class="log-arrow-up"></div>
+                    {{--<div class="log-arrow-up">df</div>--}}
                     @if(session('user-type')=='Admin')
-                    <li><a href="{{route('adminprofile') }}"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    <span align="center"><li><a href="{{route('adminprofile') }}"><i class=" fa fa-suitcase"></i><br>Profile</a></li></span>
                     @elseif(session('user-type')=='User')
+
                     <li><a href="{{route('userprofile')}}"><i class=" fa fa-suitcase"></i>Profile</a></li>
+
+                    <span align="center"><li><a href="{{route('userprofile')}}"><i class=" fa fa-suitcase"></i><br>Profile</a></li></span>
+
                     @endif
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                    {{--<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>--}}
                     <li><a href="{{url('/Logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>

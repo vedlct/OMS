@@ -35,7 +35,7 @@ elseif (session('order')!= null && session('status')== "User"){
     </a>
 </li>
 <li>
-    <a  href="NewJobRequest.php">
+    <a  href="{{route('usernewjobrequest')}}">
         <i class="fa fa-briefcase"></i>
         <span>New Job Request</span>
     </a>
@@ -46,8 +46,10 @@ elseif (session('order')!= null && session('status')== "User"){
         <span>Work</span>
     </a>
     <ul class="sub">
-        <li><a  href="JobInfoOngoing.php">On Going</a></li>
-        <li><a  href="JobInfoClose.php">Done</a></li>
+        <li><a  href="{{route('pendingjob_user')}}">Pending</a></li>
+        <li><a  href="{{route('ongoingjob_user')}}">On Going</a></li>
+        <li><a  href="{{route('finshedjob_user')}}">Done</a></li>
+
     </ul>
 </li>
 
@@ -69,13 +71,13 @@ elseif(session('order')!=null && session('status')=="Admin"){
     </a>
 </li>
 <li>
-    <a  href="NewJobRequest.php">
+    <a  href="{{route('adminnewjobrequest')}}">
         <i class="fa fa-briefcase"></i>
         <span>New Job Request</span>
     </a>
 </li>
 <li>
-    <a  href="NewUserRequest.php">
+    <a  href="{{route('newuserrequest')}}">
         <i class="fa fa-user"></i>
         <span>New User Request</span>
     </a>
@@ -86,8 +88,8 @@ elseif(session('order')!=null && session('status')=="Admin"){
         <span>Work</span>
     </a>
     <ul class="sub">
-        <li><a  href="JobInfoOngoing.php">On Going</a></li>
-        <li><a  href="JobInfoClose.php">Done</a></li>
+        <li><a  href="{{route('ongoingjob')}}">On Going</a></li>
+        <li><a  href="{{route('finshedjob')}}">Done</a></li>
     </ul>
 </li>
 <!--<li>
@@ -97,7 +99,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
     </a>
 </li>-->
 <li>
-    <a  href="ViewClient.php">
+    <a  href="{{route('clintinfo')}}">
         <i class="fa fa-users"></i>
         <span>Clients Info</span>
     </a>
@@ -121,10 +123,9 @@ elseif(session('order')!=null && session('status')=="Admin"){
         <span>Others</span>
     </a>
     <ul class="sub">
-        <li><a  href="#">FAQ</a></li>
-        <li><a  href="#">User Manual</a></li>
-        <li><a  href="Service.php">Service Information</a></li>
-        <li><a  href="PassChange.php">Password Change</a></li>
+
+        <li><a  href="{{'/Service'}}">Service Information</a></li>
+        <li><a  href="{{route('passchange')}}">Password Change</a></li>
     </ul>
 </li>
 <?php
