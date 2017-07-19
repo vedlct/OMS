@@ -16,6 +16,15 @@ Route::get('/', function () {
     return view('login');
 });
 
+
+
+Route::get('/Registration', function () {
+    return view('Registration');
+});
+//Route::post('/logincheck','LoginController@validate_user');
+//Route::get('/Home','LoginController@home');
+Route::post('/insertreg','Registration@insertdata');
+
 Route::get('/Home', function () {
     return view('Home');
 });
@@ -25,6 +34,10 @@ Route::post('/logincheck','LoginController@validate_user');
 //Route::get('/Home','LoginController@home');
 Route::get('/Logout','LoginController@logout');
 
+
+
+Route::get('/profile', 'AdminController@profile')->name('adminprofile');
+Route::get('/profile', 'UserController@profile')->name('userprofile');
 
 Route::get('/Admin_profile', 'AdminController@profile')->name('adminprofile');
 Route::get('/User_profile', 'UserController@profile')->name('userprofile');
@@ -71,4 +84,9 @@ Route::get('/PasswordChange', 'AdminController@passchange')->name('passchange');
 Route::get('/changepassword/{id}','AdminController@changeuserpass');
 Route::post('/passchange/{id}','AdminController@changepass');
 
+
+Route::get('/message', 'MessageController@showAdminsms');
+Route::get('/messagebody/{client}', 'MessageController@showMessageBody');
+
+Route::post('/inputsms/{client}', 'MessageController@inputsms');
 
