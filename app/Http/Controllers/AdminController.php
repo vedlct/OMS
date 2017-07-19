@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use League\Flysystem\Exception;
 
 class AdminController extends Controller
 {
@@ -29,16 +30,26 @@ class AdminController extends Controller
         $id=$request->id;
         $value=$request->value;
 
-        $changestatus=(new Admin)->change_job_status($id,$value);
+        //$changestatus=(new Admin)->change_job_status($id,$value);
 
-        if (count($changestatus)!='')
-        {
+        try{
+            $changestatus=(new Admin)->change_job_status($id,$value);
             echo "Job ".$value." successfully.";
+
         }
-        else
-        {
+        catch (Exception $e){
+
             echo "There is an issue. Please Refresh the page and try again.";
         }
+
+//        if (count($changestatus)!='')
+//        {
+//            echo "Job ".$value." successfully.";
+//        }
+//        else
+//        {
+//            echo "There is an issue. Please Refresh the page and try again.";
+//        }
 
 
     }
@@ -55,14 +66,24 @@ class AdminController extends Controller
         $id=$request->id;
         $value=$request->value;
 
-        $changestatus=(new Admin)->change_user_status($id,$value);
+        //$changestatus=(new Admin)->change_user_status($id,$value);
 
-        if (count($changestatus)!='')
-        {
+//        if (count($changestatus)!='')
+//        {
+//            echo "Account ".$value." successfully.";
+//        }
+//        else
+//        {
+//            echo "There is an issue. Please Refresh the page and try again.";
+//        }
+
+        try{
+            $changestatus=(new Admin)->change_user_status($id,$value);
             echo "Account ".$value." successfully.";
+
         }
-        else
-        {
+        catch (Exception $e){
+
             echo "There is an issue. Please Refresh the page and try again.";
         }
 
@@ -112,25 +133,41 @@ class AdminController extends Controller
         $address = $request->address;
         $web = $request->web;
 
-        $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
+        //$update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
 
-        if (count($update)!='')
-        {
+        try{
+            $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
             echo "<script type=\"text/javascript\">
 				alert(\"Information Updated Successfully\");
 				window.location=\"/ClientInfo\";
 				</script>";
 
         }
-        else
-        {
+        catch (Exception $e){
 
             echo "<script type=\"text/javascript\">
 				alert(\"There is an issue. Please Refresh the page and try again.\");
 				window.location=\"/ClientInfo\";
 				</script>";
-
         }
+
+//        if (count($update)!='')
+//        {
+//            echo "<script type=\"text/javascript\">
+//				alert(\"Information Updated Successfully\");
+//				window.location=\"/ClientInfo\";
+//				</script>";
+//
+//        }
+//        else
+//        {
+//
+//            echo "<script type=\"text/javascript\">
+//				alert(\"There is an issue. Please Refresh the page and try again.\");
+//				window.location=\"/ClientInfo\";
+//				</script>";
+//
+//        }
 
 
     }
@@ -146,18 +183,28 @@ class AdminController extends Controller
         $value=$request->value;
 
 
-        $client_view=(new Admin)->change_service_status($id,$value);
+        //$client_view=(new Admin)->change_service_status($id,$value);
 
-
-
-        if (count($client_view)!='')
-        {
+        try{
+            $client_view=(new Admin)->change_service_status($id,$value);
             echo "Service ".$value." successfully.";
+
         }
-        else
-        {
+        catch (Exception $e){
+
             echo "There is an issue. Please Refresh the page and try again.";
         }
+
+
+
+//        if (count($client_view)!='')
+//        {
+//            echo "Service ".$value." successfully.";
+//        }
+//        else
+//        {
+//            echo "There is an issue. Please Refresh the page and try again.";
+//        }
 
 
     }
@@ -169,25 +216,41 @@ class AdminController extends Controller
         $status=$request->status;
         //$type=$request->type;
 
-        $insert_service=(new Admin)->insert_service($name,$type,$status);
+       // $insert_service=(new Admin)->insert_service($name,$type,$status);
 
-        if (count($insert_service)!='')
-        {
+        try{
+            $insert_service=(new Admin)->insert_service($name,$type,$status);
             echo "<script type=\"text/javascript\">
 				alert(\"Services Added Successfully\");
 				window.location=\"/Service\";
 				</script>";
 
         }
-        else
-        {
+        catch (Exception $e){
 
             echo "<script type=\"text/javascript\">
 				alert(\"Something goes Wrong Pls try again\");
 				window.location=\"/Service\";
 				</script>";
-
         }
+
+//        if (count($insert_service)!='')
+//        {
+//            echo "<script type=\"text/javascript\">
+//				alert(\"Services Added Successfully\");
+//				window.location=\"/Service\";
+//				</script>";
+//
+//        }
+//        else
+//        {
+//
+//            echo "<script type=\"text/javascript\">
+//				alert(\"Something goes Wrong Pls try again\");
+//				window.location=\"/Service\";
+//				</script>";
+//
+//        }
 
 
 
@@ -212,23 +275,39 @@ class AdminController extends Controller
 
         if ($pass== $conpass){
 
-            $changepass=(new Admin)->changepass($id,$pass);
-
-            if (count($changepass !='')){
 
 
+            try{
+                $changepass=(new Admin)->changepass($id,$pass);
                 echo "<script type=\"text/javascript\" >
 				alert(\"Password Changed Successfully\");
 				window.location=\"/PasswordChange\";
 				</script>";
+
             }
-            else{
+            catch (Exception $e){
 
                 echo "<script type=\"text/javascript\" >
 				alert(\"Something Went Wrong\");
 				window.location=\"/PasswordChange\";
 				</script>";
             }
+
+//            if (count($changepass !='')){
+//
+//
+//                echo "<script type=\"text/javascript\" >
+//				alert(\"Password Changed Successfully\");
+//				window.location=\"/PasswordChange\";
+//				</script>";
+//            }
+//            else{
+//
+//                echo "<script type=\"text/javascript\" >
+//				alert(\"Something Went Wrong\");
+//				window.location=\"/PasswordChange\";
+//				</script>";
+//            }
 
         }
         else {
@@ -242,27 +321,49 @@ class AdminController extends Controller
     }
     public function servicedelete($id){
 
-        $del_service=(new Admin)->delete_service($id);
-        if (count($del_service)!=''){
 
+
+        try{
+            $del_service=(new Admin)->delete_service($id);
             echo "Service deleted successfully";
+
         }
-        else{
-            echo "Something Wrong.please try again";
+        catch (Exception $e){
+
+            echo "There is an issue. Please Refresh the page and try again.";
         }
+
+//        if (count($del_service)!=''){
+//
+//            echo "Service deleted successfully";
+//        }
+//        else{
+//            echo "Something Wrong.please try again";
+//        }
         //return view('admin.passwordchange',compact('getpass'));
     }
 
     public function jobreqdelete($id){
 
-        $del_job_req=(new Admin)->delete_job_req($id);
-        if (count($del_job_req)!=''){
 
+        try{
+            $del_job_req=(new Admin)->delete_job_req($id);
             echo " Pending Job Request deleted successfully";
+
         }
-        else{
-            echo "Something Wrong.please try again";
+        catch (Exception $e){
+
+            echo "There is an issue. Please Refresh the page and try again.";
         }
+
+
+//        if (count($del_job_req)!=''){
+//
+//            echo " Pending Job Request deleted successfully";
+//        }
+//        else{
+//            echo "Something Wrong.please try again";
+//        }
         //return view('admin.passwordchange',compact('getpass'));
     }
 

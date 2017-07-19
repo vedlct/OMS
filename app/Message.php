@@ -20,16 +20,35 @@ class Message extends Model
 
 
     }
+    public function getClientsms()
+    {
+        $username=session('order');
+        //$sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$username') And (`receiver` = 'Admin' OR `receiver` = '$username')") );
+        $sms=DB::table('message')
+            ->where('sender','Admin')
+            ->orwhere('sender',$username)
+            ->where('receiver','Admin')
+            ->orwhere('receiver',$username)
+            ->orderBy('inserted_time', 'ASC')
+            ->get();
+
+
+        return $sms;
+
+
+    }
 
     public function getSms($client1){
 
-//        $sms= DB::table('message')
-//            ->where('sender' ,'=', 'admin')
-//            ->orWhere ('sender' ,'=', $clent)
-//            ->orWhere ('receiver', '=','admin' )
-//            ->orWhere ('receiver', '=',$clent )
-//            ->get();
-        $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
+
+
+        //$sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
+        $sms=DB::table('message')
+            ->where('sender','Admin')
+            ->orwhere('sender',$client1)
+            ->where('receiver','Admin')
+            ->orwhere('receiver',$client1)
+            ->get();
         return $sms;
     }
 

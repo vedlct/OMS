@@ -53,7 +53,7 @@ elseif (session('order')!= null && session('status')== "User"){
     </ul>
 </li>
 <li class="sub-menu">
-    <a href="{{'/message'}}" >
+    <a href="{{route('usersms')}}" >
         <i class="fa fa-comment"></i>
         <span>Message</span>
     </a>

@@ -43,11 +43,11 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th width="4%" scope="col">Sl.</th>
+                                        <th width="5%" scope="col">Sl.</th>
                                         <th width="10%" scope="col">Client Name</th>
-                                        <th width="17%" scope="col">Service Type</th>
-                                        <th width="60%" scope="col">Brief</th>
-                                        <th width="5%" scope="col">Status</th>
+                                        <th width="20%" scope="col">Service Type</th>
+                                        <th width="50%" scope="col">Brief</th>
+                                        <th width="15%" scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -69,19 +69,20 @@
                                             <?php echo $value->instruction ?><br>
                                         </td>
                                         <td>
-                                            <select name="paymenttype" id="{{$value->job_id}}" onChange="changestatus(this.id)">
+                                            {{--<select name="paymenttype" id="{{$value->job_id}}" onChange="changestatus(this.id)">--}}
 
-                                                @if ($value->job_status == "On Going")
+                                                {{--@if ($value->job_status == "On Going")--}}
 
-                                                    <option selected value='On Going'>On Going</option>
-												  <option value='Done'>Done</option>
+                                                    {{--<option selected value='On Going'>On Going</option>--}}
+												  {{--<option value='Done'>Done</option>--}}
 
-                                               @else
+                                               {{--@else--}}
 
-                                                    <option selected value='Done'>Done</option>
+                                                    {{--<option selected value='Done'>Done</option>--}}
 
-                                                @endif
-                                            </select>
+                                                {{--@endif--}}
+                                            {{--</select>--}}
+                                            Done
                                         </td>
                                     </tr>
                                     <?php

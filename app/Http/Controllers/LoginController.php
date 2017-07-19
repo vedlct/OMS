@@ -29,11 +29,11 @@ class LoginController extends Controller
             foreach ($check as $value)
             {
 
-                if ($value->client_status == 'Deactive'){
+                if ($value->client_status == 'Deactive' || $value->client_status == 'Pending' ){
 
                     echo "<script type=\"text/javascript\" >
 				alert(\"Your account isn't Active. Contact Your Service Provider.\");
-				window.location=\"../../index.php\";
+				window.location=\"/\";
 				</script>";
                 }
                 else{

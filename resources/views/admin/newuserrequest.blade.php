@@ -68,10 +68,10 @@
                                         <td>
                                             <select name="paymenttype" id="{{$value->user_id}}" onChange="changestatus(this.id)">
 
-                                                @if ($value->client_status == "Active")
-
-                                                    <option selected value='Active'>Active</option>
-                                        		  <option value='Deactive'>Deactive</option>
+                                                @if ($value->client_status == "Pending")
+                                                    <option selected value='Pending'>Pending</option>
+                                                    <option  value='Active'>Active</option>
+                                        		    <option value='Deactive'>Deactive</option>
 
                                                 @else
 

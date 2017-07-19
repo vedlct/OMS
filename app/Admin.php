@@ -37,7 +37,7 @@ class Admin extends Model
         $job_status=DB::table('job_request')
             ->where('job_id',$id)
             ->update(array('job_status'=>$value));
-        return $job_status;
+        //return $job_status;
     }
 
     public function change_user_status($id,$value){
@@ -46,13 +46,13 @@ class Admin extends Model
             ->where('user_id',$id)
             ->update(array('client_status'=>$value));
 
-        return true;
+        //return true;
     }
 
     public function newuserrequest(){
 
         $userrequest= DB::table('customer_info')
-            ->where('client_status','Deactive')
+            ->where('client_status','Pending')
             ->get();
 
 
@@ -85,9 +85,12 @@ class Admin extends Model
 
     public function clientinfoview(){
 
-        $id=session('user-id');
+        //$id=session('user-id');
 
-        $client_view= DB::table('customer_info')->get();
+        $client_view= DB::table('customer_info')
+
+            ->where('client_status', '!=', 'Pending')
+            ->get();
         return $client_view;
 
     }
@@ -114,7 +117,7 @@ class Admin extends Model
                 'webaddress'=>$web,
 
             ));
-        return true;
+        //return true;
     }
     public function viewservice(){
 
@@ -129,7 +132,7 @@ class Admin extends Model
         DB::table('service')
             ->where('service_id',$id)
             ->update(array('service_status'=>$value));
-        return true;
+        //return true;
     }
 
     public function insert_service($name,$type,$status){
@@ -143,7 +146,7 @@ class Admin extends Model
 
         DB::table('service')->insert($data);
 
-        return true;
+        //return true;
 
     }
 
@@ -175,7 +178,7 @@ class Admin extends Model
         DB::table('customer_info')
             ->where('user_id',$id)
             ->update($data);
-        return true;
+        //return true;
     }
 
     public function delete_service($id){
@@ -184,7 +187,7 @@ class Admin extends Model
             ->where('service_id',$id)
             ->delete();
 
-        return $service;
+        //return $service;
 
     }
 
@@ -194,7 +197,7 @@ class Admin extends Model
             ->where('job_id',$id)
             ->delete();
 
-        return $job;
+       // return $job;
 
     }
 

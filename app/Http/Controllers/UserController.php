@@ -34,23 +34,39 @@ class UserController extends Controller
         $service_type = $request->servicetype;
         $instruction = $request->details_instruction;
 
-        $insert_new_job = (new User)->insertjob($service_type, $instruction);
-
-        if (count($insert_new_job) != '') {
-
+        try{
+            $insert_new_job = (new User)->insertjob($service_type, $instruction);
             echo "<script type=\"text/javascript\">
         alert(\"Job Request Send Successfully.\");
                window.location=\"/Home\";
                 </script>";
-            //return redirect('/usernewjobrequest');
+
         }
-        else{
+        catch (Exception $e){
 
             echo "<script type=\"text/javascript\">
         alert(\"There is an issue. Please Refresh the page and try again.\");
                 window.location=\"/Home\";
                 </script>";
         }
+
+        //$insert_new_job = (new User)->insertjob($service_type, $instruction);
+
+//        if (count($insert_new_job) != '') {
+//
+//            echo "<script type=\"text/javascript\">
+//        alert(\"Job Request Send Successfully.\");
+//               window.location=\"/Home\";
+//                </script>";
+//            //return redirect('/usernewjobrequest');
+//        }
+//        else{
+//
+//            echo "<script type=\"text/javascript\">
+//        alert(\"There is an issue. Please Refresh the page and try again.\");
+//                window.location=\"/Home\";
+//                </script>";
+//        }
 
 
     }
@@ -94,17 +110,33 @@ class UserController extends Controller
         $id=$request->id;
         //echo $instruction;
 
-        $updatejob = (new User)->updatejob($service,$instruction,$id);
+        //$updatejob = (new User)->updatejob($service,$instruction,$id);
 
-        if (count($updatejob) != '') {
+//        if (count($updatejob) != '') {
+//
+//            echo "<script type=\"text/javascript\">
+//        alert(\"Job Request  Edited Successfully.\");
+//               window.location=\"/Home\";
+//                </script>";
+//            //return redirect('/usernewjobrequest');
+//        }
+//        else{
+//
+//            echo "<script type=\"text/javascript\">
+//        alert(\"There is an issue. Please Refresh the page and try again.\");
+//                window.location=\"/Home\";
+//                </script>";
+//        }
 
+        try{
+            $updatejob = (new User)->updatejob($service,$instruction,$id);
             echo "<script type=\"text/javascript\">
         alert(\"Job Request  Edited Successfully.\");
                window.location=\"/Home\";
                 </script>";
-            //return redirect('/usernewjobrequest');
+
         }
-        else{
+        catch (Exception $e){
 
             echo "<script type=\"text/javascript\">
         alert(\"There is an issue. Please Refresh the page and try again.\");

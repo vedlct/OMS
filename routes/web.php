@@ -90,3 +90,5 @@ Route::get('/messagebody/{client}', 'MessageController@showMessageBody');
 
 Route::post('/inputsms/{client}', 'MessageController@inputsms');
 
+
+Route::get('/message', 'MessageController@showsmsuser')->name('usersms');

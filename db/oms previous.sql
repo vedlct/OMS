@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2017 at 02:10 PM
+-- Generation Time: Jul 17, 2017 at 08:40 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -47,9 +47,9 @@ CREATE TABLE `customer_info` (
 
 INSERT INTO `customer_info` (`user_id`, `username`, `password`, `user_type`, `company_name`, `short_name`, `contact_person`, `contact_no`, `email`, `address`, `webaddress`, `client_status`) VALUES
 (1, 'admin', '123', 'Admin', 'TCL', 'TCL', 'forhad', '01616404404', 'fcml44@gmail.com', 'baridhara', 'errorsworld.com', 'Active'),
-(2, 'test', 'test1', 'User', 'TCL1', 'TCL1', 'test1', '444', 'test1@test.com', 'test1', 'test1', 'Active'),
+(2, 'test', 'test1', 'User', 'test1', 'TCL', 'test1', '444', 'test1@test.com', 'test1', 'test1', 'Active'),
 (5, 'chandan', '123', 'User', 'Tecno ERP', 'TE', 'Me', '01722504422', 'fcml44@gmail.com', 'baridhara', 'errorsworld.com', 'Active'),
-(4, 'sgdj', 'sgdj@123', 'User', 'Sangini Gold & Diamond Jewellery', 'SG&DJ', 'test', '014444', 'test@404.com', 'sss', 'ddd', 'Active');
+(4, 'sgdj', 'sgdj@123', 'User', 'Sangini Gold & Diamond Jewellery', 'SG&DJ', 'test', '014444', 'test@404.com', 'sss', 'ddd', 'Deactive');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ INSERT INTO `job_request` (`job_id`, `client_id`, `service`, `instruction`, `job
 (4, '2', 'test', '<p><span style="font-family: sans-serif; font-size: 13.12px; font-weight: bold; white-space: nowrap;">service</span><br></p>', 'Done'),
 (5, '2', 'test', '<p>huge summery</p>', 'Done'),
 (6, '2', 'rumi', '<p>as</p>', 'Done'),
-(7, '2', 'rumi', '<p><u>jji</u>ujii</p>', 'Done'),
+(7, '2', 'rumi', '<p><u>jji</u>ujii</p>', 'Pending'),
 (10, '2', 'test', '<p>test sdf&nbsp;</p>', 'Pending');
 
 -- --------------------------------------------------------
@@ -151,15 +151,9 @@ INSERT INTO `log_info` (`id`, `company_name`, `login_details`, `logout_details`,
 (50, 'TCL', '2017-07-17 15:40:28', '2017-07-17 16:05:47', '127.0.0.1', '0'),
 (51, 'TCL', '2017-07-17 16:05:54', '2017-07-17 16:09:43', '127.0.0.1', '0'),
 (52, 'TCL', '2017-07-17 16:09:53', '2017-07-17 16:10:51', '127.0.0.1', '0'),
-(53, 'TCL', '2017-07-17 16:10:58', '2017-07-19 13:15:32', '127.0.0.1', '0'),
-(54, 'TCL', '2017-07-17 22:20:03', '2017-07-19 13:15:32', '127.0.0.1', '0'),
-(55, 'TCL', '2017-07-17 23:28:40', '2017-07-19 13:15:32', '127.0.0.1', '0'),
-(56, 'TE', '2017-07-19 13:15:53', '2017-07-19 13:16:43', '127.0.0.1', '0'),
-(57, 'TCL', '2017-07-19 13:16:49', '2017-07-19 16:44:38', '127.0.0.1', '0'),
-(58, 'TCL', '2017-07-19 16:13:22', '2017-07-19 16:44:38', '127.0.0.1', '0'),
-(59, 'TCL', '2017-07-19 16:45:25', '2017-07-19 17:18:39', '127.0.0.1', '0'),
-(60, 'TCL', '2017-07-19 17:18:56', NULL, '127.0.0.1', '1'),
-(61, 'TCL1', '2017-07-19 17:30:40', NULL, '127.0.0.1', '1');
+(53, 'TCL', '2017-07-17 16:10:58', NULL, '127.0.0.1', '1'),
+(54, 'TCL', '2017-07-17 22:20:03', NULL, '127.0.0.1', '1'),
+(55, 'TCL', '2017-07-17 23:28:40', NULL, '127.0.0.1', '1');
 
 -- --------------------------------------------------------
 
@@ -173,23 +167,19 @@ CREATE TABLE `message` (
   `receiver` varchar(100) NOT NULL,
   `sms` text NOT NULL,
   `job` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `inserted_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`id`, `sender`, `receiver`, `sms`, `job`, `status`, `inserted_time`) VALUES
-(1, 'TCL1', 'admin', 'this is test1', '', 'unseen', '2017-07-17 11:58:02'),
-(2, 'Tecno ERP', 'admin', 'this is tecno ERP', '', 'unseen', '2017-07-19 11:49:35'),
-(3, 'Admin', 'TCL1', 'asdadasd asd', '', 'unseen', '2017-07-19 11:49:35'),
-(4, 'Admin', 'TCL1', 'asdadasd asd', '', 'unseen', '2017-07-18 11:49:35'),
-(5, 'TCL1', 'admin', 'asdad', '', 'unseen', '2017-07-19 11:49:35'),
-(6, 'Admin', 'Tecno ERP', 'a', '', 'unseen', '2017-07-19 11:49:35'),
-(7, 'TCL1', 'Admin', 's', '', 'unseen', '2017-07-18 11:49:35'),
-(8, 'Tecno ERP', 'Admin', 'f', '', 'unseen', '2017-07-19 11:49:35');
+INSERT INTO `message` (`id`, `sender`, `receiver`, `sms`, `job`, `status`) VALUES
+(1, 'test1', 'admin', 'this is test1', '', 'unseen'),
+(2, 'Tecno ERP', 'admin', 'this is tecno ERP', '', 'unseen'),
+(3, 'Admin', 'test1', 'asdadasd asd', '', 'unseen'),
+(4, 'Admin', 'test1', 'asdadasd asd', '', 'unseen'),
+(5, 'test1', 'admin', 'asdad', '', 'unseen');
 
 -- --------------------------------------------------------
 
@@ -264,12 +254,12 @@ ALTER TABLE `job_request`
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `service`
 --

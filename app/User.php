@@ -61,7 +61,7 @@ class User extends Authenticatable
 
         DB::table('job_request')->insert($data);
 
-        return true;
+        //return true;
 
     }
 
@@ -131,6 +131,6 @@ class User extends Authenticatable
         DB::table('job_request')
             ->where('job_id',$id)
             ->update($data);
-        return true;
+        //return true;
     }
 }
