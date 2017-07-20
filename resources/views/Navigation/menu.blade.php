@@ -53,7 +53,12 @@ elseif (session('order')!= null && session('status')== "User"){
     </ul>
 </li>
 <li class="sub-menu">
-    <a href="{{route('usersms')}}" >
+    {{--<a href="{{route('usersms')}}" >--}}
+        {{--<i class="fa fa-comment"></i>--}}
+        {{--<span>Message</span>--}}
+    {{--</a>--}}
+
+    <a href="{{route('usersms')}}"  >
         <i class="fa fa-comment"></i>
         <span>Message</span>
     </a>
@@ -137,7 +142,7 @@ elseif(session('order')!=null && session('status')=="Admin"){
 </li>
 
 <li class="sub-menu">
-    <a href="{{'/message'}}" >
+    <a href="{{route('adminsms')}}" >
         <i class="fa fa-comment"></i>
         <span>Message</span>
     </a>
@@ -146,3 +151,5 @@ elseif(session('order')!=null && session('status')=="Admin"){
 <?php
 }
 ?>
+
+

@@ -22,8 +22,10 @@ class Message extends Model
     }
     public function getClientsms()
     {
+
+
         $username=session('order');
-        //$sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$username') And (`receiver` = 'Admin' OR `receiver` = '$username')") );
+
         $sms=DB::table('message')
             ->where('sender','Admin')
             ->orwhere('sender',$username)
@@ -42,20 +44,23 @@ class Message extends Model
 
 
 
-        //$sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
-        $sms=DB::table('message')
-            ->where('sender','Admin')
-            ->orwhere('sender',$client1)
-            ->where('receiver','Admin')
-            ->orwhere('receiver',$client1)
-            ->get();
+        $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
+//        $sms=DB::table('message')
+//            ->where('sender','Admin')
+//            ->orwhere('sender',$client1)
+//            ->where('receiver','Admin')
+//            ->orwhere('receiver',$client1)
+//            ->orderBy('inserted_time', 'ASC')
+//            ->get();
         return $sms;
     }
 
 
-    public function insertsms($text,$client) {
+    public function insertsms($text) {
 
         $type=session('user-type');
+        $client=session('order');
+
         if ($type == 'Admin'){
 
             $data =array(

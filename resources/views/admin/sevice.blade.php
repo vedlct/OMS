@@ -159,6 +159,7 @@
     <!--footer start-->
     <footer class="site-footer">
         @include('layout.footer')
+
     </footer>
     <!--footer end-->
 </section>

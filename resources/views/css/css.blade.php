@@ -16,6 +16,7 @@
 
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 
+<link href="{{url('css/chat.css')}}" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
 <!--[if lt IE 9]>
 <script src="{{url('js/html5shiv.js')}}"></script>
