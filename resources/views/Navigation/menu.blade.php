@@ -58,7 +58,7 @@ elseif (session('order')!= null && session('status')== "User"){
         {{--<span>Message</span>--}}
     {{--</a>--}}
 
-    <a href="{{route('usersms')}}"  >
+    <a href="{{route('usersms',['client'=>session('order')])}}"  >
         <i class="fa fa-comment"></i>
         <span>Message</span>
     </a>

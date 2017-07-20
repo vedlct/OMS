@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 
 </head>
 
@@ -133,7 +133,7 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 <script>
     var modal1 = document.getElementById('myModal1');

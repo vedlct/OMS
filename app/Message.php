@@ -20,20 +20,37 @@ class Message extends Model
 
 
     }
-    public function getClientsms()
+    public function getClientsms($client1)
     {
+        $type=session('user-type');
+
+        if ($type == 'Admin') {
+
+//            $sms=DB::table('message')
+//                ->where('sender','Admin')
+//                ->orwhere('sender',$client1)
+//                ->where('receiver','Admin')
+//                ->orwhere('receiver',$client1)
+//                ->orderBy('inserted_time', 'ASC')
+//                ->get();
+            $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
 
 
-        $username=session('order');
+        }
+        elseif($type == 'User'){
 
-        $sms=DB::table('message')
-            ->where('sender','Admin')
-            ->orwhere('sender',$username)
-            ->where('receiver','Admin')
-            ->orwhere('receiver',$username)
-            ->orderBy('inserted_time', 'ASC')
-            ->get();
+            $username=session('order');
 
+//            $sms=DB::table('message')
+//                ->where('sender','Admin')
+//                ->orwhere('sender',$username)
+//                ->where('receiver','Admin')
+//                ->orwhere('receiver',$username)
+//                ->orderBy('inserted_time', 'ASC')
+//                ->get();
+            $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$username') And (`receiver` = 'Admin' OR `receiver` = '$username')") );
+            //$sms="User";
+        }
 
         return $sms;
 
@@ -56,7 +73,7 @@ class Message extends Model
     }
 
 
-    public function insertsms($text) {
+    public function insertsms($text,$client1) {
 
         $type=session('user-type');
         $client=session('order');
@@ -65,7 +82,7 @@ class Message extends Model
 
             $data =array(
                 'sender' => 'Admin',
-                'receiver' => $client,
+                'receiver' => $client1,
                 'sms' => $text,
                 'job' => '',
                 'status' => 'unseen'

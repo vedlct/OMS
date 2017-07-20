@@ -44,19 +44,16 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th width="4%" scope="col">Sl.</th>
-                                        <th width="17%" scope="col">Service Type</th>
-                                        <th width="60%" scope="col">Brief</th>
-                                        <th width="5%" scope="col">Status</th>
+                                        <th width="5%" scope="col">Sl.</th>
+                                        <th width="15%" scope="col">Service Type</th>
+                                        <th width="50%" scope="col">Brief</th>
+                                        <th width="15%" scope="col">Status</th>
+                                        <th width="15%" scope="col">Comment</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-
-
-
                                     $sl = 1;
-
                                     ?>
 
                                     @foreach($ongoingwork as $value)
@@ -67,6 +64,7 @@
                                           <?php  echo $value->instruction; ?>
                                         </td>
                                         <td>{{$value->job_status}}</td>
+                                        <td><a href="#" data-panel-id="{{$value->job_id}}" onclick="comment(this)"><div align="center"><i class="fa fa-comments" aria-hidden="true"></i></div></a></td>
                                     </tr>
                                     <?php
                                     $sl++;
@@ -80,6 +78,22 @@
                     </div>
                 </div>
             </div>
+
+            <!--modal-->
+            <div id="myModal1" class="modal">
+                <br/><br/><br/>
+
+                <!-- Modal content -->
+
+                <div class="modal-content" style="padding: 35px; width: 50%; margin: 0 auto">
+                    <span class="close">×</span>
+
+                    <h2>Edit Content</h2>
+                    <div id="txtHint"></div>
+
+                </div>
+            </div>
+            <!-- endmodal-->
 
             <!--state overview end-->
         </section>
@@ -104,25 +118,27 @@
 
 <script>
 
+    var modal1 = document.getElementById('myModal1');
+    var span = document.getElementsByClassName("close")[0];
+    function comment(x) {
 
 
-    //owl carousel
-//    $(document).ready(function() {
-//        $("#owl-demo").owlCarousel({
-//            navigation : true,
-//            slideSpeed : 300,
-//            paginationSpeed : 400,
-//            singleItem : true,
-//            autoPlay:true
-//
-//        });
-//    });
-//
-//    //custom select box
-//
-//    $(function(){
-//        $('select.styled').customSelect();
-//    });
+
+        btn = $(x).data('panel-id');
+
+
+        modal1.style.display = "block";
+
+    }
+    span.onclick = function() {
+        modal1.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
 
 </script>
 

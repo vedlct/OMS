@@ -86,13 +86,13 @@ Route::post('/passchange/{id}','AdminController@changepass');
 
 
 //Route::get('/message', 'MessageController@showAdminsms');
-Route::get('/messagebody/{client}', 'MessageController@showMessageBody');
+//Route::get('/messagebody/{client}', 'MessageController@showMessageBody');
 
 Route::post('/inputsms/{client}', 'MessageController@inputsms');
 
 
-Route::get('/message', 'MessageController@showsmsuser')->name('usersms');
-Route::post('/inputsms', 'MessageController@inputsms')->name('insersms');
+Route::get('/message/{client1}', 'MessageController@showsmsuser')->name('usersms');
+Route::post('/inputsms/{client1}', 'MessageController@inputsms')->name('insersms');
 
 
 Route::get('/admin_message', 'MessageController@showAdminsms')->name('adminsms');

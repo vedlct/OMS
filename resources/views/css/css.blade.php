@@ -1,4 +1,4 @@
-<link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
+<link rel="shortcut icon" href="{{url('img/TCL_logo.png')}}">
 
 <title>OMS - Order Management System.</title>
 

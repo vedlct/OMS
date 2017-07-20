@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2017 at 02:10 PM
+-- Generation Time: Jul 20, 2017 at 10:42 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -158,8 +158,17 @@ INSERT INTO `log_info` (`id`, `company_name`, `login_details`, `logout_details`,
 (57, 'TCL', '2017-07-19 13:16:49', '2017-07-19 16:44:38', '127.0.0.1', '0'),
 (58, 'TCL', '2017-07-19 16:13:22', '2017-07-19 16:44:38', '127.0.0.1', '0'),
 (59, 'TCL', '2017-07-19 16:45:25', '2017-07-19 17:18:39', '127.0.0.1', '0'),
-(60, 'TCL', '2017-07-19 17:18:56', NULL, '127.0.0.1', '1'),
-(61, 'TCL1', '2017-07-19 17:30:40', NULL, '127.0.0.1', '1');
+(60, 'TCL', '2017-07-19 17:18:56', '2017-07-20 11:10:10', '127.0.0.1', '0'),
+(61, 'TCL1', '2017-07-19 17:30:40', '2017-07-20 10:33:05', '127.0.0.1', '0'),
+(62, 'TCL1', '2017-07-20 10:30:56', '2017-07-20 10:33:05', '127.0.0.1', '0'),
+(63, 'TCL', '2017-07-20 10:33:30', '2017-07-20 11:10:10', '127.0.0.1', '0'),
+(64, 'TCL1', '2017-07-20 11:10:18', '2017-07-20 11:38:04', '127.0.0.1', '0'),
+(65, 'TCL1', '2017-07-20 11:14:46', '2017-07-20 11:38:04', '127.0.0.1', '0'),
+(66, 'TCL', '2017-07-20 11:38:31', '2017-07-20 12:49:18', '127.0.0.1', '0'),
+(67, 'TCL', '2017-07-20 12:49:30', '2017-07-20 12:51:28', '127.0.0.1', '0'),
+(68, 'TCL1', '2017-07-20 12:51:37', '2017-07-20 13:01:16', '127.0.0.1', '0'),
+(69, 'TCL', '2017-07-20 13:01:26', '2017-07-20 13:07:10', '127.0.0.1', '0'),
+(70, 'TCL1', '2017-07-20 13:13:35', NULL, '127.0.0.1', '1');
 
 -- --------------------------------------------------------
 
@@ -182,14 +191,16 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id`, `sender`, `receiver`, `sms`, `job`, `status`, `inserted_time`) VALUES
-(1, 'TCL1', 'admin', 'this is test1', '', 'unseen', '2017-07-17 11:58:02'),
-(2, 'Tecno ERP', 'admin', 'this is tecno ERP', '', 'unseen', '2017-07-19 11:49:35'),
-(3, 'Admin', 'TCL1', 'asdadasd asd', '', 'unseen', '2017-07-19 11:49:35'),
-(4, 'Admin', 'TCL1', 'asdadasd asd', '', 'unseen', '2017-07-18 11:49:35'),
-(5, 'TCL1', 'admin', 'asdad', '', 'unseen', '2017-07-19 11:49:35'),
-(6, 'Admin', 'Tecno ERP', 'a', '', 'unseen', '2017-07-19 11:49:35'),
-(7, 'TCL1', 'Admin', 's', '', 'unseen', '2017-07-18 11:49:35'),
-(8, 'Tecno ERP', 'Admin', 'f', '', 'unseen', '2017-07-19 11:49:35');
+(16, 'Admin', 'TCL1', 'aaa', '', '', '2017-07-19 18:00:00'),
+(17, 'TCL1', 'Admin', 'user msg', '', '', '2017-07-19 18:00:00'),
+(18, 'Techno Erp', 'Admin', 'techno', '', '', '2017-07-19 18:00:00'),
+(19, 'Admin', 'TCL1', 'new msg', '', 'unseen', '2017-07-20 05:38:49'),
+(20, 'Admin', 'TCL1', 's', '', 'unseen', '2017-07-20 06:48:45'),
+(21, 'Admin', 'TCL1', 'reply from admin', '', 'unseen', '2017-07-20 06:48:58'),
+(22, 'Admin', 'Techno Erp', 'reply to techno', '', 'unseen', '2017-07-20 06:50:47'),
+(23, 'TCL1', 'Admin', 'but tcl can see this', '', 'unseen', '2017-07-20 06:53:22'),
+(24, 'TCL1', 'Admin', 'tcl replied', '', 'unseen', '2017-07-20 07:01:03'),
+(25, 'Admin', 'TCL1', 'tcl msg seen from admin', '', 'unseen', '2017-07-20 07:02:22');
 
 -- --------------------------------------------------------
 
@@ -264,12 +275,12 @@ ALTER TABLE `job_request`
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `service`
 --

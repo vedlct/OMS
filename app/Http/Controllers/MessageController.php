@@ -16,31 +16,36 @@ class MessageController extends Controller
 
     }
 
-    protected function showsmsuser(){
+    protected function showsmsuser($client1){
 
-        $client_view=(new Message)->getClientsms();
+        $client_view=(new Message)->getClientsms($client1);
 
-        return view('message',compact('client_view'));
+       // dd($client_view) ;
+
+        return view('message',compact('client_view','client1'));
 
     }
 
 
-    public function showMessageBody(Request $request){
+    public function showMessageBody($client1){
 
-        $client1= $request->client;
+        //$client1= $request->client;
 
         $sms=(new Message)->getSms($client1);
+
 
         return view('messagebody' ,compact('sms','client1'));
 
     }
-    public function inputsms( Request $request) {
+    public function inputsms( Request $request,$client1) {
 
 
         $text= $request->sms;
+
+        //dd($receiver);
         try{
-            $save= (new Message())->insertsms($text);
-            return redirect()->route('usersms');
+            $save= (new Message())->insertsms($text,$client1);
+            return redirect()->route('usersms',[$client1]);
         }
         catch (Exception $e){
             echo "loss project :P";

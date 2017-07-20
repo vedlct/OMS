@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 
 </head>
 
@@ -60,7 +59,38 @@
 
                                     <div class="chat_area">
                                         <ul class="list-unstyled">
-                                            <?php $username=session('order');?>
+                                            @if(session('user-type')=='Admin')
+                                                @foreach($client_view as $s)
+                                                    @if($s->sender == $client1)
+                                                        <li class="left clearfix">
+                     <span class="chat-img1 pull-left">
+                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                                                            <div class="chat-body1 clearfix">
+                                                                <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
+                                                                <p>{{$s->sms}}</p>
+
+                                                            </div>
+                                                        </li>
+                                                    @elseif($s->sender =="Admin")
+
+                                                        <li class="left clearfix admin_chat">
+                     <span class="chat-img1 pull-right">
+                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                     </span>
+                                                            <div class="chat-body1 clearfix">
+                                                                <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
+                                                                <p>{{$s->sms}}</p>
+
+                                                            </div>
+                                                        </li>
+
+                                                    @endif
+
+                                                @endforeach
+                                            @elseif(session('user-type')=='User')
+
+
 
                                             @foreach($client_view as $s)
                                                 @if($s->sender == "Admin")
@@ -74,7 +104,7 @@
 
                                                         </div>
                                                     </li>
-                                                @elseif($s->sender =="$username")
+                                                @elseif($s->sender ==$client1)
 
                                                         <li class="left clearfix admin_chat">
                      <span class="chat-img1 pull-right">
@@ -91,10 +121,12 @@
 
                                             @endforeach
 
+                                            @endif
+
                                         </ul>
                                     </div><!--chat_area-->
 
-                                    <form method="post" action="{{route('insersms')}}">
+                                    <form method="post" action="{{route('insersms',['client1'=>$client1])}}">
                                         {{csrf_field()}}
                                     <div class="message_write">
                                         <textarea class="form-control" name="sms" placeholder="type a message"></textarea>
