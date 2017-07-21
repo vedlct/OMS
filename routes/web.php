@@ -96,3 +96,4 @@ Route::post('/inputsms/{client1}', 'MessageController@inputsms')->name('insersms
 
 
 Route::get('/admin_message', 'MessageController@showAdminsms')->name('adminsms');
+Route::get('/getNotifAdmin', 'MessageController@getNotifAdmin');

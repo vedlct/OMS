@@ -11,8 +11,9 @@ class MessageController extends Controller
 {
     protected function showAdminsms(){
 
-        $client_view=(new Message)->getClient();
-        return view('admin.message',compact('client_view'));
+        $client_unseen=(new Message)->getClientunseen();
+        $client_seen=(new Message)->getClientseen();
+        return view('admin.message',compact('client_unseen','client_seen'));
 
     }
 
@@ -52,6 +53,23 @@ class MessageController extends Controller
         }
 
 
+
+    }
+
+    public function getNotifAdmin() {
+
+        try{
+            $NotifAdminCount=(new Message)->getNotifAdmin();
+
+            foreach ($NotifAdminCount as $n){
+                echo $n->total;
+            }
+
+        }
+        catch (Exception $e){
+
+            echo "There is an issue. Please Refresh the page and try again.";
+        }
 
     }
 }

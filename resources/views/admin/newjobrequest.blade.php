@@ -40,9 +40,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
                                         <th width="4%" scope="col">Sl.</th>
                                         <th width="10%" scope="col">Client Name</th>
                                         <th width="17%" scope="col">Service Type</th>

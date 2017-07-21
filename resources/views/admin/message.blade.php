@@ -30,18 +30,54 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-
             <div class="row">
+                <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div  class="panel-heading">
+                  Message
+                </div>
+
                 <div class="panel-body">
 
-                    @foreach($client_view as $c)
-                    <a href="{{route('usersms',['client1'=>$c->sender])}}"> {{$c->sender}}</a><br>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                {{--<th width="4%" scope="col">Sl.</th>--}}
+                                <th width="10%" scope="col">Client Name</th>
+                                </tr>
+                            </thead>
+                            <?php $a=array()?>
+                            @foreach($client_unseen as $c)
+                            <tr style="color: silver">
+                                <td>
+                                    <b><a href="{{route('usersms',['client1'=>$c->sender])}}"> {{$c->sender}}</a><br></b>
+                                    <?php array_push($a, $c->sender)?>
+                                </td>
+                            </tr>
+                            @endforeach
+                                @foreach($client_seen as $cs)
+                                <tr>
 
-                    @endforeach
+                                        <?php if (in_array($cs->sender, $a))
+                                        { }else {?>
+                                            <td>
+                                        <a href="{{route('usersms',['client1'=>$cs->sender])}}"> {{$cs->sender}}</a><br>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </table>
+                        </div>
+
+
+
 
 
                 </div>
             </div>
+                </div>
+                </div>
             <!--state overview end-->
         </section>
     </section>
