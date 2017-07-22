@@ -1,4 +1,8 @@
 <?php
+namespace App;
+
+
+use Illuminate\Support\Facades\DB;
 //include("php/connection.php");
 
 //if($_SESSION['order']== NULL)
@@ -75,7 +79,13 @@ elseif (session('order')!= null && session('status')== "User"){
 //else if($_SESSION['order']!= null && $_SESSION['status']=="Admin")
 //{
 elseif(session('order')!=null && session('status')=="Admin"){
+
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' ") );
 ?>
+
+@foreach($sms as $count)
+    <?php $totalforadmin = $count->total ?>
+    @endforeach
 <li>
     <a href="{{'/Home'}}">
         <i class="fa fa-dashboard"></i>
@@ -144,12 +154,40 @@ elseif(session('order')!=null && session('status')=="Admin"){
 <li class="sub-menu">
     <a href="{{route('adminsms')}}" >
         <i class="fa fa-comment"></i>
-        <span>Message</span>
+        <span>Message</span><span id="output2" style="color:#FFF;;margin: 1px;font-size: 13px;"></span>
     </a>
 
 </li>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var old_counts = "<?php echo $totalforadmin?>";
+    var old_count = parseInt(old_counts);
+
+    var count =0;
+
+
+
+    setInterval(function(){
+        $.ajax({
+            type : 'get',
+            url:'{{'/getNotifAdmin'}}',
+            cache: false,
+            success : function(datan){
+
+                if (parseFloat(datan) > old_count) {
+                count=count+1;
+                    $('#output2').html(" ("+count+")"),
+                    old_count = datan;
+                }else {
+                    $('#output2').html(" ("+count+")")
+                }
+
+
+            }
+        });
+    },2000);
+</script>
+
 <?php
 }
 ?>
-
-

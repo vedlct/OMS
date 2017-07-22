@@ -8,20 +8,36 @@ use Illuminate\Support\Facades\DB;
 class Message extends Model
 {
 
-    public function getClient()
+    public function getClientunseen()
     {
-        $client= DB::table('message')
+        $clientunseen= DB::table('message')
           ->where('sender','!=','Admin')
+            ->where('status','=','unseen')
             ->groupBy('sender')
             ->get(['sender']);
 
 
-        return $client;
+        return $clientunseen;
+
+
+    }
+    public function getClientseen()
+    {
+        $clientseen= DB::table('message')
+            ->where('sender','!=','Admin')
+            ->where('status','=','seen')
+            ->groupBy('sender')
+            ->get(['sender']);
+
+
+        return $clientseen;
 
 
     }
     public function getClientsms($client1)
     {
+
+
         $data1=array
         (
             'status'=>'Seen'
@@ -44,6 +60,7 @@ class Message extends Model
 //                ->orwhere('receiver',$client1)
 //                ->orderBy('inserted_time', 'ASC')
 //                ->get();
+
             $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
 
 
@@ -59,18 +76,13 @@ class Message extends Model
 
             $username=session('order');
 
-//            $sms=DB::table('message')
-//                ->where('sender','Admin')
-//                ->orwhere('sender',$username)
-//                ->where('receiver','Admin')
-//                ->orwhere('receiver',$username)
-//                ->orderBy('inserted_time', 'ASC')
-//                ->get();
+
             $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$username') And (`receiver` = 'Admin' OR `receiver` = '$username')") );
             //$sms="User";
         }
 
         return $sms;
+
 
 
     }
@@ -80,18 +92,14 @@ class Message extends Model
 
 
 $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1')") );
-//        $sms=DB::table('message')
-//            ->where('sender','Admin')
-//            ->orwhere('sender',$client1)
-//            ->where('receiver','Admin')
-//            ->orwhere('receiver',$client1)
-//            ->orderBy('inserted_time', 'ASC')
-//            ->get();
+
         return $sms;
     }
 
 
     public function insertsms($text,$client1) {
+
+
 
         $type=session('user-type');
         $client=session('order');
@@ -100,11 +108,13 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         if ($type == 'Admin')
         {
 
+
+
             $data =array(
                 'sender' => 'Admin',
                 'receiver' => $client1,
                 'sms' => $text,
-                'job' => '',
+
                 'status' => 'unseen'
 
             );
@@ -112,11 +122,13 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         elseif($type == 'User')
         {
 
+
+
             $data =array(
                 'sender' => $client,
                 'receiver' => 'Admin',
                 'sms' => $text,
-                'job' => '',
+
                 'status' => 'unseen'
 
             );
@@ -125,6 +137,7 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
 
         DB::table('message')->insert($data);
     }
+
 
     public function comment($job_id){
 
@@ -208,5 +221,12 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         return $name;
     }
 
+
+
+    public function getNotifAdmin () {
+        $count = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' ") );
+
+        return $count;
+    }
 
 }

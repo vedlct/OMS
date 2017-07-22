@@ -96,10 +96,14 @@ Route::post('/inputsms/{client1}', 'MessageController@inputsms')->name('insersms
 
 Route::get('/admin_message', 'MessageController@showAdminsms')->name('adminsms');
 
+
 Route::get('/Comments', 'MessageController@jobcomment')->name('jobcomment');
 Route::post('/Comments/{job_id}', 'MessageController@insert_job_comment')->name('insertjobcomment');
 
 
 Route::get('/Message', 'MessageController@clientname')->name('getclientname');
 Route::post('/NewMessage', 'MessageController@insertmessage')->name('newmessage');
+
+
+Route::get('/getNotifAdmin', 'MessageController@getNotifAdmin');
 
