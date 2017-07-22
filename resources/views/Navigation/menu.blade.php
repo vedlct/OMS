@@ -33,7 +33,7 @@ elseif (session('order')!= null && session('status')== "User"){
     ?>
 
 <li>
-    <a href="{{'/Home'}}">
+    <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>
@@ -80,7 +80,7 @@ elseif (session('order')!= null && session('status')== "User"){
 //{
 elseif(session('order')!=null && session('status')=="Admin"){
 
-$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' ") );
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status`='unseen' ") );
 ?>
 
 @foreach($sms as $count)
@@ -165,9 +165,8 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
 
     var count =0;
 
-
-
     setInterval(function(){
+
         $.ajax({
             type : 'get',
             url:'{{'/getNotifAdmin'}}',
@@ -179,13 +178,13 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
                     $('#output2').html(" ("+count+")"),
                     old_count = datan;
                 }else {
-                    $('#output2').html(" ("+count+")")
+                    $('#output2').html(" ("+old_count+")")
                 }
 
 
             }
         });
-    },2000);
+    },600);
 </script>
 
 <?php

@@ -145,4 +145,29 @@ class MessageController extends Controller
 
     }
 
+    public function getlivemsg(Request $request) {
+
+        $sender=$request->sender;
+        $reciever=$request->reciever;
+
+        try{
+            $getlivemsg=(new Message)->getlivemsg($sender,$reciever);
+
+            foreach ($getlivemsg as $n){
+                echo $n->total;
+            }
+
+
+        }
+        catch (Exception $e){
+
+            echo "There is an issue. Please Refresh the page and try again.";
+        }
+        //echo $sender;
+
+
+
+
+    }
+
 }

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                                         <th colspan="3"><div align="center"><strong><h4>Customer Profile</h4></strong></div></th>
                                     </tr>
                                     <tr>
-                                        <td width="32%" rowspan="6"><img src="img/profile_avt.png"></td>
+                                        <td width="32%" rowspan="6"><img src="{{url('img/profile_avt.png')}}"></td>
                                         <td width="19%">Company Name :</td>
                                         <td width="49%">{{$profile->company_name}}</td>
                                     </tr>
@@ -104,4 +104,4 @@
 
 </body>
 </html>
-@include('js.js');
+@include('js.js')
