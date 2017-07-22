@@ -25,6 +25,12 @@ class MessageController extends Controller
         return view('message',compact('client_view','client1'));
 
     }
+    protected function clientname(){
+
+        $client_name=(new Message)->getClientname();
+        return view('admin.newmessage',compact('client_name'));
+
+    }
 
 
     public function showMessageBody($client1){
@@ -42,16 +48,81 @@ class MessageController extends Controller
 
         $text= $request->sms;
 
-        //dd($receiver);
+        //dd($client1);
         try{
             $save= (new Message())->insertsms($text,$client1);
             return redirect()->route('usersms',[$client1]);
         }
         catch (Exception $e){
-            echo "loss project :P";
+            echo "There is an issue. Please Refresh the page and try again.";
+        }
+    }
+
+    public function jobcomment(Request $request){
+
+        $job_id= $request->id;
+
+        $jobcomment=(new Message)->comment($job_id);
+
+       // echo $jobcomment;
+        return view('allcomment' ,compact('jobcomment','job_id'));
+
+    }
+
+    public function insert_job_comment(Request $request,$job_id){
+
+
+        $text= $request->sms;
+
+
+
+        try
+        {
+            $jobcomment=(new Message)->insert_comment($job_id,$text);
+            $type=session('user-type');
+
+            if ($type == "User") {
+                echo "<script type=\"text/javascript\">
+				alert(\"Comment Added on This Job Successfully.\");
+				window.location.replace('/Home');
+				</script>";
+                return redirect()->route('ongoingjob_user');
+            }
+            elseif ($type == "Admin")
+            {
+                echo "<script type=\"text/javascript\">
+				alert(\"Comment Added on This Job Successfully.\");
+				window.location.replace('/Home');
+				</script>";
+            }
+
+        }
+        catch (Exception $e)
+        {
+            echo "<script type=\"text/javascript\">
+				alert(\"There is an issue. Please Refresh the page and try again.\");
+				window.location.replace('/Home');
+				</script>";
         }
 
 
+    }
+
+
+    public function insertmessage(Request $request){
+
+        $client1= $request->reciever;
+        $text= $request->sms;
+    try
+    {
+        $sendmsg = (new Message)->insertsms($text, $client1);
+        return redirect(route('adminsms'));
+    }
+    catch (Exception $e)
+    {
+        echo "There is an issue. Please Refresh the page and try again.";
+    }
 
     }
+
 }

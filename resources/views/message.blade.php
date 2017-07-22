@@ -44,17 +44,7 @@
                             <div class="col-sm-12 message_section">
                                 <div class="row">
                                     <div class="new_message_head">
-                                        <div class="pull-left"><button>Message System</button></div><div class="pull-right"><div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Action</a></li>
-                                                </ul>
-                                            </div></div>
+                                        <div class="pull-left"><button>Message System</button></div>
                                     </div><!--new_message_head-->
 
                                     <div class="chat_area">
@@ -95,24 +85,26 @@
                                             @foreach($client_view as $s)
                                                 @if($s->sender == "Admin")
                                                     <li class="left clearfix">
-                     <span class="chat-img1 pull-left">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                                                        <div class="chat-body1 clearfix">
-                                                            <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
-                                                            <p>{{$s->sms}}</p>
+                     {{--<span class="chat-img1 pull-left">--}}
+                     {{--<img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">--}}
+                     {{--</span>--}}
+                                                        <span style="color: red"class="pull-left">Admin</span>
+                                                        <div class="chat-body1 clearfix ">
+                                                            <div >{{$s->inserted_time}}</div><br>
+                                                            <p >{{$s->sms}}</p>
 
                                                         </div>
                                                     </li>
                                                 @elseif($s->sender ==$client1)
 
                                                         <li class="left clearfix admin_chat">
-                     <span class="chat-img1 pull-right">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
-                     </span>
+                     {{--<span class="chat-img1 pull-right">--}}
+                     {{--<img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">--}}
+                     {{--</span>--}}
+                                                            <span style="color: blue" class="chat-img1 pull-right">{{$client1}}</span>
                                                             <div class="chat-body1 clearfix">
-                                                                <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
-                                                                <p>{{$s->sms}}</p>
+                                                                <div class="pull-right">{{$s->inserted_time}}</div><br>
+                                                                <p class="pull-right">{{$s->sms}}</p>
 
                                                             </div>
                                                         </li>
@@ -130,7 +122,7 @@
                                         {{csrf_field()}}
                                     <div class="message_write">
                                         <textarea class="form-control" name="sms" placeholder="type a message"></textarea>
-                                        <div class="clearfix"></div>
+
                                         <div class="chat_bottom"><a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                                 Add Files</a>
                                             <input class="pull-right btn btn-success"type="submit" value="Send">

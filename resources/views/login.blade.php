@@ -31,7 +31,7 @@
 
 <div class="container">
 
-    <form class="form-signin" action="{{'/logincheck'}}" method="post">
+    <form class="form-signin" action="{{url('/logincheck')}}" method="post">
         <h2 class="form-signin-heading">sign in now</h2>
         <br>
         <center><img class="img-responsive img-thumbnail" src="{{'img/TCL_logo.png'}}" width="150"></center>
