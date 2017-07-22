@@ -30,15 +30,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <!--state overview start-->
-            {{--<div class="row">--}}
-                {{--<div class="col-lg-12">--}}
-                    {{--<div class="panel panel-default">--}}
-                        {{--<div  class="panel-heading">--}}
-                            {{--message system--}}
-                        {{--</div>--}}
-                        {{--<!-- /.panel-heading -->--}}
-                        {{--<div class="panel-body">--}}
+
             <div class="row">
                 <div class="panel-body">
                             <div class="col-sm-12 message_section">
@@ -135,10 +127,7 @@
                                 </div>
                             </div> <!--message_section-->
 
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+
                 </div>
             </div>
             <!--state overview end-->
@@ -156,48 +145,45 @@
 @include('js.js')
 <?php
 $type=session('status');
-if (session('status') == 'Admin'){
-    $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='Admin' AND `receiver`='$client1' AND `status`='unseen' ") );
-foreach ($sms as $count){
-    echo $totalforadmin = $count->total;
+if ($type == 'Admin'){
+    $sms1 = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='$client1' AND `receiver`='Admin' AND `status`='unseen' ") );
+foreach ($sms1 as $count){
+    echo $totalsmsforadmin = $count->total;
 }
 }
 elseif(session('status') == 'User'){
-    $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='$client1' AND `receiver`='Admin' AND `status`='unseen' ") );
-    foreach ($sms as $count){
-        echo $totalforadmin = $count->total;
+    $sms1 = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='Admin' AND `receiver`='$client1' AND `status`='unseen' ") );
+    foreach ($sms1 as $count){
+        echo $totalsmsforadmin = $count->total;
     }
 }
 ?>
+
 <script>
-    var old_counts = "<?php echo $totalforadmin?>";
+    var old_msg = "<?php echo $totalsmsforadmin?>";
     var client = "<?php echo $client1?>";
     var type = "<?php echo $type?>";
-    var old_count = parseInt(old_counts);
+    var old_amount = parseInt(old_msg);
 
 
     var count =0;
 
 
     setInterval(function(){
-        if (type=="Admin") {
+        if (type =="Admin") {
         $.ajax({
             type : 'get',
             url:'{{'/getlivemsg'}}',
-            data: {'sender':'Admin','reciever':client},
+            data: {'sender':client,'reciever':'Admin'},
             cache: false,
             success : function(datan){
 
-                //alert(datan);
 
-             //   alert(old_count);
-
-                if (parseFloat(datan) < old_count) {
+                if (parseFloat(datan) > old_amount) {
                     count=count+1;
                     $('#newmsg').load(document.URL +  ' #newmsg');
-
-                   // alert(datan);
-                    old_count =datan;
+                    //alert(datan);
+                    old_amount =datan;
                 }else {
                     //$('#newmsg').load(document.URL +  ' #newmsg');
                     //alert(datan);
@@ -215,18 +201,13 @@ elseif(session('status') == 'User'){
                 cache: false,
                 success : function(datan){
 
-                   // alert(datan);
-                   // alert(old_count);
-
-                    if (parseFloat(datan) > old_count) {
+                    if (parseFloat(datan) > old_amount) {
                         count=count+1;
                         $('#newmsg').load(document.URL +  ' #newmsg');
 
-                        // alert(datan);
-                        old_count =datan;
+                        old_amount =datan;
                     }else {
-                        //$('#newmsg').load(document.URL +  ' #newmsg');
-                        //alert(datan);
+                        
                     }
 
 
@@ -240,12 +221,11 @@ elseif(session('status') == 'User'){
 
 </script>
 
-{{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
+
 <script>
     $( "#newmsg" ).scrollTop($("#newmsg")[0].scrollHeight);
     $( "#sms" ).focus();
 </script>
-
 
 </body>
 </html>
