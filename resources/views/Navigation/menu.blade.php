@@ -80,7 +80,7 @@ elseif (session('order')!= null && session('status')== "User"){
 //{
 elseif(session('order')!=null && session('status')=="Admin"){
 
-$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' ") );
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status` = 'unseen' ") );
 ?>
 
 @foreach($sms as $count)
@@ -163,8 +163,8 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     var old_counts = "<?php echo $totalforadmin?>";
     var old_count = parseInt(old_counts);
 
-    var count =0;
 
+    var count =0;
 
 
     setInterval(function(){
@@ -176,16 +176,18 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
 
                 if (parseFloat(datan) > old_count) {
                 count=count+1;
-                    $('#output2').html(" ("+count+")"),
+                    $('#output2').html("("+count+")"),
                     old_count = datan;
                 }else {
-                    $('#output2').html(" ("+count+")")
+                    $('#output2').html("("+old_count+")")
                 }
+
+
 
 
             }
         });
-    },100);
+    },600);
 </script>
 
 <?php

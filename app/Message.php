@@ -166,10 +166,10 @@ class Message extends Model
         if ($type == 'Admin')
         {
 
-            DB::table('message')
-                ->where('sender',$client1)
-                ->where('receiver','Admin')
-                ->update($data1);
+//            DB::table('message')
+//                ->where('sender',$client1)
+//                ->where('receiver','Admin')
+//                ->update($data1);
 
             $data =array(
                 'sender' => 'Admin',
@@ -183,10 +183,10 @@ class Message extends Model
         elseif($type == 'User')
         {
 
-            DB::table('message')
-                ->where('sender','Admin')
-                ->where('receiver',$client1)
-                ->update($data1);
+//            DB::table('message')
+//                ->where('sender','Admin')
+//                ->where('receiver',$client1)
+//                ->update($data1);
 
             $data =array(
                 'sender' => $client,
@@ -203,7 +203,7 @@ class Message extends Model
     }
 
     public function getNotifAdmin () {
-        $count = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' ") );
+        $count = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status` = 'unseen'") );
 
         return $count;
     }
