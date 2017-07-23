@@ -163,7 +163,7 @@ class MessageController extends Controller
 
             echo "There is an issue. Please Refresh the page and try again.";
         }
-        //echo $sender;
+        //echo $reciever;
 
 
 
