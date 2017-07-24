@@ -16,10 +16,7 @@
         <div class="message_write">
             <textarea class="form-control" name="sms" placeholder="type message" required></textarea>
 
-            {{--<div class="chat_bottom"><a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>--}}
-                    {{--Add Files</a>--}}
 
-            {{--</div>--}}
 
         </div>
     </div>

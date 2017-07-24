@@ -73,7 +73,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `rece
     setInterval(function(){
         $.ajax({
             type : 'get',
-            url:'{{'/getNotifUser'}}',
+            url:'{{url('/getNotifUser')}}',
             cache: false,
             success : function(datan){
                 if (parseFloat(datan) > old_countu) {
@@ -100,7 +100,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     <?php $totalforadmin = $count->total ?>
 @endforeach
 <li>
-    <a href="{{'/Home'}}">
+    <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>
@@ -179,7 +179,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     setInterval(function(){
         $.ajax({
             type : 'get',
-            url:'{{'/getNotifAdmin'}}',
+            url:'{{url('/getNotifAdmin')}}',
             cache: false,
             success : function(datan){
                 if (parseFloat(datan) > old_count) {
