@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="{{'img/TCL_logo.png'}}">
+    <link rel="shortcut icon" href="{{url('img/TCL_logo.png')}}">
 
     <title>OMS - Order Management System.</title>
 
@@ -133,15 +133,15 @@
 </html>
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="{{'js/jquery.js'}}"></script>
-<script src="{{'js/jquery-1.8.3.min.js'}}"></script>
-<script src="{{'js/bootstrap.min.js'}}"></script>
-<script class="include" type="text/javascript" src="{{'js/jquery.dcjqaccordion.2.7.js'}}"></script>
-<script src="{{'js/jquery.scrollTo.min.js'}}"></script>
+<script src="{{url('js/jquery.js')}}"></script>
+<script src="{{url('js/jquery-1.8.3.min.js')}}"></script>
+<script src="{{url('js/bootstrap.min.js')}}"></script>
+<script class="include" type="text/javascript" src="{{url('js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{url('js/jquery.scrollTo.min.js')}}"></script>
 
 
 <!--common script for all pages-->
-<script src="{{'js/common-scripts.js'}}"></script>
+<script src="{{url('js/common-scripts.js')}}"></script>
 
 <!--script for this page-->
 
@@ -162,9 +162,6 @@
         })
     });
 </script>
-
-
-
 
 
 

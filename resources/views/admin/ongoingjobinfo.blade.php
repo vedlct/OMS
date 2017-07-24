@@ -43,11 +43,12 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th width="4%" scope="col">Sl.</th>
+                                        <th width="5%" scope="col">Sl.</th>
                                         <th width="10%" scope="col">Client Name</th>
-                                        <th width="17%" scope="col">Service Type</th>
-                                        <th width="60%" scope="col">Brief</th>
+                                        <th width="15%" scope="col">Service Type</th>
+                                        <th width="50%" scope="col">Brief</th>
                                         <th width="5%" scope="col">Status</th>
+                                        <th width="5%" scope="col">Client Comments</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -83,6 +84,7 @@
                                                 @endif
                                             </select>
                                         </td>
+                                        <td><a href="#" data-panel-id="{{$value->job_id}}" onclick="comment(this)"><div align="center"><i class="fa fa-comments" aria-hidden="true"></i></div></a></td>
                                     </tr>
 
                                     <?php
@@ -97,6 +99,23 @@
                     </div>
                 </div>
             </div>
+
+            <!--modal-->
+            <div id="myModal1" class="modal">
+                <br/><br/><br/>
+
+                <!-- Modal content -->
+
+                <div class="modal-content" style="padding: 35px; width: 50%; margin: 0 auto">
+                    <span class="close">×</span>
+
+                    <h2>Add a Comment</h2>
+                    <div id="txtHint"></div>
+
+
+                </div>
+            </div>
+            <!-- endmodal-->
 
             <!--state overview end-->
         </section>
@@ -134,22 +153,60 @@
         });
     }
     //owl carousel
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
+//    $(document).ready(function() {
+//        $("#owl-demo").owlCarousel({
+//            navigation : true,
+//            slideSpeed : 300,
+//            paginationSpeed : 400,
+//            singleItem : true,
+//            autoPlay:true
+//
+//        });
+//    });
+//
+//    //custom select box
+//
+//    $(function(){
+//        $('select.styled').customSelect();
+//    });
+
+</script>
+<script>
+
+    var modal1 = document.getElementById('myModal1');
+    var span = document.getElementsByClassName("close")[0];
+    function comment(x) {
+
+
+
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            type:'get',
+            url:'{{route('jobcomment')}}',
+            data:{id:btn},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+                // alert(data);
+            }
 
         });
-    });
 
-    //custom select box
 
-    $(function(){
-        $('select.styled').customSelect();
-    });
+        modal1.style.display = "block";
+
+    }
+    span.onclick = function() {
+        modal1.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
 
 </script>
 

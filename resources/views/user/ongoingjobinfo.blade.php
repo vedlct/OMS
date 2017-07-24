@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 
 </head>
 
@@ -88,8 +88,9 @@
                 <div class="modal-content" style="padding: 35px; width: 50%; margin: 0 auto">
                     <span class="close">×</span>
 
-                    <h2>Edit Content</h2>
+                    <h2>Add a Comment</h2>
                     <div id="txtHint"></div>
+
 
                 </div>
             </div>
@@ -125,6 +126,19 @@
 
 
         btn = $(x).data('panel-id');
+
+        $.ajax({
+            type:'get',
+            url:'{{route('jobcomment')}}',
+            data:{id:btn},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+               // alert(data);
+            }
+
+        });
 
 
         modal1.style.display = "block";

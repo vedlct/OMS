@@ -30,57 +30,40 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <!--state overview start-->
-            {{--<div class="row">--}}
-                {{--<div class="col-lg-12">--}}
-                    {{--<div class="panel panel-default">--}}
-                        {{--<div  class="panel-heading">--}}
-                            {{--message system--}}
-                        {{--</div>--}}
-                        {{--<!-- /.panel-heading -->--}}
-                        {{--<div class="panel-body">--}}
+
             <div class="row">
                 <div class="panel-body">
                             <div class="col-sm-12 message_section">
                                 <div class="row">
                                     <div class="new_message_head">
-                                        <div class="pull-left"><button>Message System</button></div><div class="pull-right"><div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Action</a></li>
-                                                </ul>
-                                            </div></div>
+                                        <div class="pull-left"><button>Message System</button></div>
                                     </div><!--new_message_head-->
+                                <span >
 
-                                    <div class="chat_area">
+                                    <div id="newmsg" class="chat_area">
                                         <ul class="list-unstyled">
                                             @if(session('user-type')=='Admin')
                                                 @foreach($client_view as $s)
                                                     @if($s->sender == $client1)
                                                         <li class="left clearfix">
-                     <span class="chat-img1 pull-left">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                     <span style="color: blue" class=" pull-left">{{$client1}}
+                     {{--<img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">--}}
                      </span>
                                                             <div class="chat-body1 clearfix">
-                                                                <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
-                                                                <p>{{$s->sms}}</p>
+                                                                <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
+                                                                <p class=" pull-left">{{$s->sms}}</p>
 
                                                             </div>
                                                         </li>
                                                     @elseif($s->sender =="Admin")
 
                                                         <li class="left clearfix admin_chat">
-                     <span class="chat-img1 pull-right">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
+                     <span style="color: red" class=" pull-right">Admin
+                     {{--<img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">--}}
                      </span>
                                                             <div class="chat-body1 clearfix">
-                                                                <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
-                                                                <p>{{$s->sms}}</p>
+                                                                <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
+                                                                <p class="chat_time pull-right">{{$s->sms}}</p>
 
                                                             </div>
                                                         </li>
@@ -98,21 +81,23 @@
                      <span class="chat-img1 pull-left">
                      <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
                      </span>
-                                                        <div class="chat-body1 clearfix">
-                                                            <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
-                                                            <p>{{$s->sms}}</p>
+                                                        <span style="color: red"class="pull-left">Admin</span>
+                                                        <div class="chat-body1 clearfix ">
+                                                            <div >{{$s->inserted_time}}</div><br>
+                                                            <p >{{$s->sms}}</p>
 
                                                         </div>
                                                     </li>
                                                 @elseif($s->sender ==$client1)
 
                                                         <li class="left clearfix admin_chat">
-                     <span class="chat-img1 pull-right">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
-                     </span>
+                     {{--<span class="chat-img1 pull-right">--}}
+                     {{--<img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">--}}
+                     {{--</span>--}}
+                                                            <span style="color: blue" class="chat-img1 pull-right">{{$client1}}</span>
                                                             <div class="chat-body1 clearfix">
-                                                                <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
-                                                                <p>{{$s->sms}}</p>
+                                                                <div class="pull-right">{{$s->inserted_time}}</div><br>
+                                                                <p class="pull-right">{{$s->sms}}</p>
 
                                                             </div>
                                                         </li>
@@ -124,13 +109,15 @@
                                             @endif
 
                                         </ul>
+                                        <div id="end">ssdsadadadad</div>
                                     </div><!--chat_area-->
+                               </span>
 
                                     <form method="post" action="{{route('insersms',['client1'=>$client1])}}">
                                         {{csrf_field()}}
                                     <div class="message_write">
-                                        <textarea class="form-control" name="sms" placeholder="type a message"></textarea>
-                                        <div class="clearfix"></div>
+                                        <textarea class="form-control" id="sms" name="sms" placeholder="type a message"></textarea>
+
                                         <div class="chat_bottom"><a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                                 Add Files</a>
                                             <input class="pull-right btn btn-success"type="submit" value="Send">
@@ -141,10 +128,7 @@
                                 </div>
                             </div> <!--message_section-->
 
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+
                 </div>
             </div>
             <!--state overview end-->
@@ -159,10 +143,99 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
+<?php
+$type=session('status');
+if ($type == 'Admin'){
+    $sms1 = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='$client1' AND `receiver`='Admin' AND `status`='unseen' ") );
+foreach ($sms1 as $count){
+    echo $totalsmsforadmin = $count->total;
+}
+}
+elseif(session('status') == 'User'){
+    $sms1 = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` ='Admin' AND `receiver`='$client1' AND `status`='unseen' ") );
+    foreach ($sms1 as $count){
+        echo $totalsmsforadmin = $count->total;
+    }
+}
+?>
+
+<script>
+    var old_msg = "<?php echo $totalsmsforadmin?>";
+    var client = "<?php echo $client1?>";
+    var type = "<?php echo $type?>";
+    var old_amount = parseInt(old_msg);
+
+
+    var count =0;
+
+
+    setInterval(function(){
+        if (type =="Admin") {
+        $.ajax({
+            type : 'get',
+            url:'{{'/getlivemsg'}}',
+            data: {'sender':client,'reciever':'Admin'},
+            cache: false,
+            success : function(datan){
+
+
+                if (parseFloat(datan) > old_amount) {
+                    count=count+1;
+                    $('#newmsg').load(document.URL +  ' #newmsg');
+                    //alert(datan);
+                    scroll();
+                    old_amount =datan;
+                }else {
+                    //$('#newmsg').load(document.URL +  ' #newmsg');
+                    //alert(datan);
+
+                }
+
+
+            }
+        });
+    }
+    else{
+            $.ajax({
+                type : 'get',
+                url:'{{'/getlivemsg'}}',
+                data: {'sender':'Admin','reciever':client},
+                cache: false,
+                success : function(datan){
+
+//                    alert(old_amount);
+//                    alert(datan);
+                    if (parseFloat(datan) > old_amount) {
+                        count=count+1;
+                        $('#newmsg').load(document.URL +  ' #newmsg');
+                        scroll();
+                        old_amount =0;
+                    }else {
+
+                    }
+
+
+                }
+            });
+        }
+
+    },6000);
 
 
 
+</script>
+
+
+<script>
+    $( "#newmsg" ).scrollTop($("#newmsg")[0].scrollHeight);
+    $( "#sms" ).focus();
+
+    function scroll() {
+
+        return this[0].scrollHeight - this.scrollTop() - this.height();
+    }
+</script>
 
 </body>
 </html>

@@ -30,54 +30,73 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+
             <div class="row">
                 <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div  class="panel-heading">
-                  Message
-                </div>
-
-                <div class="panel-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                {{--<th width="4%" scope="col">Sl.</th>--}}
-                                <th width="10%" scope="col">Client Name</th>
-                                </tr>
-                            </thead>
-                            <?php $a=array()?>
-                            @foreach($client_unseen as $c)
-                            <tr style="color: silver">
-                                <td>
-                                    <b><a href="{{route('usersms',['client1'=>$c->sender])}}"> {{$c->sender}}</a><br></b>
-                                    <?php array_push($a, $c->sender)?>
-                                </td>
-                            </tr>
-                            @endforeach
-                                @foreach($client_seen as $cs)
-                                <tr>
-
-                                        <?php if (in_array($cs->sender, $a))
-                                        { }else {?>
-                                            <td>
-                                        <a href="{{route('usersms',['client1'=>$cs->sender])}}"> {{$cs->sender}}</a><br>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </table>
+                    <div class="panel panel-default">
+                        <div  class="panel-heading">
+                            Message
+                            <div align="right" style="margin: -23px 0 0 0;"><button class="f" onClick="newmsg()" style="color:#69F;">Add New</button></div>
                         </div>
+                        <!-- /.panel-heading -->
 
+                        <div class="panel-body">
 
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        {{--<th width="4%" scope="col">Sl.</th>--}}
+                                        <th width="10%" scope="col">Client Name</th>
+                                    </tr>
+                                    </thead>
+                                    <?php $a=array()?>
+                                    @foreach($client_unseen as $c)
+                                        <tr style="color: silver">
+                                            <td>
+                                                <b><a href="{{route('usersms',['client1'=>$c->sender])}}"> {{$c->sender}}</a><br></b>
+                                                <?php array_push($a, $c->sender)?>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @foreach($client_seen as $cs)
+                                        <tr>
 
+                                            <?php if (in_array($cs->sender, $a))
+                                            { }else {?>
+                                            <td>
+                                                <a href="{{route('usersms',['client1'=>$cs->sender])}}"> {{$cs->sender}}</a><br>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!--modal-->
+            <div id="myModal1" class="modal">
+                <br/><br/><br/>
+
+                <!-- Modal content -->
+
+                <div class="modal-content" style="padding: 35px; width: 50%; margin: 0 auto">
+                    <span class="close">×</span>
+
+                    <h2>New Message Box</h2>
+
+                    <div id="txtHint"></div>
 
 
                 </div>
             </div>
-                </div>
-                </div>
+            <!-- endmodal-->
+
             <!--state overview end-->
         </section>
     </section>
@@ -90,8 +109,34 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 </body>
 </html>
 
+<script type="text/javascript">
+    var modal1 = document.getElementById('myModal1');
+    var span = document.getElementsByClassName("close")[0];
+    function newmsg()
+    {
+        $.ajax({
+            type:'get',
+            url:'{{route('getclientname')}}',
+            data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+            }
+        });
+        modal1.style.display = "block";
+    }
+    span.onclick = function() {
+        modal1.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+</script>

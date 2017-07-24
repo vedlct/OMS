@@ -8,39 +8,61 @@ use League\Flysystem\Exception;
 
 class AdminController extends Controller
 {
-    public function index(){
+
+    public function index()
+    {
 
     }
-    public function profile(){
 
-        $profile_info=(new Admin)->get();
-       return view('Profile',compact('profile_info'));
+    public function profile()
+    {
+
+        $type = session('user-type');
+        if ($type == 'Admin') {
+
+            $profile_info = (new Admin)->get();
+            return view('Profile', compact('profile_info'));
+        } else {
+
+            return redirect('/');
+        }
     }
 
-    public function newjobrequest(){
+    public function newjobrequest()
+    {
+
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
 //        $id=session('user-id');
-        $newjobrequest=(new Admin)->newjobrequest();
+            $newjobrequest = (new Admin)->newjobrequest();
 
-        return view('admin.newjobrequest',compact('newjobrequest'));
+            return view('admin.newjobrequest', compact('newjobrequest'));
+        } else {
+
+            return redirect('/');
+        }
     }
 
-    public function changejobstatus(Request $request){
+    public function changejobstatus(Request $request)
+    {
 
-        $id=$request->id;
-        $value=$request->value;
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        //$changestatus=(new Admin)->change_job_status($id,$value);
+            $id = $request->id;
+            $value = $request->value;
 
-        try{
-            $changestatus=(new Admin)->change_job_status($id,$value);
-            echo "Job ".$value." successfully.";
+            //$changestatus=(new Admin)->change_job_status($id,$value);
 
-        }
-        catch (Exception $e){
+            try {
+                $changestatus = (new Admin)->change_job_status($id, $value);
+                echo "Job " . $value . " successfully.";
 
-            echo "There is an issue. Please Refresh the page and try again.";
-        }
+            } catch (Exception $e) {
+
+                echo "There is an issue. Please Refresh the page and try again.";
+            }
 
 //        if (count($changestatus)!='')
 //        {
@@ -52,21 +74,35 @@ class AdminController extends Controller
 //        }
 
 
+        } else {
+            return redirect('/');
+        }
     }
 
-    public function newuserrequest(){
+    public function newuserrequest()
+    {
 
-        $newuserrequest=(new Admin)->newuserrequest();
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        return view('admin.newuserrequest',compact('newuserrequest'));
+            $newuserrequest = (new Admin)->newuserrequest();
+
+            return view('admin.newuserrequest', compact('newuserrequest'));
+        } else {
+            return redirect('/');
+        }
     }
 
-    public function changeuserstatus(Request $request){
+    public function changeuserstatus(Request $request)
+    {
 
-        $id=$request->id;
-        $value=$request->value;
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        //$changestatus=(new Admin)->change_user_status($id,$value);
+            $id = $request->id;
+            $value = $request->value;
+
+            //$changestatus=(new Admin)->change_user_status($id,$value);
 
 //        if (count($changestatus)!='')
 //        {
@@ -77,79 +113,109 @@ class AdminController extends Controller
 //            echo "There is an issue. Please Refresh the page and try again.";
 //        }
 
-        try{
-            $changestatus=(new Admin)->change_user_status($id,$value);
-            echo "Account ".$value." successfully.";
+            try {
+                $changestatus = (new Admin)->change_user_status($id, $value);
+                echo "Account " . $value . " successfully.";
 
+            } catch (Exception $e) {
+
+                echo "There is an issue. Please Refresh the page and try again.";
+            }
+
+
+        } else {
+            return redirect('/');
         }
-        catch (Exception $e){
+    }
 
-            echo "There is an issue. Please Refresh the page and try again.";
+    public function ongoingjob()
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
+
+        $ongoingwork = (new Admin)->ongoingjob();
+
+        return view('admin.ongoingjobinfo', compact('ongoingwork'));
+    }
+        else {
+            return redirect('/');
         }
+}
 
+    public function finshedjob()
+    {
 
+        $type = session('user-type');
+        if ($type == 'Admin') {
+
+            $finshedwork = (new Admin)->jobdone();
+
+            return view('admin.jobfinised', compact('finshedwork'));
+        }
+        else {
+            return redirect('/');
+        }
     }
 
-    public function ongoingjob(){
-
-
-        $ongoingwork=(new Admin)->ongoingjob();
-
-        return view('admin.ongoingjobinfo',compact('ongoingwork'));
+    public function viewclient()
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
+            $client_view = (new Admin)->clientinfoview();
+            return view('admin.viewallclient', compact('client_view'));
+        }
+        else {
+            return redirect('/');
+        }
     }
 
-    public function finshedjob(){
+    public function clientinfo(Request $request)
+    {
 
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        $finshedwork=(new Admin)->jobdone();
+            $id = $request->id;
 
-        return view('admin.jobfinised',compact('finshedwork'));
-    }
-
-    public function viewclient(){
-
-        $client_view=(new Admin)->clientinfoview();
-        return view('admin.viewallclient',compact('client_view'));
-    }
-
-    public function clientinfo(Request $request){
-
-        $id=$request->id;
-
-        $client_view=(new Admin)->viewclient($id);
-        return view('admin.clientinfo',compact('client_view'));
-        //echo $id;
+            $client_view = (new Admin)->viewclient($id);
+            return view('admin.clientinfo', compact('client_view'));
+            //echo $id;
+        } else {
+            return redirect('/');
+        }
     }
 
     public function updateclientinfo(Request $request)
     {
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        $id = $request->userid;
-        $type = $request->usertype;
-        $company_name = $request->clientname;
-        $contact_person = $request->contact;
-        $contact_number = $request->number;
-        $email = $request->email;
-        $address = $request->address;
-        $web = $request->web;
 
-        //$update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
+            $id = $request->userid;
+            $type = $request->usertype;
+            $company_name = $request->clientname;
+            $contact_person = $request->contact;
+            $contact_number = $request->number;
+            $email = $request->email;
+            $address = $request->address;
+            $web = $request->web;
 
-        try{
-            $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
-            echo "<script type=\"text/javascript\">
+            //$update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
+
+            try {
+                $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
+                echo "<script type=\"text/javascript\">
 				alert(\"Information Updated Successfully\");
 				window.location=\"/ClientInfo\";
 				</script>";
 
-        }
-        catch (Exception $e){
+            } catch (Exception $e) {
 
-            echo "<script type=\"text/javascript\">
+                echo "<script type=\"text/javascript\">
 				alert(\"There is an issue. Please Refresh the page and try again.\");
 				window.location=\"/ClientInfo\";
 				</script>";
-        }
+            }
 
 //        if (count($update)!='')
 //        {
@@ -170,31 +236,44 @@ class AdminController extends Controller
 //        }
 
 
-    }
-    public function serviceinfo(){
-
-        $allservice=(new Admin)->viewservice();
-        return view('admin.sevice',compact('allservice'));
-    }
-
-    public function changeservicestatus(Request $request){
-
-        $id=$request->id;
-        $value=$request->value;
-
-
-        //$client_view=(new Admin)->change_service_status($id,$value);
-
-        try{
-            $client_view=(new Admin)->change_service_status($id,$value);
-            echo "Service ".$value." successfully.";
-
+        } else {
+            return redirect('/');
         }
-        catch (Exception $e){
+    }
+    public function serviceinfo()
+    {
 
-            echo "There is an issue. Please Refresh the page and try again.";
+        $type = session('user-type');
+        if ($type == 'Admin') {
+
+            $allservice = (new Admin)->viewservice();
+            return view('admin.sevice', compact('allservice'));
         }
+        else {
+            return redirect('/');
+        }
+    }
 
+    public function changeservicestatus(Request $request)
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
+
+
+            $id = $request->id;
+            $value = $request->value;
+
+
+            //$client_view=(new Admin)->change_service_status($id,$value);
+
+            try {
+                $client_view = (new Admin)->change_service_status($id, $value);
+                echo "Service " . $value . " successfully.";
+
+            } catch (Exception $e) {
+
+                echo "There is an issue. Please Refresh the page and try again.";
+            }
 
 
 //        if (count($client_view)!='')
@@ -207,32 +286,38 @@ class AdminController extends Controller
 //        }
 
 
+        }else {
+            return redirect('/');
+        }
     }
 
-    public function insertservice(Request $request){
+    public function insertservice(Request $request)
+    {
 
-        $name=$request->name;
-        $type=$request->type;
-        $status=$request->status;
-        //$type=$request->type;
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-       // $insert_service=(new Admin)->insert_service($name,$type,$status);
+            $name = $request->name;
+            $type = $request->type;
+            $status = $request->status;
+            //$type=$request->type;
 
-        try{
-            $insert_service=(new Admin)->insert_service($name,$type,$status);
-            echo "<script type=\"text/javascript\">
+            // $insert_service=(new Admin)->insert_service($name,$type,$status);
+
+            try {
+                $insert_service = (new Admin)->insert_service($name, $type, $status);
+                echo "<script type=\"text/javascript\">
 				alert(\"Services Added Successfully\");
 				window.location=\"/Service\";
 				</script>";
 
-        }
-        catch (Exception $e){
+            } catch (Exception $e) {
 
-            echo "<script type=\"text/javascript\">
+                echo "<script type=\"text/javascript\">
 				alert(\"Something goes Wrong Pls try again\");
 				window.location=\"/Service\";
 				</script>";
-        }
+            }
 
 //        if (count($insert_service)!='')
 //        {
@@ -253,45 +338,63 @@ class AdminController extends Controller
 //        }
 
 
-
+        }
+        else {
+            return redirect('/');
+        }
     }
 
-    public function passchange(){
-
-        $getinfo=(new Admin)->getinfo();
-        return view('admin.user_info_password',compact('getinfo'));
+    public function passchange()
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
+            $getinfo = (new Admin)->getinfo();
+            return view('admin.user_info_password', compact('getinfo'));
+        }
+        else {
+            return redirect('/');
+        }
     }
-    public function changeuserpass($id){
+    public function changeuserpass($id)
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        $getpass=(new Admin)->getpass($id);
-        return view('admin.passwordchange',compact('getpass'));
+
+            $getpass = (new Admin)->getpass($id);
+            return view('admin.passwordchange', compact('getpass'));
+        }
+        else {
+            return redirect('/');
+        }
     }
-    public function changepass(Request $request){
+    public function changepass(Request $request)
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        $id=$request->id;
-        //$name=$request->aname;
-        $pass=$request->NP;
-        $conpass=$request->CNP;
+            $id = $request->id;
+            //$name=$request->aname;
+            $pass = $request->NP;
+            $conpass = $request->CNP;
 
-        if ($pass== $conpass){
+            if ($pass == $conpass) {
 
 
-
-            try{
-                $changepass=(new Admin)->changepass($id,$pass);
-                echo "<script type=\"text/javascript\" >
+                try {
+                    $changepass = (new Admin)->changepass($id, $pass);
+                    echo "<script type=\"text/javascript\" >
 				alert(\"Password Changed Successfully\");
 				window.location=\"/PasswordChange\";
 				</script>";
 
-            }
-            catch (Exception $e){
+                } catch (Exception $e) {
 
-                echo "<script type=\"text/javascript\" >
+                    echo "<script type=\"text/javascript\" >
 				alert(\"Something Went Wrong\");
 				window.location=\"/PasswordChange\";
 				</script>";
-            }
+                }
 
 //            if (count($changepass !='')){
 //
@@ -309,29 +412,35 @@ class AdminController extends Controller
 //				</script>";
 //            }
 
-        }
-        else {
+            } else {
 
-            echo "<script type=\"text/javascript\" >
+                echo "<script type=\"text/javascript\" >
 				alert(\"Password and Confirm Password doesn't match.please try again\");
 				window.location=\"/PasswordChange\";
 				</script>";
-        }
+            }
 
+        }
+        else {
+            return redirect('/');
+        }
     }
-    public function servicedelete($id){
+    public function servicedelete($id)
+    {
 
 
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
-        try{
-            $del_service=(new Admin)->delete_service($id);
-            echo "Service deleted successfully";
 
-        }
-        catch (Exception $e){
+            try {
+                $del_service = (new Admin)->delete_service($id);
+                echo "Service deleted successfully";
 
-            echo "There is an issue. Please Refresh the page and try again.";
-        }
+            } catch (Exception $e) {
+
+                echo "There is an issue. Please Refresh the page and try again.";
+            }
 
 //        if (count($del_service)!=''){
 //
@@ -340,21 +449,26 @@ class AdminController extends Controller
 //        else{
 //            echo "Something Wrong.please try again";
 //        }
-        //return view('admin.passwordchange',compact('getpass'));
+            //return view('admin.passwordchange',compact('getpass'));
+        }
+        else {
+            return redirect('/');
+        }
     }
 
-    public function jobreqdelete($id){
+    public function jobreqdelete($id)
+    {
+        $type = session('user-type');
+        if ($type == 'Admin') {
 
+            try {
+                $del_job_req = (new Admin)->delete_job_req($id);
+                echo " Pending Job Request deleted successfully";
 
-        try{
-            $del_job_req=(new Admin)->delete_job_req($id);
-            echo " Pending Job Request deleted successfully";
+            } catch (Exception $e) {
 
-        }
-        catch (Exception $e){
-
-            echo "There is an issue. Please Refresh the page and try again.";
-        }
+                echo "There is an issue. Please Refresh the page and try again.";
+            }
 
 
 //        if (count($del_job_req)!=''){
@@ -364,7 +478,11 @@ class AdminController extends Controller
 //        else{
 //            echo "Something Wrong.please try again";
 //        }
-        //return view('admin.passwordchange',compact('getpass'));
+            //return view('admin.passwordchange',compact('getpass'));
+        }
+        else {
+            return redirect('/');
+        }
     }
 
 

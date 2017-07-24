@@ -1,10 +1,7 @@
 <?php
 namespace App;
-
-
 use Illuminate\Support\Facades\DB;
 //include("php/connection.php");
-
 //if($_SESSION['order']== NULL)
 //{
 //
@@ -13,27 +10,20 @@ use Illuminate\Support\Facades\DB;
 //        window.location=\"../index.php\";
 //        </script>";
 //}
-
 if (session('order')==NULL){
-
     echo "<script type=\"text/javascript\">
         alert(\"Login First\");
         window.location=\"../index.php\";
         </script>";
-
 }
-
-
-
 /*----------------------------------------------------------------------------------------------------------------*/
 //else if($_SESSION['order']!= null && $_SESSION['status']=="User")
 //{
 elseif (session('order')!= null && session('status')== "User"){
-
-    ?>
+?>
 
 <li>
-    <a href="{{'/Home'}}">
+    <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>
@@ -58,8 +48,8 @@ elseif (session('order')!= null && session('status')== "User"){
 </li>
 <li class="sub-menu">
     {{--<a href="{{route('usersms')}}" >--}}
-        {{--<i class="fa fa-comment"></i>--}}
-        {{--<span>Message</span>--}}
+    {{--<i class="fa fa-comment"></i>--}}
+    {{--<span>Message</span>--}}
     {{--</a>--}}
 
     <a href="{{route('usersms',['client'=>session('order')])}}"  >
@@ -71,21 +61,16 @@ elseif (session('order')!= null && session('status')== "User"){
 
 <?php
 }
-
-
-
-
 /*----------------------------------------------------------------------------------------------------------------*/
 //else if($_SESSION['order']!= null && $_SESSION['status']=="Admin")
 //{
 elseif(session('order')!=null && session('status')=="Admin"){
-
-$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status` = 'unseen' ") );
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status`='unseen' ") );
 ?>
 
 @foreach($sms as $count)
     <?php $totalforadmin = $count->total ?>
-    @endforeach
+@endforeach
 <li>
     <a href="{{'/Home'}}">
         <i class="fa fa-dashboard"></i>
@@ -162,29 +147,20 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
 <script>
     var old_counts = "<?php echo $totalforadmin?>";
     var old_count = parseInt(old_counts);
-
-
     var count =0;
-
-
     setInterval(function(){
         $.ajax({
             type : 'get',
             url:'{{'/getNotifAdmin'}}',
             cache: false,
             success : function(datan){
-
                 if (parseFloat(datan) > old_count) {
-                count=count+1;
-                    $('#output2').html("("+count+")"),
-                    old_count = datan;
+                    count=count+1;
+                    $('#output2').html(" ("+count+")"),
+                        old_count = datan;
                 }else {
-                    $('#output2').html("("+old_count+")")
+                    $('#output2').html(" ("+old_count+")")
                 }
-
-
-
-
             }
         });
     },600);

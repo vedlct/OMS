@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="keyword" content="">
-        <link rel="shortcut icon" href="img/TCL_logo.png">
+        <link rel="shortcut icon" href="{{url('img/TCL_logo.png')}}">
     
         <title>User Login | Order Management System</title>
     
@@ -15,24 +15,24 @@
 
 
   <!-- Bootstrap core CSS -->
-      <link href="{{'css/bootstrap.min.css'}}" rel="stylesheet">
-      <link href="{{'css/bootstrap-reset.css'}}" rel="stylesheet">
+      <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+      <link href="{{url('css/bootstrap-reset.css')}}" rel="stylesheet">
       <!--external css-->
-      <link href="{{'pages/css/font-awesome.css'}}" rel="stylesheet" />
+      <link href="{{url('pages/css/font-awesome.css')}}" rel="stylesheet" />
       <!-- Custom styles for this template -->
-      <link href="{{'css/style.css'}}" rel="stylesheet">
-      <link href="{{'css/style-res'}}" rel="stylesheet" />
+      <link href="{{url('css/style.css')}}" rel="stylesheet">
+      <link href="{{url('css/style-res')}}" rel="stylesheet" />
 
       <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
       <!--[if lt IE 9]>
-      <script src="{{'js/html5shiv.js'}}"></script>
-      <script src="{{'js/respond.min.js'}}"></script>
+      <script src="{{url('js/html5shiv.js')}}"></script>
+      <script src="{{url('js/respond.min.js')}}"></script>
       <![endif]-->
 
     </head>
 
   <body>
-			<a href="{{'/'}}"><button class="btn-default" style="margin: 1% 0 0 1%;">Log In</button></a>
+			<a href="{{url('/')}}"><button class="btn-default" style="margin: 1% 0 0 1%;">Log In</button></a>
           <section class="wrapper">
           	
               <!--state overview start-->
@@ -43,7 +43,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                              <form method="post" enctype="multipart/form-data" action="{{'/insertreg'}}">
+                              <form method="post" enctype="multipart/form-data" action="{{url('/insertreg')}}">
                                   {{csrf_field()}}
                               <table class="table table-striped table-bordered table-hover" border="0">
                                   <tr>
@@ -127,15 +127,7 @@
       
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-                2016 &copy; Tech Cloud Ltd. | Designed & Developed by <a target="_blank" href="http://techcloudltd.com/">Tech Cloud Ltd.</a>
-                <a href="#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-                </a>
-          </div>
-	  </footer>
-      <!--footer end-->
+      @include('layout.footer')
 
             <!-- js placed at the end of the document so the pages load faster -->
             <!-- js placed at the end of the document so the pages load faster -->
@@ -166,22 +158,22 @@
 	}
 	});
       //owl carousel
-   $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-			  autoPlay:true
-
-          });
-      });
-
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
+//   $(document).ready(function() {
+//          $("#owl-demo").owlCarousel({
+//              navigation : true,
+//              slideSpeed : 300,
+//              paginationSpeed : 400,
+//              singleItem : true,
+//			  autoPlay:true
+//
+//          });
+//      });
+//
+//      //custom select box
+//
+//      $(function(){
+//          $('select.styled').customSelect();
+//      });
 	  
 	  
 	  $('#logname').live('change', function() {
