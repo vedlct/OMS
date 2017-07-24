@@ -171,8 +171,10 @@ class Admin extends Model
 
     public function changepass($id,$pass){
 
+        $password=md5($pass);
+
         $data=array(
-            'password'=>$pass
+            'password'=>$password
         );
 
         DB::table('customer_info')

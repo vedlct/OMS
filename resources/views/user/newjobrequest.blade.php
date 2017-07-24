@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 
 
 </head>
@@ -100,7 +100,7 @@
 
 
 
-@include('js.js');
+@include('js.js')
 
 <!-- jQuery -->
 <script>

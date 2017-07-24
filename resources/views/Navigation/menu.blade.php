@@ -18,7 +18,7 @@ if (session('order')==NULL){
 
     echo "<script type=\"text/javascript\">
         alert(\"Login First\");
-        window.location=\"../index.php\";
+        window.location=\"{{url('/')}}\";
         </script>";
 
 }

@@ -108,5 +108,6 @@ Route::post('/NewMessage', 'MessageController@insertmessage')->name('newmessage'
 Route::get('/getNotifAdmin', 'MessageController@getNotifAdmin');
 
 Route::get('/getlivemsg', 'MessageController@getlivemsg');
+Route::get('/getlivemsgdata', 'MessageController@getlivemsgdata');
 
 

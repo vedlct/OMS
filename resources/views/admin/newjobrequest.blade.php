@@ -107,7 +107,7 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 
 <script>
@@ -120,7 +120,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changejobstatus/'}}'+option,
+            url:'{{'changejobstatus/'}}'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
@@ -149,13 +149,13 @@
                 {
                     //$('#txtHint').html(data);
                     alert(data);
-                    window.location="/NewJobRequest";
+                    window.location="{{url('/NewJobRequest')}}";
                 }
 
             });
 
         } else {
-            window.location="/NewJobRequest";
+            window.location="{{url('/NewJobRequest')}}";
         }
 
 
@@ -163,23 +163,6 @@
 
     }
 
-//    //owl carousel
-//    $(document).ready(function() {
-//        $("#owl-demo").owlCarousel({
-//            navigation : true,
-//            slideSpeed : 300,
-//            paginationSpeed : 400,
-//            singleItem : true,
-//            autoPlay:true
-//
-//        });
-//    });
-//
-//    //custom select box
-//
-//    $(function(){
-//        $('select.styled').customSelect();
-//    });
 
 </script>
 

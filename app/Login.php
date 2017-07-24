@@ -12,9 +12,13 @@ class Login extends Model
 {
     public function validate($username,$password){
 
+        $logpass=md5($password);
+
+
+
         $user = DB::table('customer_info')
             ->where('username', $username)
-            ->where('password', $password)
+            ->where('password', $logpass)
             ->get();
 
         return $user;

@@ -109,7 +109,7 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 </body>
 </html>

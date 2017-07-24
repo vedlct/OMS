@@ -12,7 +12,7 @@ class Registration extends Controller
 
 
         $loginname = $request->loginname;
-        $pass = $request->pass;
+        $pass = md5($request->pass);
         $clientname = $request->clientname;
         $contact = $request->contact;
         $number = $request->number;

@@ -1,6 +1,6 @@
 
-
-<form method="post" enctype="multipart/form-data" action="{{'/updatejob'}}">
+<?php foreach($job_instruction as $job){?>
+<form method="post" enctype="multipart/form-data" action="{{url('/updatejob')}}">
     {{csrf_field()}}
 
     <table class="table table-striped table-bordered table-hover" border="0">
@@ -11,10 +11,12 @@
             <th width="13%" ><div align="right">Service Type <i style="color:red">*</i></div></th>
             <td width="100%">
                 <select class="form-control" name="servicetype" required >
-                    <option selected value="" disabled>Select Service Type</option>
-                    @foreach($activeservice as $value)
+
+                    <option value="{{$job->service}}" selected>{{$job->service}}</option>
+                    <?php foreach($activeservice as $value){?>
+
                         <option value="{{$value->service_name}}">{{$value->service_name}}</option>
-                    @endforeach
+                    <?php } ?>
                 </select>
             </td>
         </tr>
@@ -24,13 +26,13 @@
         <tr>
             <th ><div align="right">Brief Instruction<i style="color:red">*</i></div></th>
             <td>
-                @foreach($job_instruction as $value)
-                <textarea class= "form-control summernote" type="text"  name="details_instruction">{{$value->instruction}}</textarea>
-                @endforeach
+
+                <textarea class= "form-control summernote" type="text"  name="details_instruction" required>{{$job->instruction}}</textarea>
+
             </td>
 
         </tr>
-        <input type="hidden" name="id" value="{{$value->job_id}}">
+        <input type="hidden" name="id" value="{{$job->job_id}}">
         <tr>
             <th colspan="4" >
                 <div align="center">
@@ -43,7 +45,7 @@
 
 
 </form>
-
+<?php } ?>
 
 <script>
     $(document).ready(function() {

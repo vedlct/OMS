@@ -23,7 +23,7 @@ class UserController extends Controller
             return view('Profile', compact('profile_info'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -39,7 +39,7 @@ class UserController extends Controller
             return view('user.newjobrequest', compact('newjobrequest'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
 
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
     public function ongoingjob()
@@ -103,7 +103,7 @@ class UserController extends Controller
             return view('user.ongoingjobinfo', compact('ongoingwork'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -117,7 +117,7 @@ class UserController extends Controller
             return view('user.pendingjobinfo', compact('pendingwork'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -133,7 +133,7 @@ class UserController extends Controller
             return view('user.jobfinised', compact('finshedwork'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -147,7 +147,7 @@ class UserController extends Controller
 
             return view('user.editjob', compact('activeservice', 'job_instruction'));
         }else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -198,7 +198,7 @@ class UserController extends Controller
             //return view('user.editjob',compact('activeservice','job_instruction'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 }

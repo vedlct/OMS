@@ -234,4 +234,13 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         return $count;
     }
 
+    public function getlivemsgdata ($sender,$reciever) {
+        $sms = DB::table('message')
+            ->where('sender',$sender)
+            ->where('receiver',$reciever)
+            ->where('status','unseen')
+            ->get();
+        return $sms;
+    }
+
 }
