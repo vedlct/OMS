@@ -1,5 +1,5 @@
 @foreach($getpass as $pass)
-<form method="post" action="{{'/passchange/'}}{{$pass->user_id}}">
+<form method="post" action="{{url('/passchange')}}/{{$pass->user_id}}">
     {{csrf_field()}}
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <tr>
@@ -8,11 +8,11 @@
         </tr>
         <tr>
             <td>Password :</td>
-            <td><input type="password" class="form-control" name="NP" id="field" value="" /></td>
+            <td><input type="password" class="form-control" name="NP" id="field" value="" required/></td>
         </tr>
         <tr>
             <td>Confirm Password :</td>
-            <td><input type="text" class="form-control" name="CNP" id="field" value="" /></td>
+            <td><input type="password" class="form-control" name="CNP" id="field" value="" required/></td>
         </tr>
         <tr>
 

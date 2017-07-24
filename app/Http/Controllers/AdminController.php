@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+
 use League\Flysystem\Exception;
 
 class AdminController extends Controller
@@ -24,7 +25,7 @@ class AdminController extends Controller
             return view('Profile', compact('profile_info'));
         } else {
 
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -40,7 +41,7 @@ class AdminController extends Controller
             return view('admin.newjobrequest', compact('newjobrequest'));
         } else {
 
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -75,7 +76,7 @@ class AdminController extends Controller
 
 
         } else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -89,7 +90,7 @@ class AdminController extends Controller
 
             return view('admin.newuserrequest', compact('newuserrequest'));
         } else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -124,7 +125,7 @@ class AdminController extends Controller
 
 
         } else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -138,7 +139,7 @@ class AdminController extends Controller
         return view('admin.ongoingjobinfo', compact('ongoingwork'));
     }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
 }
 
@@ -153,7 +154,7 @@ class AdminController extends Controller
             return view('admin.jobfinised', compact('finshedwork'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -165,7 +166,7 @@ class AdminController extends Controller
             return view('admin.viewallclient', compact('client_view'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -181,7 +182,7 @@ class AdminController extends Controller
             return view('admin.clientinfo', compact('client_view'));
             //echo $id;
         } else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -237,7 +238,7 @@ class AdminController extends Controller
 
 
         } else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
     public function serviceinfo()
@@ -250,7 +251,7 @@ class AdminController extends Controller
             return view('admin.sevice', compact('allservice'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -287,7 +288,7 @@ class AdminController extends Controller
 
 
         }else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -340,7 +341,7 @@ class AdminController extends Controller
 
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -352,7 +353,7 @@ class AdminController extends Controller
             return view('admin.user_info_password', compact('getinfo'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
     public function changeuserpass($id)
@@ -365,7 +366,7 @@ class AdminController extends Controller
             return view('admin.passwordchange', compact('getpass'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
     public function changepass(Request $request)
@@ -375,8 +376,12 @@ class AdminController extends Controller
 
             $id = $request->id;
             //$name=$request->aname;
+
             $pass = $request->NP;
             $conpass = $request->CNP;
+
+
+
 
             if ($pass == $conpass) {
 
@@ -422,7 +427,7 @@ class AdminController extends Controller
 
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
     public function servicedelete($id)
@@ -452,7 +457,7 @@ class AdminController extends Controller
             //return view('admin.passwordchange',compact('getpass'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 
@@ -481,7 +486,7 @@ class AdminController extends Controller
             //return view('admin.passwordchange',compact('getpass'));
         }
         else {
-            return redirect('/');
+            return redirect(url('/'));
         }
     }
 

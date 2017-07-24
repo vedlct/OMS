@@ -109,48 +109,10 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 
-<script>
 
-
-    function changestatus(x)
-    {
-        var option = document.getElementById(x).value;
-
-        $.ajax({
-            type:'get',
-            url:'{{'/changejobstatus/'}}'+option,
-            data:{'id':x,'value':option},
-            cache: false,
-            success:function(data)
-            {
-
-                location.reload();
-            }
-
-        });
-    }
-    //owl carousel
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-</script>
 
 </body>
 </html>

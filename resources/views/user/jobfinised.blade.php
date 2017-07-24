@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    @include('css.css');
+    @include('css.css')
 
 </head>
 
@@ -92,32 +92,9 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 
-<script>
-
-
-
-    //owl carousel
-    $(document).ready(function() {
-        $("#owl-demo").owlCarousel({
-            navigation : true,
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem : true,
-            autoPlay:true
-
-        });
-    });
-
-    //custom select box
-
-    $(function(){
-        $('select.styled').customSelect();
-    });
-
-</script>
 
 </body>
 </html>

@@ -63,7 +63,7 @@ class LoginController extends Controller
             //return redirect('/');
             echo "<script type=\"text/javascript\" >
 				alert(\"Wrong ID or PASSWORD\");
-				window.location=\"../../index.php\";
+				window.location=\"/\";
 				</script>";
         }
 

@@ -32,7 +32,7 @@
     </head>
 
   <body>
-			<a href="{{url('/')}}"><button class="btn-default" style="margin: 1% 0 0 1%;">Log In</button></a>
+			<div align="center"><a href="{{url('/')}}"><button class="btn-login" style="margin: 1% 0 0 1%;">Log In</button></a></div>
           <section class="wrapper">
           	
               <!--state overview start-->

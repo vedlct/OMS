@@ -10,18 +10,26 @@ use Illuminate\Support\Facades\DB;
 //        window.location=\"../index.php\";
 //        </script>";
 //}
+        ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<?php
 if (session('order')==NULL){
     echo "<script type=\"text/javascript\">
         alert(\"Login First\");
-        window.location=\"../index.php\";
+        window.location=\"{{url('/')}}\";
         </script>";
 }
 /*----------------------------------------------------------------------------------------------------------------*/
 //else if($_SESSION['order']!= null && $_SESSION['status']=="User")
 //{
 elseif (session('order')!= null && session('status')== "User"){
-?>
+$clientname =session('order');
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `receiver` ='$clientname' AND `status`='unseen' ") );
 
+?>
+@foreach($sms as $count)
+    <?php $totalforuser = $count->total ?>
+@endforeach
 <li>
     <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
@@ -54,11 +62,31 @@ elseif (session('order')!= null && session('status')== "User"){
 
     <a href="{{route('usersms',['client'=>session('order')])}}"  >
         <i class="fa fa-comment"></i>
-        <span>Message</span>
+        <span>Message</span><span id="output1" style="color:#FFF;;margin: 1px;font-size: 13px;"></span>
     </a>
 
 </li>
-
+<script>
+    var old_countsu = "<?php echo $totalforuser?>";
+    var old_countu = parseInt(old_countsu);
+    var countu =0;
+    setInterval(function(){
+        $.ajax({
+            type : 'get',
+            url:'{{'/getNotifUser'}}',
+            cache: false,
+            success : function(datan){
+                if (parseFloat(datan) > old_countu) {
+                    countu=countu+1;
+                    $('#output1').html(" ("+countu+")"),
+                        old_countu = datan;
+                }else {
+                    $('#output1').html(" ("+old_countu+")")
+                }
+            }
+        });
+    },600);
+</script>
 <?php
 }
 /*----------------------------------------------------------------------------------------------------------------*/
@@ -143,7 +171,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     </a>
 
 </li>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
     var old_counts = "<?php echo $totalforadmin?>";
     var old_count = parseInt(old_counts);

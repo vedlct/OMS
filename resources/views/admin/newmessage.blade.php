@@ -1,10 +1,10 @@
 
-<form method="post" action="{{route('newmessage')}}">
+<form id="newpass" method="post" action="{{route('newmessage')}}" onsubmit="return validateForm()">
     {{csrf_field()}}
     <div class="form-group">
         <label >Select Reciever :</label>
 
-        <select name="reciever" class="form-control" id="reciever" onChange="changename(this.id)">
+        <select name="reciever" class="form-control" id="reciever" required >
             <option selected disabled>Select One</option>
             @foreach($client_name as $message)
             <option>{{$message->short_name}}</option>
@@ -14,17 +14,28 @@
     </div>
     <div class="form-group">
         <div class="message_write">
-            <textarea class="form-control" name="sms" placeholder="type message"></textarea>
+            <textarea class="form-control" name="sms" placeholder="type message" required></textarea>
 
-            <div class="chat_bottom"><a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                    Add Files</a>
+            {{--<div class="chat_bottom"><a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>--}}
+                    {{--Add Files</a>--}}
 
-            </div>
+            {{--</div>--}}
 
         </div>
     </div>
     <div class="form-group" align="right">
-        <button type="submit" class="btn btn-success ">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </div>
 </form>
-
+<script>
+    function validateForm() {
+        var x = document.forms["newpass"]["reciever"].value;
+        if (x == "Select One") {
+            alert("Please select a reciever");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

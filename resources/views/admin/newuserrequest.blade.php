@@ -108,7 +108,7 @@
     <!--footer end-->
 </section>
 
-@include('js.js');
+@include('js.js')
 
 
 <script>
@@ -132,29 +132,7 @@
 
         });
     }
-    //owl carousel
-//    $(document).ready(function() {
-//        $("#owl-demo").owlCarousel({
-//            navigation : true,
-//            slideSpeed : 300,
-//            paginationSpeed : 400,
-//            singleItem : true,
-//            autoPlay:true
-//
-//        });
-//    });
 
-
-    //custom select box
-
-
-//
-//    //custom select box
-//
-
-//    $(function(){
-//        $('select.styled').customSelect();
-//    });
 
 </script>
 

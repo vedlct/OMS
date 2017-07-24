@@ -123,15 +123,15 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>Service Name</th>
-                                    <th>Type</th>
+                                    <th>Service Name<i style="color:red">*</i></th>
+                                    <th>Type<i style="color:red">*</i></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <th><input type="text" class="form-control" name="name" /></th>
-                                <th><input type="text" class="form-control" name="type" /></th>
+                                <th><input type="text" class="form-control" name="name" required/></th>
+                                <th><input type="text" class="form-control" name="type" required/></th>
                                 <th>
                                     <select name="status" class="form-control">
                                         <option selected disabled>Select One</option>
@@ -166,7 +166,7 @@
 
 </body>
 </html>
-@include('js.js');
+@include('js.js')
 <script>
     function changestatus(x)
     {
@@ -205,13 +205,13 @@
                 {
                     //$('#txtHint').html(data);
                     alert(data);
-                    window.location="/Service";
+                    window.location="{{url('/Service')}}";
                 }
 
             });
 
         } else {
-            window.location="/Service";
+            window.location="{{url('/Service')}}";
         }
 
 
