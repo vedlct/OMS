@@ -87,7 +87,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     <?php $totalforadmin = $count->total ?>
     @endforeach
 <li>
-    <a href="{{'/Home'}}">
+    <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
     </a>

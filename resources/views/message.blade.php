@@ -108,7 +108,7 @@
                                     <!--chat_area-->
                                </div>
 
-                                    <form method="post" action="{{route('insersms',['client1'=>$client1])}}">
+                                    <form method="post" id="smsbox" action="{{route('insersms',['client1'=>$client1])}}" onsubmit="return validateForm()">
                                         {{csrf_field()}}
                                     <div class="message_write">
                                         <textarea class="form-control" id="sms" name="sms" placeholder="type a message"></textarea>
@@ -268,12 +268,21 @@ elseif(session('status') == 'User'){
 
     $( "#sms" ).focus();
 
-//    function scroll() {
-//        $( "#newmsg" ).scrollTop($("#newmsg")[0].scrollHeight);
-//
-//    }
 
 
+</script>
+
+<script>
+    function validateForm() {
+        var x = document.forms["smsbox"]["sms"].value;
+        if (x == "") {
+            alert("Please write some text first!!");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 </script>
 
 </body>
