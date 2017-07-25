@@ -28,4 +28,13 @@ class registrationm extends Model
 
         DB::table('customer_info')->insert($data);
     }
+
+    public function user_check($loginname){
+
+
+        $user= DB::table('customer_info')
+            ->where('username',$loginname)
+            ->count();
+        return $user;
+    }
 }

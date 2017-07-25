@@ -43,4 +43,24 @@ class Registration extends Controller
 
     }
 
+    public function user_check(Request $request)
+    {
+
+        $loginname = $request->email;
+
+        try{
+            //your query
+            $check= (new registrationm)->user_check($loginname);
+
+            return $check;
+        }
+        catch(Exception $e){
+            echo "<script type=\"text/javascript\">
+				alert(\"There is an issue. Please Refresh the page and try again.\");
+				
+				</script>";
+        }
+
+    }
+
 }

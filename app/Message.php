@@ -109,6 +109,12 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         {
 
 
+//            DB::table('message')
+//                ->where('sender',$client1)
+//                ->where('receiver','Admin')
+//                ->update($data1);
+
+
 
             $data =array(
                 'sender' => 'Admin',
@@ -121,6 +127,13 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         }
         elseif($type == 'User')
         {
+
+
+//            DB::table('message')
+//                ->where('sender','Admin')
+//                ->where('receiver',$client1)
+//                ->update($data1);
+
 
 
 
@@ -224,9 +237,19 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
 
 
     public function getNotifAdmin () {
-        $count = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status`='unseen'") );
+
+        $count = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status` = 'unseen'") );
+
 
         return $count;
+    }
+    public function getNotifUser () {
+
+        $clientname =session('order');
+        $countuser = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `receiver` ='$clientname' AND `status`='unseen' ") );
+
+
+        return $countuser;
     }
 
     public function getlivemsg ($sender,$reciever) {

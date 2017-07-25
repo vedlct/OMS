@@ -85,7 +85,7 @@ class LoginController extends Controller
         $logout_log= (new Login)->logout();
 
         session::flush();
-        return redirect('/');
+        return redirect(url('/'));
 
     }
 

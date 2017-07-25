@@ -1,10 +1,7 @@
 <?php
 namespace App;
-
-
 use Illuminate\Support\Facades\DB;
 //include("php/connection.php");
-
 //if($_SESSION['order']== NULL)
 //{
 //
@@ -13,25 +10,26 @@ use Illuminate\Support\Facades\DB;
 //        window.location=\"../index.php\";
 //        </script>";
 //}
-
+        ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<?php
 if (session('order')==NULL){
-
     echo "<script type=\"text/javascript\">
         alert(\"Login First\");
         window.location=\"{{url('/')}}\";
         </script>";
-
 }
-
-
-
 /*----------------------------------------------------------------------------------------------------------------*/
 //else if($_SESSION['order']!= null && $_SESSION['status']=="User")
 //{
 elseif (session('order')!= null && session('status')== "User"){
+$clientname =session('order');
+$sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `receiver` ='$clientname' AND `status`='unseen' ") );
 
-    ?>
-
+?>
+@foreach($sms as $count)
+    <?php $totalforuser = $count->total ?>
+@endforeach
 <li>
     <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
@@ -58,34 +56,49 @@ elseif (session('order')!= null && session('status')== "User"){
 </li>
 <li class="sub-menu">
     {{--<a href="{{route('usersms')}}" >--}}
-        {{--<i class="fa fa-comment"></i>--}}
-        {{--<span>Message</span>--}}
+    {{--<i class="fa fa-comment"></i>--}}
+    {{--<span>Message</span>--}}
     {{--</a>--}}
 
     <a href="{{route('usersms',['client'=>session('order')])}}"  >
         <i class="fa fa-comment"></i>
-        <span>Message</span>
+        <span>Message</span><span id="output1" style="color:#FFF;;margin: 1px;font-size: 13px;"></span>
     </a>
 
 </li>
-
+<script>
+    var old_countsu = "<?php echo $totalforuser?>";
+    var old_countu = parseInt(old_countsu);
+    var countu =0;
+    setInterval(function(){
+        $.ajax({
+            type : 'get',
+            url:'{{url('/getNotifUser')}}',
+            cache: false,
+            success : function(datan){
+                if (parseFloat(datan) > old_countu) {
+                    countu=countu+1;
+                    $('#output1').html(" ("+countu+")"),
+                        old_countu = datan;
+                }else {
+                    $('#output1').html(" ("+old_countu+")")
+                }
+            }
+        });
+    },600);
+</script>
 <?php
 }
-
-
-
-
 /*----------------------------------------------------------------------------------------------------------------*/
 //else if($_SESSION['order']!= null && $_SESSION['status']=="Admin")
 //{
 elseif(session('order')!=null && session('status')=="Admin"){
-
 $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `sender` !='Admin' AND `status`='unseen' ") );
 ?>
 
 @foreach($sms as $count)
     <?php $totalforadmin = $count->total ?>
-    @endforeach
+@endforeach
 <li>
     <a href="{{url('/Home')}}">
         <i class="fa fa-dashboard"></i>
@@ -146,7 +159,7 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     </a>
     <ul class="sub">
 
-        <li><a  href="{{'/Service'}}">Service Information</a></li>
+        <li><a  href="{{url('/Service')}}">Service Information</a></li>
         <li><a  href="{{route('passchange')}}">Password Change</a></li>
     </ul>
 </li>
@@ -158,30 +171,24 @@ $sms = DB::select( DB::raw("SELECT COUNT(*) AS total  FROM `message` WHERE `send
     </a>
 
 </li>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
     var old_counts = "<?php echo $totalforadmin?>";
     var old_count = parseInt(old_counts);
-
     var count =0;
-
     setInterval(function(){
-
         $.ajax({
             type : 'get',
-            url:'{{'/getNotifAdmin'}}',
+            url:'{{url('/getNotifAdmin')}}',
             cache: false,
             success : function(datan){
-
                 if (parseFloat(datan) > old_count) {
-                count=count+1;
+                    count=count+1;
                     $('#output2').html(" ("+count+")"),
-                    old_count = datan;
+                        old_count = datan;
                 }else {
                     $('#output2').html(" ("+old_count+")")
                 }
-
-
             }
         });
     },600);

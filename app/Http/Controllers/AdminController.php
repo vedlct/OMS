@@ -103,17 +103,6 @@ class AdminController extends Controller
             $id = $request->id;
             $value = $request->value;
 
-            //$changestatus=(new Admin)->change_user_status($id,$value);
-
-//        if (count($changestatus)!='')
-//        {
-//            echo "Account ".$value." successfully.";
-//        }
-//        else
-//        {
-//            echo "There is an issue. Please Refresh the page and try again.";
-//        }
-
             try {
                 $changestatus = (new Admin)->change_user_status($id, $value);
                 echo "Account " . $value . " successfully.";
@@ -205,10 +194,14 @@ class AdminController extends Controller
 
             try {
                 $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
+
                 echo "<script type=\"text/javascript\">
 				alert(\"Information Updated Successfully\");
-				window.location=\"{{url('/')}}\";
+				var url = \"<?php echo url('/ClientInfo'); ?>\";
+				window.location=\"/ClientInfo\";
 				</script>";
+                //return redirect(url(url));
+
 
             } catch (Exception $e) {
 
@@ -216,25 +209,9 @@ class AdminController extends Controller
 				alert(\"There is an issue. Please Refresh the page and try again.\");
 				window.location=\"/ClientInfo\";
 				</script>";
+                //return redirect(url('/ClientInfo'));
             }
 
-//        if (count($update)!='')
-//        {
-//            echo "<script type=\"text/javascript\">
-//				alert(\"Information Updated Successfully\");
-//				window.location=\"/ClientInfo\";
-//				</script>";
-//
-//        }
-//        else
-//        {
-//
-//            echo "<script type=\"text/javascript\">
-//				alert(\"There is an issue. Please Refresh the page and try again.\");
-//				window.location=\"/ClientInfo\";
-//				</script>";
-//
-//        }
 
 
         } else {
@@ -311,6 +288,7 @@ class AdminController extends Controller
 				alert(\"Services Added Successfully\");
 				window.location=\"/Service\";
 				</script>";
+                //return redirect(url('/Service'));
 
             } catch (Exception $e) {
 
@@ -318,6 +296,7 @@ class AdminController extends Controller
 				alert(\"Something goes Wrong Pls try again\");
 				window.location=\"/Service\";
 				</script>";
+                //return redirect(url('/Service'));
             }
 
 //        if (count($insert_service)!='')
@@ -389,33 +368,21 @@ class AdminController extends Controller
                 try {
                     $changepass = (new Admin)->changepass($id, $pass);
                     echo "<script type=\"text/javascript\" >
-				alert(\"Password Changed Successfully\");
+				        alert(\"Password Changed Successfully\");
 				window.location=\"/PasswordChange\";
 				</script>";
+                    //return redirect(url('/PasswordChange'));
 
                 } catch (Exception $e) {
 
                     echo "<script type=\"text/javascript\" >
-				alert(\"Something Went Wrong\");
+				        alert(\"Something Went Wrong\");
 				window.location=\"/PasswordChange\";
 				</script>";
+                    //return redirect(url('/PasswordChange'));
+
                 }
 
-//            if (count($changepass !='')){
-//
-//
-//                echo "<script type=\"text/javascript\" >
-//				alert(\"Password Changed Successfully\");
-//				window.location=\"/PasswordChange\";
-//				</script>";
-//            }
-//            else{
-//
-//                echo "<script type=\"text/javascript\" >
-//				alert(\"Something Went Wrong\");
-//				window.location=\"/PasswordChange\";
-//				</script>";
-//            }
 
             } else {
 
@@ -423,6 +390,8 @@ class AdminController extends Controller
 				alert(\"Password and Confirm Password doesn't match.please try again\");
 				window.location=\"/PasswordChange\";
 				</script>";
+
+                //return redirect(url('/PasswordChange'));
             }
 
         }

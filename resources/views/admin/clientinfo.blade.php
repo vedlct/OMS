@@ -7,16 +7,18 @@
                                     <table class="table table-striped table-bordered table-hover" border="0">
                                         <tr>
                                             <th width="13%" scope="row"><div align="right">Client Type</div></th>
-                                            <td width="37%">
-                                                <select class="form-control" name="usertype" id="select" required onChange="map(this.value)">
+                                            <td width="37%" align="center">
+                                                <select class="form-control" name="usertype" id="select" required>
+                                                {{--<select class="form-control" name="usertype" id="select" required onChange="map(this.value)">--}}
 
-                                                    @if (session('status') == "User")
+                                                    @if ($value->user_type == "User")
 
-                                                        User
+                                                    <option selected value='User'>User</option>
 
-                                                    @elseif (session('status') == "Admin")
+                                                    @elseif ($value->user_type == "Admin")
+                                                        {{--<option value='User'>User</option>--}}
                                                         <option selected value='Admin'>Admin</option>
-                                                        <option value='User'>User</option>
+
 
 
                                                     @endif

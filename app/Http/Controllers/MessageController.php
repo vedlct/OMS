@@ -86,7 +86,7 @@ class MessageController extends Controller
             if ($type == "User") {
                 echo "<script type=\"text/javascript\">
 				alert(\"Comment Added on This Job Successfully.\");
-				window.location.replace('/Home');
+				//window.location.replace('/Home');
 				</script>";
                 return redirect()->route('ongoingjob_user');
             }
@@ -94,8 +94,9 @@ class MessageController extends Controller
             {
                 echo "<script type=\"text/javascript\">
 				alert(\"Comment Added on This Job Successfully.\");
-				window.location.replace('/Home');
+				//window.location.replace('/Home');
 				</script>";
+                return redirect()->route('ongoingjob');
             }
 
         }
@@ -105,6 +106,7 @@ class MessageController extends Controller
 				alert(\"There is an issue. Please Refresh the page and try again.\");
 				window.location.replace('/Home');
 				</script>";
+            //return redirect(url('/'));
         }
 
 
@@ -134,6 +136,22 @@ class MessageController extends Controller
             $NotifAdminCount=(new Message)->getNotifAdmin();
 
             foreach ($NotifAdminCount as $n){
+                echo $n->total;
+            }
+
+        }
+        catch (Exception $e){
+
+            echo "There is an issue. Please Refresh the page and try again.";
+        }
+
+    }
+    public function getNotifUser() {
+
+        try{
+            $NotifUserCount=(new Message)->getNotifUser();
+
+            foreach ($NotifUserCount as $n){
                 echo $n->total;
             }
 

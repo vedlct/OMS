@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2017 at 10:42 AM
+-- Generation Time: Jul 24, 2017 at 12:43 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,8 +46,8 @@ CREATE TABLE `customer_info` (
 --
 
 INSERT INTO `customer_info` (`user_id`, `username`, `password`, `user_type`, `company_name`, `short_name`, `contact_person`, `contact_no`, `email`, `address`, `webaddress`, `client_status`) VALUES
-(1, 'admin', '123', 'Admin', 'TCL', 'TCL', 'forhad', '01616404404', 'fcml44@gmail.com', 'baridhara', 'errorsworld.com', 'Active'),
-(2, 'test', 'test1', 'User', 'TCL1', 'TCL1', 'test1', '444', 'test1@test.com', 'test1', 'test1', 'Active'),
+(1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin', 'TCL', 'TCL', 'forhad', '01616404404', 'fcml44@gmail.com', 'baridhara', 'errorsworld.com', 'Active'),
+(2, 'test', '81dc9bdb52d04dc20036dbd8313ed055', 'User', 'TCL1', 'TCL1', 'test1', '444', 'test1@test.com', 'test1', 'test1', 'Active'),
 (5, 'chandan', '123', 'User', 'Tecno ERP', 'TE', 'Me', '01722504422', 'fcml44@gmail.com', 'baridhara', 'errorsworld.com', 'Active'),
 (4, 'sgdj', 'sgdj@123', 'User', 'Sangini Gold & Diamond Jewellery', 'SG&DJ', 'test', '014444', 'test@404.com', 'sss', 'ddd', 'Active');
 
@@ -168,7 +168,16 @@ INSERT INTO `log_info` (`id`, `company_name`, `login_details`, `logout_details`,
 (67, 'TCL', '2017-07-20 12:49:30', '2017-07-20 12:51:28', '127.0.0.1', '0'),
 (68, 'TCL1', '2017-07-20 12:51:37', '2017-07-20 13:01:16', '127.0.0.1', '0'),
 (69, 'TCL', '2017-07-20 13:01:26', '2017-07-20 13:07:10', '127.0.0.1', '0'),
-(70, 'TCL1', '2017-07-20 13:13:35', NULL, '127.0.0.1', '1');
+(70, 'TCL1', '2017-07-20 13:13:35', '2017-07-24 16:11:41', '127.0.0.1', '0'),
+(71, 'TCL', '2017-07-22 11:59:51', '2017-07-24 16:10:41', '127.0.0.1', '0'),
+(72, 'TCL1', '2017-07-22 12:00:29', '2017-07-24 16:11:41', '127.0.0.1', '0'),
+(73, 'TCL', '2017-07-23 12:21:35', '2017-07-24 16:10:41', '127.0.0.1', '0'),
+(74, 'TCL1', '2017-07-23 12:30:20', '2017-07-24 16:11:41', '127.0.0.1', '0'),
+(75, 'TCL', '2017-07-24 15:24:16', '2017-07-24 16:10:41', '127.0.0.1', '0'),
+(76, 'TCL1', '2017-07-24 16:10:47', '2017-07-24 16:11:41', '127.0.0.1', '0'),
+(77, 'TCL', '2017-07-24 16:12:41', '2017-07-24 16:28:06', '127.0.0.1', '0'),
+(78, 'TCL1', '2017-07-24 16:29:11', NULL, '127.0.0.1', '1'),
+(79, 'TCL', '2017-07-24 16:29:43', NULL, '127.0.0.1', '1');
 
 -- --------------------------------------------------------
 
@@ -178,11 +187,11 @@ INSERT INTO `log_info` (`id`, `company_name`, `login_details`, `logout_details`,
 
 CREATE TABLE `message` (
   `id` int(10) NOT NULL,
-  `sender` varchar(100) NOT NULL,
-  `receiver` varchar(100) NOT NULL,
-  `sms` text NOT NULL,
-  `job` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
+  `sender` varchar(100) DEFAULT NULL,
+  `receiver` varchar(100) DEFAULT NULL,
+  `sms` text,
+  `job` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
   `inserted_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -191,16 +200,158 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id`, `sender`, `receiver`, `sms`, `job`, `status`, `inserted_time`) VALUES
-(16, 'Admin', 'TCL1', 'aaa', '', '', '2017-07-19 18:00:00'),
-(17, 'TCL1', 'Admin', 'user msg', '', '', '2017-07-19 18:00:00'),
-(18, 'Techno Erp', 'Admin', 'techno', '', '', '2017-07-19 18:00:00'),
-(19, 'Admin', 'TCL1', 'new msg', '', 'unseen', '2017-07-20 05:38:49'),
-(20, 'Admin', 'TCL1', 's', '', 'unseen', '2017-07-20 06:48:45'),
-(21, 'Admin', 'TCL1', 'reply from admin', '', 'unseen', '2017-07-20 06:48:58'),
+(16, 'Admin', 'TCL1', 'aaa', '', 'Seen', '2017-07-22 06:00:39'),
+(17, 'TCL1', 'Admin', 'user msg', '', 'Seen', '2017-07-22 06:01:06'),
+(18, 'Techno Erp', 'Admin', 'techno', '', 'Seen', '2017-07-22 06:34:15'),
+(19, 'Admin', 'TCL1', 'new msg', '', 'Seen', '2017-07-22 06:00:39'),
+(20, 'Admin', 'TCL1', 's', '', 'Seen', '2017-07-22 06:00:39'),
+(21, 'Admin', 'TCL1', 'reply from admin', '', 'Seen', '2017-07-22 06:00:39'),
 (22, 'Admin', 'Techno Erp', 'reply to techno', '', 'unseen', '2017-07-20 06:50:47'),
-(23, 'TCL1', 'Admin', 'but tcl can see this', '', 'unseen', '2017-07-20 06:53:22'),
-(24, 'TCL1', 'Admin', 'tcl replied', '', 'unseen', '2017-07-20 07:01:03'),
-(25, 'Admin', 'TCL1', 'tcl msg seen from admin', '', 'unseen', '2017-07-20 07:02:22');
+(23, 'TCL1', 'Admin', 'but tcl can see this', '', 'Seen', '2017-07-22 06:01:06'),
+(24, 'TCL1', 'Admin', 'tcl replied', '', 'Seen', '2017-07-22 06:01:06'),
+(25, 'Admin', 'TCL1', 'tcl msg seen from admin', '', 'Seen', '2017-07-22 06:00:39'),
+(26, 'TCL1', 'Admin', 'huu', '', 'Seen', '2017-07-22 06:01:06'),
+(27, 'TCL1', 'Admin', 're ydftydy', '', 'Seen', '2017-07-22 06:37:26'),
+(28, 'TCL1', 'Admin', 'sadasd', '', 'Seen', '2017-07-22 06:37:26'),
+(29, 'TCL1', 'Admin', 'dsfsf', '', 'Seen', '2017-07-22 08:07:57'),
+(30, 'TCL1', 'Admin', 'sad', '', 'Seen', '2017-07-22 08:07:57'),
+(31, 'TCL1', 'Admin', 'sadasdads', '', 'Seen', '2017-07-22 08:07:57'),
+(32, 'TCL1', 'Admin', 'asd', '', 'Seen', '2017-07-22 08:07:57'),
+(33, 'TCL1', 'Admin', 'sad', '', 'Seen', '2017-07-22 08:07:57'),
+(34, 'TCL1', 'Admin', 'sad', '', 'Seen', '2017-07-22 08:07:57'),
+(35, 'TCL1', 'Admin', 'sadasd', '', 'Seen', '2017-07-22 08:07:57'),
+(36, 'TCL1', 'Admin', 'ass', '', 'Seen', '2017-07-22 08:07:57'),
+(37, 'TCL1', 'Admin', 'dsfsdf', '', 'Seen', '2017-07-22 08:07:57'),
+(38, 'TCL1', 'Admin', 'a', '', 'Seen', '2017-07-22 08:07:57'),
+(39, 'TCL1', 'Admin', 'as', '', 'Seen', '2017-07-22 08:07:57'),
+(40, 'TCL1', 'Admin', 'asd', '', 'Seen', '2017-07-22 08:07:57'),
+(41, 'TCL1', 'Admin', 'asd', '', 'Seen', '2017-07-22 08:07:57'),
+(42, 'TCL1', 'Admin', 'asd', '', 'Seen', '2017-07-22 08:07:57'),
+(43, 'TCL1', 'Admin', 'asd', '', 'Seen', '2017-07-22 08:07:57'),
+(44, 'TCL1', 'Admin', 'new msg1', '', 'Seen', '2017-07-22 08:07:57'),
+(45, 'TCL1', 'Admin', 'newmsg2', '', 'Seen', '2017-07-22 08:07:57'),
+(46, 'TCL1', 'Admin', 'jk', '', 'Seen', '2017-07-23 06:29:36'),
+(47, 'TCL1', 'Admin', 'jk', '', 'Seen', '2017-07-23 06:29:36'),
+(48, 'TCL1', 'Admin', 'ui', '', 'Seen', '2017-07-23 06:29:36'),
+(49, 'Admin', 'TCL1', 'asd', NULL, 'Seen', '2017-07-23 06:32:21'),
+(50, 'Admin', 'TCL1', 'hii', NULL, 'Seen', '2017-07-23 06:33:25'),
+(51, 'TCL1', 'Admin', 'hg', NULL, 'Seen', '2017-07-23 06:33:40'),
+(52, 'Admin', 'TCL1', 'jo', NULL, 'Seen', '2017-07-23 06:33:57'),
+(53, 'TCL1', 'Admin', 'hh', NULL, 'Seen', '2017-07-23 06:34:49'),
+(54, 'TCL1', 'Admin', 'jkk', NULL, 'Seen', '2017-07-23 06:35:03'),
+(55, 'TCL1', 'Admin', 'okk', NULL, 'Seen', '2017-07-23 06:45:49'),
+(56, 'Admin', 'TCL1', 'kkkkkk', NULL, 'Seen', '2017-07-23 06:46:09'),
+(57, 'TCL1', 'Admin', 'hi admin', NULL, 'Seen', '2017-07-23 06:46:23'),
+(58, 'Admin', 'TCL1', 'a1', NULL, 'Seen', '2017-07-23 06:46:46'),
+(59, 'Admin', 'TCL1', 'a2', NULL, 'Seen', '2017-07-23 06:47:04'),
+(60, 'Admin', 'TCL1', 'a3', NULL, 'Seen', '2017-07-23 06:47:04'),
+(61, 'Admin', 'TCL1', '1', NULL, 'Seen', '2017-07-23 06:47:40'),
+(62, 'Admin', 'TCL1', '2', NULL, 'Seen', '2017-07-23 06:47:40'),
+(63, 'Admin', 'TCL1', '3', NULL, 'Seen', '2017-07-23 06:47:40'),
+(64, 'Admin', 'TCL1', 'a', NULL, 'Seen', '2017-07-23 06:52:17'),
+(65, 'Admin', 'TCL1', '1', NULL, 'Seen', '2017-07-23 06:53:44'),
+(66, 'Admin', 'TCL1', 'q', NULL, 'Seen', '2017-07-23 06:53:56'),
+(67, 'Admin', 'TCL1', 'w', NULL, 'Seen', '2017-07-23 06:54:12'),
+(68, 'Admin', 'TCL1', 'rsad', NULL, 'Seen', '2017-07-23 06:54:39'),
+(69, 'Admin', 'TCL1', 'ddd', NULL, 'Seen', '2017-07-23 06:54:49'),
+(70, 'Admin', 'TCL1', 'tttt', NULL, 'Seen', '2017-07-23 06:55:01'),
+(71, 'Admin', 'TCL1', 'as', NULL, 'Seen', '2017-07-23 08:27:42'),
+(72, 'Admin', 'TCL1', 'as', NULL, 'Seen', '2017-07-23 08:28:18'),
+(73, 'Admin', 'TCL1', 'fff', NULL, 'Seen', '2017-07-23 08:28:55'),
+(74, 'Admin', 'TCL1', 'asd', NULL, 'Seen', '2017-07-23 08:43:35'),
+(75, 'Admin', 'TCL1', 'asdff', NULL, 'Seen', '2017-07-23 08:44:43'),
+(76, 'Admin', 'TCL1', 'sad', NULL, 'Seen', '2017-07-23 08:46:27'),
+(77, 'Admin', 'TCL1', 'asdsadf', NULL, 'Seen', '2017-07-23 08:49:58'),
+(78, 'Admin', 'TCL1', 'asss', NULL, 'Seen', '2017-07-23 08:52:53'),
+(79, 'Admin', 'TCL1', 'asdf', NULL, 'Seen', '2017-07-23 08:54:22'),
+(80, 'Admin', 'TCL1', 'hi', NULL, 'Seen', '2017-07-23 09:04:21'),
+(81, 'Admin', 'TCL1', 'aaaa', NULL, 'Seen', '2017-07-23 09:04:59'),
+(82, 'Admin', 'TCL1', 'din', NULL, 'Seen', '2017-07-23 09:21:06'),
+(83, 'Admin', 'TCL1', 'islam', NULL, 'Seen', '2017-07-23 09:21:51'),
+(84, 'Admin', 'TCL1', 'bachao', NULL, 'Seen', '2017-07-23 09:22:34'),
+(85, 'Admin', 'TCL1', 'aaa', NULL, 'Seen', '2017-07-23 09:35:57'),
+(86, 'Admin', 'TCL1', 'bbbb', NULL, 'Seen', '2017-07-23 09:44:33'),
+(87, 'Admin', 'TCL1', 'ass', NULL, 'Seen', '2017-07-23 09:48:48'),
+(88, 'Admin', 'TCL1', 'grr', NULL, 'Seen', '2017-07-23 09:49:41'),
+(89, 'Admin', 'TCL1', 'asdffdsf dsf  sdf', NULL, 'Seen', '2017-07-23 09:50:15'),
+(90, 'Admin', 'TCL1', 'aaav', NULL, 'Seen', '2017-07-23 09:56:34'),
+(91, 'Admin', 'TCL1', 'p[', NULL, 'Seen', '2017-07-23 10:01:50'),
+(92, 'Admin', 'TCL1', 'aaaaaavgfdg', NULL, 'Seen', '2017-07-23 10:03:34'),
+(93, 'Admin', 'TCL1', 'a', NULL, 'Seen', '2017-07-23 10:10:26'),
+(94, 'Admin', 'TCL1', 'aaa', NULL, 'Seen', '2017-07-23 10:10:38'),
+(95, 'Admin', 'TCL1', 'gb', NULL, 'Seen', '2017-07-23 10:10:51'),
+(96, 'Admin', 'TCL1', 'fgfg', NULL, 'Seen', '2017-07-23 10:11:03'),
+(97, 'Admin', 'TCL1', 'qwer', NULL, 'Seen', '2017-07-23 10:13:11'),
+(98, 'Admin', 'TCL1', 'av', NULL, 'Seen', '2017-07-23 10:15:04'),
+(99, 'Admin', 'TCL1', 'bbb', NULL, 'Seen', '2017-07-23 10:16:11'),
+(100, 'Admin', 'TCL1', 'gggg', NULL, 'Seen', '2017-07-23 10:17:23'),
+(101, 'Admin', 'TCL1', 'cccc', NULL, 'Seen', '2017-07-23 10:19:27'),
+(102, 'Admin', 'TCL1', 'nnn', NULL, 'Seen', '2017-07-23 10:33:01'),
+(103, 'Admin', 'TCL1', 'bbb', NULL, 'Seen', '2017-07-23 10:33:54'),
+(104, 'Admin', 'TCL1', 'dsf', NULL, 'Seen', '2017-07-23 10:34:12'),
+(105, 'TCL1', 'Admin', 'gh', NULL, 'Seen', '2017-07-23 10:35:01'),
+(106, 'Admin', 'TCL1', 'p', NULL, 'Seen', '2017-07-23 10:36:47'),
+(107, 'Admin', 'TCL1', 'pp', NULL, 'Seen', '2017-07-23 10:37:32'),
+(108, 'Admin', 'TCL1', 'oo', NULL, 'Seen', '2017-07-23 10:39:54'),
+(109, 'Admin', 'TCL1', 'aaer', NULL, 'Seen', '2017-07-23 10:41:21'),
+(110, 'Admin', 'TCL1', 'vbvv', NULL, 'Seen', '2017-07-23 10:44:05'),
+(111, 'Admin', 'TCL1', 'asdada', NULL, 'Seen', '2017-07-23 10:47:23'),
+(112, 'Admin', 'TCL1', 'aaaaa', NULL, 'Seen', '2017-07-23 10:48:25'),
+(113, 'Admin', 'TCL1', 'bbbb', NULL, 'Seen', '2017-07-23 10:52:56'),
+(114, 'Admin', 'TCL1', 'vb', NULL, 'Seen', '2017-07-23 10:53:36'),
+(115, 'Admin', 'TCL1', 'bv', NULL, 'Seen', '2017-07-23 10:54:04'),
+(116, 'Admin', 'TCL1', 'pppp', NULL, 'Seen', '2017-07-23 10:57:22'),
+(117, 'Admin', 'TCL1', 'y', NULL, 'Seen', '2017-07-23 10:59:02'),
+(118, 'Admin', 'TCL1', 'sdd', NULL, 'Seen', '2017-07-23 11:00:26'),
+(119, 'Admin', 'TCL1', 'y', NULL, 'Seen', '2017-07-23 11:03:10'),
+(120, 'Admin', 'TCL1', 'bbb', NULL, 'Seen', '2017-07-23 11:04:21'),
+(121, 'Admin', 'TCL1', 'xfhdf', NULL, 'Seen', '2017-07-23 11:04:51'),
+(122, 'Admin', 'TCL1', 'p', NULL, 'Seen', '2017-07-23 11:07:27'),
+(123, 'Admin', 'TCL1', 'ppo', NULL, 'Seen', '2017-07-23 11:12:18'),
+(124, 'Admin', 'TCL1', 'ppo', NULL, 'Seen', '2017-07-23 11:13:13'),
+(125, 'Admin', 'TCL1', 'qwer', NULL, 'Seen', '2017-07-23 11:13:47'),
+(126, 'Admin', 'TCL1', 'asdad', NULL, 'Seen', '2017-07-23 11:14:24'),
+(127, 'Admin', 'TCL1', 'asd', NULL, 'Seen', '2017-07-23 11:15:10'),
+(128, 'Admin', 'TCL1', 'sadfg', NULL, 'Seen', '2017-07-23 11:18:16'),
+(129, 'Admin', 'TCL1', 'ggg', NULL, 'Seen', '2017-07-23 11:18:28'),
+(130, 'Admin', 'TCL1', 'bnn', NULL, 'Seen', '2017-07-23 11:20:51'),
+(131, 'Admin', 'TCL1', 'asffd', NULL, 'Seen', '2017-07-23 11:21:46'),
+(132, 'Admin', 'TCL1', 't', NULL, 'Seen', '2017-07-23 11:22:53'),
+(133, 'Admin', 'TCL1', 'asdfaf', NULL, 'Seen', '2017-07-23 11:24:58'),
+(134, 'Admin', 'TCL1', 'asdad', NULL, 'Seen', '2017-07-23 11:26:04'),
+(135, 'Admin', 'TCL1', 'ddd', NULL, 'Seen', '2017-07-23 11:26:15'),
+(136, 'Admin', 'TCL1', 'adasd', NULL, 'Seen', '2017-07-23 11:27:31'),
+(137, 'Admin', 'TCL1', 'a', NULL, 'Seen', '2017-07-23 11:32:01'),
+(138, 'Admin', 'TCL1', 'asdads', NULL, 'Seen', '2017-07-23 11:32:48'),
+(139, 'Admin', 'TCL1', 'dsaf', NULL, 'Seen', '2017-07-23 11:33:22'),
+(140, 'Admin', 'TCL1', 'asdafafd', NULL, 'Seen', '2017-07-23 11:34:55'),
+(141, 'Admin', 'TCL1', 's', NULL, 'Seen', '2017-07-23 11:35:22'),
+(142, 'Admin', 'TCL1', 'df', NULL, 'Seen', '2017-07-23 11:35:52'),
+(143, 'Admin', 'TCL1', 'df', NULL, 'Seen', '2017-07-23 11:36:39'),
+(144, 'Admin', 'TCL1', 'asdf', NULL, 'Seen', '2017-07-23 11:37:11'),
+(145, 'Admin', 'TCL1', 'sadfsad', NULL, 'Seen', '2017-07-23 11:37:57'),
+(146, 'Admin', 'TCL1', 'ds', NULL, 'Seen', '2017-07-23 12:00:33'),
+(147, 'Admin', 'TCL1', 'asd', NULL, 'Seen', '2017-07-23 12:03:49'),
+(148, 'Admin', 'TCL1', 'b', NULL, 'Seen', '2017-07-23 12:05:41'),
+(149, 'Admin', 'TCL1', 'dsf', NULL, 'Seen', '2017-07-23 12:08:08'),
+(150, 'Admin', 'TCL1', 'fds', NULL, 'Seen', '2017-07-23 12:08:47'),
+(151, 'Admin', 'TCL1', 'g', NULL, 'Seen', '2017-07-23 12:09:34'),
+(152, 'TCL1', 'Admin', 'fd', NULL, 'Seen', '2017-07-23 12:09:51'),
+(153, 'Admin', 'TCL1', 'yy', NULL, 'Seen', '2017-07-23 12:12:24'),
+(154, 'Admin', 'TCL1', 'aa', NULL, 'Seen', '2017-07-23 12:13:31'),
+(155, 'Admin', 'TCL1', 'asd', NULL, 'Seen', '2017-07-23 12:14:48'),
+(156, 'TCL1', 'Admin', 'ds', NULL, 'Seen', '2017-07-23 12:15:05'),
+(157, 'Admin', 'TCL1', 'ab', NULL, 'Seen', '2017-07-23 12:15:43'),
+(158, 'Admin', 'TCL1', 'asfd', NULL, 'Seen', '2017-07-23 12:16:53'),
+(159, 'Admin', 'TCL1', 'b', NULL, 'Seen', '2017-07-23 12:18:00'),
+(160, 'Admin', 'TCL1', 'mmm', NULL, 'Seen', '2017-07-23 12:18:22'),
+(161, 'Admin', 'TCL1', 'ab', NULL, 'Seen', '2017-07-23 12:20:21'),
+(162, 'Admin', 'TCL1', 'as', NULL, 'Seen', '2017-07-23 12:21:33'),
+(163, 'TCL1', 'Admin', 'hi', '3', 'Seen', '2017-07-24 10:12:48'),
+(164, 'Admin', 'TCL1', 'ffff', NULL, 'Seen', '2017-07-24 10:30:00'),
+(165, 'TCL1', 'Admin', 'sadf', NULL, 'Seen', '2017-07-24 10:31:00'),
+(166, 'Admin', 'TCL1', 'sd', NULL, 'Seen', '2017-07-24 10:31:23'),
+(167, 'Admin', 'TCL1', 'asd', NULL, 'unseen', '2017-07-24 10:33:39');
 
 -- --------------------------------------------------------
 
@@ -275,12 +426,12 @@ ALTER TABLE `job_request`
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 --
 -- AUTO_INCREMENT for table `service`
 --

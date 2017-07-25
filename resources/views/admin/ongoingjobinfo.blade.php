@@ -140,7 +140,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changejobstatus/'}}'+option,
+            url:'{{'/changejobstatus'}}/'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)

@@ -18,10 +18,10 @@
       <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
       <link href="{{url('css/bootstrap-reset.css')}}" rel="stylesheet">
       <!--external css-->
-      <link href="{{url('pages/css/font-awesome.css')}}" rel="stylesheet" />
+      <link href="{{url('css/font-awesome.css')}}" rel="stylesheet" />
       <!-- Custom styles for this template -->
       <link href="{{url('css/style.css')}}" rel="stylesheet">
-      <link href="{{url('css/style-res')}}" rel="stylesheet" />
+      {{--<link href="{{url('css/style-res')}}" rel="stylesheet" />--}}
 
       <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
       <!--[if lt IE 9]>
@@ -182,13 +182,16 @@
 		 
     //ajax request
     $.ajax({
-        url: "pages/php/ajax/user_check.php",
-		type:"POST",
-        data:{email:us},
-        dataType: "text",
+        type : 'get',
+        url:'{{url('/user_check')}}',
+        //url: "pages/php/ajax/user_check.php",
+
+        data:{'email':us},
+        cache: false,
         success: function(data) {
             if(data >0) {
 				$('#logname').css("border","1px solid #ff0000");
+                //alert(data);
 
 				$('#uname').css("display","block");
 				$(':input[type="submit"]').prop('disabled', true);
@@ -197,6 +200,7 @@
                 $('#logname').css("border","1px solid #e2e2e4");
 				$('#uname').css("display","none");
 				$(':input[type="submit"]').prop('disabled', false);
+                //alert(data);
             }
         },
         error: function(data){

@@ -1,5 +1,5 @@
 
-<div  class="chat_area">
+<div  id="lastmsg" class="chat_area" style="overflow:auto;" >
     <ul class="list-unstyled">
         @if(session('user-type')=='Admin')
             @foreach($getlivemsgdata as $s)
