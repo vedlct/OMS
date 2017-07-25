@@ -158,7 +158,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changepassword'}}/'+btn,
+            url:'{{url('/changepassword')}}/'+btn,
             data:{'id':btn},
             cache: false,
             success:function(data)

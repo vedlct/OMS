@@ -166,14 +166,14 @@ elseif(session('status') == 'User'){
         if (type =="Admin") {
             $.ajax({
                 type : 'get',
-                url:'{{'/getlivemsg'}}',
+                url:'{{url('/getlivemsg')}}',
                 data: {'sender':client,'reciever':'Admin'},
                 cache: false,
                 success : function(datan){
                     if (parseFloat(datan) > old_amount) {
                         $.ajax({
                             type : 'get',
-                            url:'{{'/getlivemsgdata'}}',
+                            url:'{{url('/getlivemsgdata')}}',
                             data: {'sender':client,'reciever':'Admin'},
                             cache: false,
                             success : function(datas) {
@@ -199,14 +199,14 @@ elseif(session('status') == 'User'){
         else{
             $.ajax({
                 type : 'get',
-                url:'{{'/getlivemsg'}}',
+                url:'{{url('/getlivemsg')}}',
                 data: {'sender':'Admin','reciever':client},
                 cache: false,
                 success : function(datan){
                     if (parseFloat(datan) > old_amount) {
                         $.ajax({
                             type : 'get',
-                            url:'{{'/getlivemsgdata'}}',
+                            url:'{{url('/getlivemsgdata')}}',
                             data: {'sender':'Admin','reciever':client},
                             cache: false,
                             success : function(datas) {

@@ -130,7 +130,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changejob_user'}}/'+btn,
+            url:'{{url('/changejob_user')}}/'+btn,
             data:{'id':btn},
             cache: false,
             success:function(data)

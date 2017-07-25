@@ -120,7 +120,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'changejobstatus'}}/'+option,
+            url:'{{url('changejobstatus')}}/'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
@@ -142,7 +142,7 @@
 
             $.ajax({
                 type:'get',
-                url:'{{'/deletejobreq'}}/'+btn,
+                url:'{{url('/deletejobreq')}}/'+btn,
                 data:{'id':btn},
                 cache: false,
                 success:function(data)

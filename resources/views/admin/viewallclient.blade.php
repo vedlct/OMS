@@ -48,7 +48,7 @@
                                         <th width="19%" scope="col">Client</th>
                                         <th width="6%" scope="col">Type</th>
                                         <th width="11%" scope="col">Username</th>
-                                        <th width="11%" scope="col">Password</th>
+                                        {{--<th width="11%" scope="col">Password</th>--}}
                                         <th width="15%" scope="col">Key Person</th>
                                         <th width="14%" scope="col">Email</th>
                                         <th width="11%" scope="col">Number</th>
@@ -70,7 +70,7 @@
                                         <td>{{$value->company_name}}</td>
                                         <td>{{$value->user_type}}</td>
                                         <td>{{$value->username}}</td>
-                                        <td>{{$value->password}}</td>
+                                        {{--<td>{{$value->password}}</td>--}}
                                         <td>{{$value->contact_person}}</td>
                                         <td>{{$value->email}}</td>
                                         <td>{{$value->contact_no}}</td>
@@ -147,7 +147,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/ClientInfo'}}/'+btn,
+            url:'{{url('/ClientInfo')}}/'+btn,
             data:{'id':btn},
             cache: false,
             success:function(data)
@@ -181,7 +181,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changeuserstatus'}}/'+option,
+            url:'{{url('/changeuserstatus')}}/'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
