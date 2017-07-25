@@ -207,7 +207,7 @@ class AdminController extends Controller
                 $update = (new Admin)->updateclient($id, $type, $company_name, $contact_person, $contact_number, $email, $address, $web);
                 echo "<script type=\"text/javascript\">
 				alert(\"Information Updated Successfully\");
-				window.location=\"/ClientInfo\";
+				window.location=\"{{url('/')}}\";
 				</script>";
 
             } catch (Exception $e) {
