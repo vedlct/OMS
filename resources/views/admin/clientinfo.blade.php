@@ -10,13 +10,13 @@
                                             <td width="37%">
                                                 <select class="form-control" name="usertype" id="select" required onChange="map(this.value)">
 
-                                                    @if (session('status') == "User")
+                                                    @if ($value->user_type == "User")
 
                                                         User
 
-                                                    @elseif (session('status') == "Admin")
-                                                        <option selected value='Admin'>Admin</option>
+                                                    @elseif ($value->user_type == "Admin")
                                                         <option value='User'>User</option>
+                                                        <option selected value='Admin'>Admin</option>
 
 
                                                     @endif

@@ -174,7 +174,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changeservicestatus/'}}'+option,
+            url:'{{'/changeservicestatus'}}/'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
@@ -198,7 +198,7 @@
 
             $.ajax({
                 type:'get',
-                url:'{{'/deleteservice/'}}'+btn,
+                url:'{{'/deleteservice'}}/'+btn,
                 data:{'id':btn},
                 cache: false,
                 success:function(data)

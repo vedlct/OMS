@@ -103,16 +103,7 @@ class AdminController extends Controller
             $id = $request->id;
             $value = $request->value;
 
-            //$changestatus=(new Admin)->change_user_status($id,$value);
 
-//        if (count($changestatus)!='')
-//        {
-//            echo "Account ".$value." successfully.";
-//        }
-//        else
-//        {
-//            echo "There is an issue. Please Refresh the page and try again.";
-//        }
 
             try {
                 $changestatus = (new Admin)->change_user_status($id, $value);

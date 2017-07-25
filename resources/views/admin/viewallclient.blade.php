@@ -147,7 +147,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/ClientInfo/'}}'+btn,
+            url:'{{'/ClientInfo'}}/'+btn,
             data:{'id':btn},
             cache: false,
             success:function(data)
@@ -181,7 +181,7 @@
 
         $.ajax({
             type:'get',
-            url:'{{'/changeuserstatus/'}}'+option,
+            url:'{{'/changeuserstatus'}}/'+option,
             data:{'id':x,'value':option},
             cache: false,
             success:function(data)
