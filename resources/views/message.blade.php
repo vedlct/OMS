@@ -40,7 +40,7 @@
                             </div><!--new_message_head-->
                             <div id="">
 
-                                <div  id="newmsg" class="chat_area" style="overflow:auto;">
+                                <div  id="newmsg" class="chat_area">
                                     <ul class="list-unstyled">
                                         @if(session('user-type')=='Admin')
                                             @foreach($client_view as $s)
@@ -50,7 +50,7 @@
                      </span>
                                                         <div class="chat-body1 clearfix">
                                                             <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
-                                                            <p class=" pull-left">{{$s->sms}}</p>
+                                                            <p class=" pull-left"><?php echo $s->sms?></p>
 
                                                         </div>
                                                     </li>
@@ -61,7 +61,7 @@
                      </span>
                                                         <div class="chat-body1 clearfix">
                                                             <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
-                                                            <p class="chat_time pull-right">{{$s->sms}}</p>
+                                                            <p class="chat_time pull-right"><?php echo $s->sms?></p>
 
                                                         </div>
                                                     </li>
@@ -78,7 +78,7 @@
 
                                                         <div class="chat-body1 clearfix ">
                                                             <div >{{$s->inserted_time}}</div><br>
-                                                            <p >{{$s->sms}}</p>
+                                                            <p ><?php echo $s->sms?></p>
 
                                                         </div>
                                                     </li>
@@ -90,7 +90,7 @@
 
                                                         <div class="chat-body1 clearfix">
                                                             <div class="pull-right">{{$s->inserted_time}}</div><br>
-                                                            <p class="pull-right">{{$s->sms}}</p>
+                                                            <p class="pull-right"><?php echo $s->sms?></p>
 
                                                         </div>
                                                     </li>
@@ -108,19 +108,23 @@
                                 <!--chat_area-->
                             </div>
 
-                            <form method="post" id="smsbox" action="{{route('insersms',['client1'=>$client1])}}" onsubmit="return validateForm()">
-                                {{csrf_field()}}
-                                <div class="message_write">
+
+                            <div class="message_write">
+                                <form id="smsbox">
+                                    {{csrf_field()}}
+
                                     <textarea class="form-control" id="sms" name="sms" placeholder="type a message"></textarea>
 
                                     <div class="chat_bottom">
                                         {{--<a href="#" class="pull-left upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>--}}
                                         {{--Add Files</a>--}}
-                                        <input class="pull-right btn btn-success"type="submit" value="Send">
-                                    </div>
 
-                                </div>
-                            </form>
+                                        <input class="pull-right btn btn-success"type="button" value="Send" onclick="formsubmit()">
+                                    </div>
+                                </form>
+                            </div>
+
+
                         </div>
                     </div> <!--message_section-->
 
@@ -177,17 +181,18 @@ elseif(session('status') == 'User'){
                             data: {'sender':client,'reciever':'Admin'},
                             cache: false,
                             success : function(datas) {
-                                $('#txtHint').html(datas);
+
                                 //$("#txtHint").show();
                                 //alert('it works'); //ajax response successful alert box shows
                                 //should hide a div element
-                                $( "#newmsg" ).scrollTop($("#newmsg")[0].scrollHeight);
-                                $( "#lastmsg" ).scrollTop($("#lastmsg")[0].scrollHeight);
+                                $('#newmsg').append(datas);
+                                $("#newmsg").scrollTop($("#newmsg")[0].scrollHeight);
+                                //$( "#lastmsg" ).scrollTop($("#lastmsg")[0].scrollHeight);
                                 //alert(datas);
                             }
                         });
                         //scroll();
-                        old_amount =datan;
+                        old_amount =0;
                     }else {
                         //$("#newmsg").html(result).scrollTop(1000);
                         //alert(datan);
@@ -210,12 +215,13 @@ elseif(session('status') == 'User'){
                             data: {'sender':'Admin','reciever':client},
                             cache: false,
                             success : function(datas) {
-                                $('#txtHint').html(datas);
-                                $( "#newmsg" ).scrollTop($("#newmsg")[0].scrollHeight);
-                                $( "#lastmsg" ).scrollTop($("#lastmsg")[0].scrollHeight);
+                                $('#newmsg').append(datas);
+                                $("#newmsg").scrollTop($("#newmsg")[0].scrollHeight);
+                                //$( "#lastmsg" ).scrollTop($("#lastmsg")[0].scrollHeight);
+                                //alert(datas);
                             }
                         });
-                        old_amount =datan;
+                        old_amount =0;
                     }else {
                         //$("#newmsg").html(result).scrollTop(1000);
                         //scroll();
@@ -234,14 +240,36 @@ elseif(session('status') == 'User'){
 </script>
 
 <script>
-    function validateForm() {
-        var x = document.forms["smsbox"]["sms"].value;
-        if (x == "") {
+
+    function formsubmit() {
+        var sms = document.getElementById('sms').value;
+        if (sms == "") {
+
             alert("Please write some text first!!");
             return false;
         }
         else {
-            return true;
+
+
+            $.ajax({
+                type: 'post',
+                url: '{{route('insersms',['client1'=>$client1])}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'sms': sms,
+                },
+                cache: false,
+                success: function (data) {
+                    document.getElementById('sms').value = "";
+                    $("#sms").focus();
+                    $('#newmsg').append(data);
+                    $("#newmsg").scrollTop($("#newmsg")[0].scrollHeight);
+                    //$("#lastmsg").scrollTop($("#newmsg")[0].scrollHeight);
+                    //alert(data);
+
+                }
+            });
+
         }
     }
 </script>

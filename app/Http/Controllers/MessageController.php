@@ -49,14 +49,18 @@ class MessageController extends Controller
 
         $text= $request->sms;
 
-        //dd($client1);
         try{
             $save= (new Message())->insertsms($text,$client1);
-            return redirect()->route('usersms',[$client1]);
+            //return redirect()->route('usersms',[$client1]);
+            $getlivemsgdata=(new Message)->getClientsmslive($client1);
+            return view('newmessagedata',compact('getlivemsgdata','client1'));
+
+
         }
         catch (Exception $e){
             echo "There is an issue. Please Refresh the page and try again.";
         }
+       // echo $text;
     }
 
     public function jobcomment(Request $request){
@@ -204,7 +208,7 @@ class MessageController extends Controller
 
             echo "There is an issue. Please Refresh the page and try again.";
         }
-//        //echo $reciever;
+       // echo $reciever;
 
 
 

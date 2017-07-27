@@ -257,13 +257,38 @@ $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR
         return $count;
     }
 
-    public function getlivemsgdata ($sender,$reciever) {
+    public function getlivemsgdata($sender,$reciever) {
+
+
+
         $sms = DB::table('message')
             ->where('sender',$sender)
             ->where('receiver',$reciever)
             ->where('status','unseen')
+            ->orderBy('id', 'desc')
+            ->take(1)
             ->get();
+
+        $data1=array
+        (
+            'status'=>'Seen'
+        );
+
+            DB::table('message')
+                ->where('sender',$sender)
+                ->where('receiver',$reciever)
+                ->update($data1);
         return $sms;
+    }
+
+    public function getClientsmslive($client1)
+    {
+
+        $sms = DB::select( DB::raw("SELECT * FROM `message` WHERE (`sender` = 'Admin' OR `sender` = '$client1') And (`receiver` = 'Admin' OR `receiver` = '$client1') ORDER BY `id` DESC LIMIT 1") );
+        return $sms;
+
+
+
     }
 
 }

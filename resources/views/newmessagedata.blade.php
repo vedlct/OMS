@@ -1,5 +1,5 @@
 
-<div  id="lastmsg" class="chat_area" style="overflow:auto;" >
+<div  id="lastmsg" >
     <ul class="list-unstyled">
         @if(session('user-type')=='Admin')
             @foreach($getlivemsgdata as $s)
@@ -9,7 +9,7 @@
                      </span>
                         <div class="chat-body1 clearfix">
                             <div class="chat_time pull-right">{{$s->inserted_time}}</div><br>
-                            <p class="chat_time pull-right">{{$s->sms}}</p>
+                            <p class="chat_time pull-right"><?php echo $s->sms?></p>
 
                         </div>
                     </li>
@@ -20,7 +20,7 @@
                      </span>
                         <div class="chat-body1 clearfix">
                             <div class="chat_time pull-left">{{$s->inserted_time}}</div><br>
-                            <p class=" pull-left">{{$s->sms}}</p>
+                            <p class=" pull-left"><?php echo $s->sms?></p>
 
                         </div>
                     </li>
@@ -37,19 +37,19 @@
 
                         <div class="chat-body1 clearfix ">
                             <div >{{$s->inserted_time}}</div><br>
-                            <p >{{$s->sms}}</p>
+                            <p ><?php echo $s->sms?></p>
 
                         </div>
                     </li>
                 @else
 
-                    <li class="left clearfix admin_chat">{{$s->sender}}
+                    <li class="left clearfix admin_chat">
                      <span style="color: blue"class="chat-img1 pull-right">{{$client1}}
                      </span>
 
                         <div class="chat-body1 clearfix">
                             <div class="pull-right">{{$s->inserted_time}}</div><br>
-                            <p class="pull-right">{{$s->sms}}</p>
+                            <p class="pull-right"><?php echo $s->sms?></p>
 
                         </div>
                     </li>
